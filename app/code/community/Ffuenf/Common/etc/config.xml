@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Ffuenf_Common extension
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the MIT License
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/mit-license.php
+*
+* @category   Ffuenf
+*
+* @author     Achim Rosenhagen <a.rosenhagen@ffuenf.de>
+* @copyright  Copyright (c) 2015 ffuenf (http://www.ffuenf.de)
+* @license    http://opensource.org/licenses/mit-license.php MIT License
+*/
+-->
+<config>
+    <modules>
+        <Ffuenf_Common>
+            <version>1.0.0</version>
+        </Ffuenf_Common>
+    </modules>
+    <global>
+        <blocks>
+            <ffuenf_common>
+                <class>Ffuenf_Common_Block</class>
+            </ffuenf_common>
+        </blocks>
+        <helpers>
+            <ffuenf_common>
+                <class>Ffuenf_Common_Helper</class>
+            </ffuenf_common>
+        </helpers>
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <ffuenf_common after="Mage_Adminhtml">Ffuenf_Common_Adminhtml</ffuenf_common>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    <adminhtml>
+        <layout>
+            <updates>
+                <ffuenf_common>
+                    <file>ffuenf_common.xml</file>
+                </ffuenf_common>
+            </updates>
+        </layout>
+    </adminhtml>
+    <default>
+        <ffuenf_common>
+            <general>
+                <enabled>1</enabled>
+            </general>
+            <log>
+                <enabled>0</enabled>
+                <force>0</force>
+                <file>ffuenf.log</file>
+            </log>
+        </ffuenf_common>
+    </default>
+    <phpunit>
+        <suite>
+            <modules>
+                <Ffuenf_Common/>
+            </modules>
+        </suite>
+    </phpunit>
+</config>

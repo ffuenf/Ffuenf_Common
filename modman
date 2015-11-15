@@ -1,0 +1,8 @@
+app/code/community/Ffuenf/Common                               app/code/community/Ffuenf/Common
+app/design/adminhtml/default/default/layout/ffuenf_common.xml  app/design/adminhtml/default/default/layout/ffuenf_common.xml
+app/design/adminhtml/default/default/template/ffuenf/common    app/design/adminhtml/default/default/template/ffuenf/common
+app/locale/de_DE/Ffuenf_Common.csv                             app/locale/de_DE/Ffuenf_Common.csv
+app/locale/en_US/Ffuenf_Common.csv                             app/locale/en_US/Ffuenf_Common.csv
+app/etc/modules/Ffuenf_Common.xml                              app/etc/modules/Ffuenf_Common.xml
+skin/adminhtml/default/default/ffuenf/common.js                skin/adminhtml/default/default/ffuenf/common.js
+skin/adminhtml/default/default/ffuenf/common.css               skin/adminhtml/default/default/ffuenf/common.css
