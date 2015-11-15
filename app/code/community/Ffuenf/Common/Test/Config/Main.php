@@ -45,6 +45,24 @@ class Ffuenf_Common_Test_Config_Main extends EcomDev_PHPUnit_Test_Case_Config
     }
 
     /**
+     * Check layout.xml definition
+     *
+     * @test
+     */
+    public function testLayoutFileDefinition()
+    {
+        $this->assertLayoutFileDefined(
+            'adminhtml',
+            'ffuenf_common.xml',
+            'ffuenf_common'
+        );
+        $this->assertLayoutFileExists(
+            'adminhtml',
+            'ffuenf_common.xml'
+        );
+    }
+
+    /**
      * Tests whether extension uses the old-style admin routing (not compatible with SUPEE-6788).
      *
      * @test

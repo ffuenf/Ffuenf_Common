@@ -1,15 +1,13 @@
-[![Ffuenf](https://github.com/ffuenf/Ffuenf_Common/skin/adminhtml/default/default/ffuenf/ffuenf.png)][ffuenf]
+<a href="http://www.ffuenf.de" title="ffuenf - code • design • e-commerce"><img src="https://github.com/ffuenf/Ffuenf_Common/blob/master/skin/adminhtml/default/default/ffuenf/ffuenf.png" alt="ffuenf - code • design • e-commerce" /></a>
+
+Ffuenf_Common
+=============
 [![GitHub tag](https://img.shields.io/github/tag/ffuenf/Ffuenf_Common.svg)][tag]
 [![Build Status](https://img.shields.io/travis/ffuenf/Ffuenf_Common.svg)][travis]
 [![Code Quality](https://scrutinizer-ci.com/g/ffuenf/Ffuenf_Common/badges/quality-score.png)][code_quality]
 [![Code Coverage](https://scrutinizer-ci.com/g/ffuenf/Ffuenf_Common/badges/coverage.png)][code_coverage]
 [![Code Climate](https://codeclimate.com/github/ffuenf/Ffuenf_Common/badges/gpa.svg)][codeclimate_gpa]
 [![PayPal Donate](https://img.shields.io/badge/paypal-donate-blue.svg)][paypal_donate]
-
-[ffuenf]: http://www.ffuenf.de
-
-Ffuenf_Common
-=============
 [tag]: https://github.com/ffuenf/Ffuenf_Common
 [travis]: https://travis-ci.org/ffuenf/Ffuenf_Common
 [code_quality]: https://scrutinizer-ci.com/g/ffuenf/Ffuenf_Common
