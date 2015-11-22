@@ -25,6 +25,21 @@
 class Ffuenf_Common_Test_Helper_Data extends EcomDev_PHPUnit_Test_Case
 {
     /**
+     * @var Ffuenf_Common_Helper_Data
+     */
+    protected $_helper;
+
+    public function setUp()
+    {
+        $this->_helper = new Ffuenf_Common_Helper_Data();
+    }
+
+    public function tearDown()
+    {
+        $this->_helper = null;
+    }
+
+    /**
      * Tests whether extension is active.
      *
      * @test
@@ -33,7 +48,7 @@ class Ffuenf_Common_Test_Helper_Data extends EcomDev_PHPUnit_Test_Case
     public function testIsExtensionActive()
     {
         $this->assertTrue(
-            Mage::helper('ffuenf_common')->isExtensionActive(),
+            $this->_helper->isExtensionActive(),
             'Extension is not active please check config'
         );
     }

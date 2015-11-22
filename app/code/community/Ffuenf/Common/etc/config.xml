@@ -20,7 +20,7 @@
 <config>
     <modules>
         <Ffuenf_Common>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </Ffuenf_Common>
     </modules>
     <global>
@@ -34,6 +34,13 @@
                 <class>Ffuenf_Common_Helper</class>
             </ffuenf_common>
         </helpers>
+        <resources>
+            <ffuenf_common_setup>
+                <setup>
+                    <module>Ffuenf_Common</module>
+                </setup>
+            </ffuenf_common_setup>
+        </resources>
     </global>
     <admin>
         <routers>
@@ -67,6 +74,9 @@
             </log>
         </ffuenf_common>
     </default>
+    <uninstall>
+        <filename>uninstall.txt</filename>
+    </uninstall>
     <phpunit>
         <suite>
             <modules>
