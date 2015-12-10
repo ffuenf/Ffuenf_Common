@@ -1,0 +1,69 @@
+<?php
+/**
+ * Ffuenf_Common extension.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category   Ffuenf
+ *
+ * @author     Achim Rosenhagen <a.rosenhagen@ffuenf.de>
+ * @copyright  Copyright (c) 2015 ffuenf (http://www.ffuenf.de)
+ * @license    http://opensource.org/licenses/mit-license.php MIT License
+ */
+?>
+<div class="grid">
+    <div class="hor-scroll">
+        <table cellspacing="0" class="data sysinfo-section-table" id="<?php echo $this->getSectionId(); ?>">
+            <?php if ($this->showKeys()): ?>
+                <colgroup>
+                    <col width="250">
+                </colgroup>
+            <?php endif; ?>
+            <tbody>
+                <?php foreach ($this->getSysinfoData() as $key => $value): ?>
+                    <?php if ($key == '__titles__'): ?>
+                        <tr class="headings">
+                            <?php if ($this->showKeys()): ?>
+                                <th>&nbsp;</th>
+                            <?php endif; ?>
+                            <?php foreach ($value as $subkey => $subvalue): ?>
+                                <th class="a-center"><?php echo $this->formatOutput($subvalue); ?></th>
+                            <?php endforeach; ?>
+                        </tr>
+                    <?php else: ?>
+                        <tr>
+                            <?php if ($this->showKeys()): ?>
+                                <td class="a-right"><strong><?php echo $key; ?></strong></td>
+                            <?php endif; ?>
+                            <?php foreach ($value as $subkey => $subvalue): ?>
+                                <td class="a-center data-cell"><?php echo $this->formatOutput($subvalue); ?></td>
+                            <?php endforeach; ?>
+                        </tr>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+//<![CDATA[
+    document.observe('dom:loaded', function() {
+        decorateTable('<?php echo $this->getSectionId(); ?>');
+        var tableCells = $$('#<?php echo $this->getSectionId(); ?> td.data-cell');
+        if (tableCells.length) {
+            tableCells.each(function(cell) {
+                if (cell.innerHTML.toLowerCase() == 'no' || cell.innerHTML.toLowerCase() == 'inactive' || cell.innerHTML.toLowerCase() == 'invalid') {
+                    cell.update('<span class="failed" title="' + cell.innerHTML + '">' + cell.innerHTML + '</span>');
+                } else if (cell.innerHTML.toLowerCase() == 'yes' || cell.innerHTML.toLowerCase() == 'ok') {
+                    cell.update('<span class="passed" title="' + cell.innerHTML + '">' + cell.innerHTML + '</span>');
+                }
+            });
+        }
+    });
+//]]>
+</script>

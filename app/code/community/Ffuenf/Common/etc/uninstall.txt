@@ -5,4 +5,6 @@ app/locale/de_DE/Ffuenf_Common.csv
 app/locale/en_US/Ffuenf_Common.csv
 app/etc/modules/Ffuenf_Common.xml
 skin/adminhtml/default/default/ffuenf/common.js
+skin/adminhtml/default/default/ffuenf/icon.png
 skin/adminhtml/default/default/ffuenf/common.css
+js/ffuenf/vendors/prism.js

@@ -20,7 +20,7 @@
 <config>
     <modules>
         <Ffuenf_Common>
-            <version>1.0.1</version>
+            <version>1.1.0</version>
         </Ffuenf_Common>
     </modules>
     <global>
@@ -29,6 +29,11 @@
                 <class>Ffuenf_Common_Block</class>
             </ffuenf_common>
         </blocks>
+        <models>
+            <ffuenf_common>
+                <class>Ffuenf_Common_Model</class>
+            </ffuenf_common>
+        </models>
         <helpers>
             <ffuenf_common>
                 <class>Ffuenf_Common_Helper</class>
@@ -62,15 +67,28 @@
             </updates>
         </layout>
     </adminhtml>
+    <crontab>
+        <jobs>
+            <ffuenf_common_log_rotate>
+                <schedule>
+                    <cron_expr>*/5 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>ffuenf_common/observer::rotateLogfiles</model>
+                </run>
+            </ffuenf_common_log_rotate>
+        </jobs>
+    </crontab>
     <default>
         <ffuenf_common>
             <general>
-                <enabled>1</enabled>
+                <enable>1</enable>
             </general>
             <log>
-                <enabled>0</enabled>
+                <enable>0</enable>
                 <force>0</force>
-                <file>ffuenf.log</file>
+                <echo>0</echo>
+                <file>ffuenf/system.log</file>
             </log>
         </ffuenf_common>
     </default>

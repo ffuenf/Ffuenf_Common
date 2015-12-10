@@ -42,6 +42,14 @@ class Ffuenf_Common_Test_Config_Main extends EcomDev_PHPUnit_Test_Case_Config
             'ffuenf_common', 'Ffuenf_Common_Helper_Data',
             'correct helper alias'
         );
+        $this->assertHelperAlias(
+            'ffuenf_common/sysinfo', 'Ffuenf_Common_Helper_Sysinfo',
+            'correct helper alias'
+        );
+        $this->assertHelperAlias(
+            'ffuenf_common/core', 'Ffuenf_Common_Helper_Core',
+            'correct helper alias'
+        );
     }
 
     /**
