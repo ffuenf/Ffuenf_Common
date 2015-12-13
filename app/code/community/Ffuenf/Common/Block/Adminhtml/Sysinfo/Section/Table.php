@@ -16,7 +16,7 @@
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Block_Adminhtml_Debug_Section_Table extends Ffuenf_Common_Block_Adminhtml_Debug_Section
+class Ffuenf_Common_Block_Adminhtml_Sysinfo_Section_Table extends Ffuenf_Common_Block_Adminhtml_Sysinfo_Section
 {
     public function __construct()
     {

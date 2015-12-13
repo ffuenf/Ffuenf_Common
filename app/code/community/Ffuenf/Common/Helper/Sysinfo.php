@@ -310,8 +310,8 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
             'PCRE' => function_exists('preg_replace'),
             'DOM' => class_exists('DOMNode'),
             'SimpleXML' => function_exists('simplexml_load_string'),
-            'apc' => extension_loaded('apc') || extension_loaded('apcu')) && (ini_get('apc.enabled') || ini_get('apc.enabled_cli'),
-            'opcache' => extension_loaded('Zend OPcache') && (ini_get('opcache.enable') || ini_get('opcache.enable_cli')),
+            'apc' => ((extension_loaded('apc') || extension_loaded('apcu')) && (ini_get('apc.enabled') || ini_get('apc.enabled_cli'))),
+            'opcache' => (extension_loaded('Zend OPcache') && (ini_get('opcache.enable') || ini_get('opcache.enable_cli'))),
             'redis' => extension_loaded('redis')
         );
     }
@@ -328,7 +328,7 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
     }
 
     /**
-     * @param string|null $debugArea
+     * @param string|null $sysinfoArea
      * @return array
      */
     public function getSysinfoData($sysinfoArea = null)

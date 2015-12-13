@@ -16,24 +16,30 @@
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Block_Adminhtml_Log_System_View extends Ffuenf_Common_Block_Adminhtml_Log_View_Abstract
+class Ffuenf_Common_Block_Adminhtml_Log_Profile_View extends Ffuenf_Common_Block_Adminhtml_Log_View_Abstract
 {
     public function __construct()
     {
         parent::__construct();
-        $this->_controller = 'adminhtml_log_system';
-        $this->_headerText = $this->__('System Log');
-        $this->setTemplate('ffuenf/common/log/system/view.phtml');
+        $this->_controller = 'adminhtml_log_profile';
+        $this->_headerText = $this->__('Profile Log');
+        $this->setTemplate('ffuenf/common/log/profile/view.phtml');
     }
 
     public function setLog($model)
     {
         parent::setLog($model);
         if (is_object($model) && $model->getId()) {
-            $this->_headerText = $this->__('Message',
+            $this->_headerText = $this->__('Message | %s',
                 $this->getTimestamp(),
-                $this->getExtension(),
+                $this->getClass(),
                 $this->getType(),
+                $this->getItems(),
+                $this->getPage(),
+                $this->getStart(),
+                $this->getStop(),
+                $this->getDuration(),
+                $this->getMemory(),
                 $this->getMessage()
             );
         }

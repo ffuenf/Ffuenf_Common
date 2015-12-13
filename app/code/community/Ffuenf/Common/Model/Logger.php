@@ -20,6 +20,7 @@ final class Ffuenf_Common_Model_Logger {
 
     const FFUENF_LOG_DIR            = 'ffuenf';
     const FFUENF_LOG_FILE           = 'system.log';
+    const FFUENF_PROFILE_LOG_FILE   = 'profile.log';
     const FFUENF_EXCEPTION_LOG_FILE = 'exception.log';
     const LOGFILE_ROTATION_SIZE     = 8;
 
@@ -50,6 +51,8 @@ final class Ffuenf_Common_Model_Logger {
                     return $logDir . DS . self::FFUENF_EXCEPTION_LOG_FILE;
                 case 'system':
                     return $logDir . DS . self::FFUENF_LOG_FILE;
+                case 'profile':
+                    return $logDir . DS . self::FFUENF_PROFILE_LOG_FILE;
                 default:
                     return $logDir . DS . self::FFUENF_LOG_FILE;
             }
@@ -72,6 +75,35 @@ final class Ffuenf_Common_Model_Logger {
                 fclose($fileHandle);
             } else {
                 Mage::log('FFUENF: unable to open ' . self::getAbsoluteLogFilePath('system') . ' for writing.');
+            }
+        }
+    }
+
+    /**
+     * Logs performance data
+     *
+     * @param array $logData
+     */
+    public static function logProfile($logData) {
+        if (self::_getConfig()->isLoggingActive()) {
+            if (($fileHandle = fopen(self::getAbsoluteLogFilePath('profile'), 'a')) !== false) {
+                $message = (array_key_exists('message', $logData) ? $logData['message'] : '');
+                $profileData = array(
+                    'timestamp' => Mage::getModel('core/date')->gmtTimestamp(),
+                    'class' => $logData['class'],
+                    'type' => $logData['type'],
+                    'items' => $logData['items'],
+                    'page' => $logData['page'],
+                    'start' => date('H:i:s', $logData['start']['time']),
+                    'stop' => date('H:i:s', $logData['stop']['time']),
+                    'duration' => date('H:i:s', ($logData['stop']['time'] - $logData['start']['time'])),
+                    'memory' => Mage::helper('ffuenf_common')->convert($logData['stop']['memory'] - $logData['start']['memory']),
+                    'message' => $message
+                );
+                fputcsv($fileHandle, $profileData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
+                fclose($fileHandle);
+            } else {
+                Mage::log('FFUENF: unable to open ' . self::getAbsoluteLogFilePath('profile') . ' for writing.');
             }
         }
     }
@@ -105,9 +137,11 @@ final class Ffuenf_Common_Model_Logger {
             case 'exception':
                 return array('timestamp', 'exception_code', 'exception_message', 'exception_trace');
             case 'system':
-                return array('timestamp', 'type', 'message');
+                return array('timestamp', 'extension', 'type', 'message');
+            case 'profile':
+                return array('timestamp', 'class', 'type', 'items','page', 'start', 'stop', 'duration', 'memory', 'message');
             default:
-                return array('timestamp', 'type', 'message');
+                return array('timestamp', 'extension', 'type', 'message');
         }
         return null;
     }

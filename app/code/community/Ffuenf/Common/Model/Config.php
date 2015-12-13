@@ -21,10 +21,6 @@ class Ffuenf_Common_Model_Config
     const XML_PATH_LOG_ALLOWED_IPS = 'ffuenf_common/log/allowed_ips';
     const XML_PATH_LOG_ACTIVE      = 'ffuenf_common/log/enable';
 
-    protected $_config = array();
-    protected $_globalData = null;
-    protected $_merchantValues = null;
-
     public function isLoggingActive($store = null)
     {
         return Mage::getStoreConfigFlag(self::XML_PATH_LOG_ACTIVE, $store);

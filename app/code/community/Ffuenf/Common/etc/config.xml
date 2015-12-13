@@ -52,7 +52,7 @@
             <adminhtml>
                 <args>
                     <modules>
-                        <ffuenf_common after="Mage_Adminhtml">Ffuenf_Common_Adminhtml</ffuenf_common>
+                        <Ffuenf_Common after="Mage_Adminhtml">Ffuenf_Common_Adminhtml</Ffuenf_Common>
                     </modules>
                 </args>
             </adminhtml>
@@ -71,7 +71,7 @@
         <jobs>
             <ffuenf_common_log_rotate>
                 <schedule>
-                    <cron_expr>*/5 * * * *</cron_expr>
+                    <cron_expr>*/15 * * * *</cron_expr>
                 </schedule>
                 <run>
                     <model>ffuenf_common/observer::rotateLogfiles</model>
@@ -81,9 +81,6 @@
     </crontab>
     <default>
         <ffuenf_common>
-            <general>
-                <enable>1</enable>
-            </general>
             <log>
                 <enable>0</enable>
                 <force>0</force>

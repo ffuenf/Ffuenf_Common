@@ -34,7 +34,7 @@ class Ffuenf_Common_Adminhtml_Log_SystemController extends Mage_Adminhtml_Contro
             ->_setActiveMenu('system/ffuenf/log/system')
             ->_addBreadcrumb($this->__('Ffuenf'), $this->__('Ffuenf'))
             ->_addBreadcrumb($this->__('Logs'), $this->__('Logs'))
-            ->_addBreadcrumb($this->__('Exceptions'), $this->__('System'));
+            ->_addBreadcrumb($this->__('System'), $this->__('System'));
         return $this;
     }
 
@@ -50,7 +50,7 @@ class Ffuenf_Common_Adminhtml_Log_SystemController extends Mage_Adminhtml_Contro
         $id = $this->getRequest()->getParam('id');
         $log = $this->_getCollection()->getItemById($id);
         if (is_object($log) && $log->getId()) {
-            $this->_title($this->__('Ffuenf'))->_title($this->__('Logs'))->_title($this->__('System'))->_title($this->__('Preview'));
+            $this->_title($this->__('Ffuenf'))->_title($this->__('Logs'))->_title($this->__('System'))->_title($this->__('Details'));
             $this->_initAction();
             $this->_addContent($this->getLayout()->createBlock('ffuenf_common/adminhtml_log_system_view')->setLog($log));
             $this->renderLayout();

@@ -16,7 +16,7 @@
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Block_Adminhtml_Debug_Section extends Mage_Adminhtml_Block_Template
+class Ffuenf_Common_Block_Adminhtml_Sysinfo_Section extends Mage_Adminhtml_Block_Template
 {
     protected $_id = null;
 
@@ -32,7 +32,7 @@ class Ffuenf_Common_Block_Adminhtml_Debug_Section extends Mage_Adminhtml_Block_T
 
     public function getSysinfoData()
     {
-        return Mage::helper('ffuenf_common/sysinfo')->getDebugData($this->_sysinfoArea);
+        return Mage::helper('ffuenf_common/sysinfo')->getSysinfoData($this->_sysinfoArea);
     }
 
     public function getSectionId()
@@ -43,9 +43,9 @@ class Ffuenf_Common_Block_Adminhtml_Debug_Section extends Mage_Adminhtml_Block_T
         return $this->_id;
     }
 
-    public function setSysinfoArea($debugArea)
+    public function setSysinfoArea($sysinfoArea)
     {
-        $this->_debugArea = $debugArea;
+        $this->_sysinfoArea = $sysinfoArea;
         return $this;
     }
 

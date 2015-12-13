@@ -68,6 +68,17 @@ class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
     }
 
     /**
+     * return human-readable sizes
+     *
+     * @return string
+     */
+    public function convert($size)
+    {
+        $unit = array('B','KB','MB','GB','TB','PB');
+        return @round($size/pow(1024, ($i = floor(log($size, 1024)))), 2) . $unit[$i];
+    }
+
+    /**
      * path of new magento.css file
      *
      * @return string

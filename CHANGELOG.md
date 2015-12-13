@@ -2,12 +2,11 @@
 
 This file is used to list changes made in each version of Ffuenf_Common.
 
-## 1.1.1 (Unreleased)
-
-## 1.1.0 (December 10, 2015)
+## 1.1.0 (December 14, 2015)
 
 * add system information panel
 * add advanced centralized logging panel and logic
+* add profile logging
 
 ## 1.0.1 (November 22, 2015)
 

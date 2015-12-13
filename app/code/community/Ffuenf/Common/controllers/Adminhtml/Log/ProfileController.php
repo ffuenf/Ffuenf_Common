@@ -16,7 +16,7 @@
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Adminhtml_Log_ExceptionController extends Mage_Adminhtml_Controller_Action
+class Ffuenf_Common_Adminhtml_Log_ProfileController extends Mage_Adminhtml_Controller_Action
 {
     protected function _getConfig()
     {
@@ -25,22 +25,22 @@ class Ffuenf_Common_Adminhtml_Log_ExceptionController extends Mage_Adminhtml_Con
 
     protected function _getCollection()
     {
-        return Mage::getModel('ffuenf_common/log_collection')->setLogType('exception');
+        return Mage::getModel('ffuenf_common/log_collection')->setLogType('profile');
     }
 
     protected function _initAction()
     {
         $this->loadLayout()
-            ->_setActiveMenu('system/ffuenf/log/exception')
+            ->_setActiveMenu('system/ffuenf/log/system')
             ->_addBreadcrumb($this->__('Ffuenf'), $this->__('Ffuenf'))
             ->_addBreadcrumb($this->__('Logs'), $this->__('Logs'))
-            ->_addBreadcrumb($this->__('Exceptions'), $this->__('Exceptions'));
+            ->_addBreadcrumb($this->__('Profile'), $this->__('Profile'));
         return $this;
     }
 
     public function indexAction()
     {
-        $this->_title($this->__('Ffuenf'))->_title($this->__('Logs'))->_title($this->__('Exceptions'));
+        $this->_title($this->__('Ffuenf'))->_title($this->__('Logs'))->_title($this->__('Profile'));
         $this->_initAction()
             ->renderLayout();
     }
@@ -50,9 +50,9 @@ class Ffuenf_Common_Adminhtml_Log_ExceptionController extends Mage_Adminhtml_Con
         $id = $this->getRequest()->getParam('id');
         $log = $this->_getCollection()->getItemById($id);
         if (is_object($log) && $log->getId()) {
-            $this->_title($this->__('Ffuenf'))->_title($this->__('Logs'))->_title($this->__('Exceptions'))->_title($this->__('Details'));
+            $this->_title($this->__('Ffuenf'))->_title($this->__('Logs'))->_title($this->__('Profile'))->_title($this->__('Details'));
             $this->_initAction();
-            $this->_addContent($this->getLayout()->createBlock('ffuenf_common/adminhtml_log_exception_view')->setLog($log));
+            $this->_addContent($this->getLayout()->createBlock('ffuenf_common/adminhtml_log_profile_view')->setLog($log));
             $this->renderLayout();
         } else {
             Mage::getSingleton('adminhtml/session')->addError(Mage::helper('ffuenf_common')->__('Log does not exist'));
@@ -62,9 +62,9 @@ class Ffuenf_Common_Adminhtml_Log_ExceptionController extends Mage_Adminhtml_Con
 
     public function downloadAction()
     {
-        $logFilePath = Ffuenf_Common_Model_Logger::getAbsoluteLogFilePath('exception');
+        $logFilePath = Ffuenf_Common_Model_Logger::getAbsoluteLogFilePath('profile');
         if (file_exists($logFilePath)) {
-            $output = implode($this->_getConfig()->getLogDelimiter(), Ffuenf_Common_Model_Logger::getColumnMapping('exception')) . "\n";
+            $output = implode($this->_getConfig()->getLogDelimiter(), Ffuenf_Common_Model_Logger::getColumnMapping('profile')) . "\n";
             $output .= file_get_contents($logFilePath);
             Mage::app()->getResponse()->setHeader('Content-type', 'text/csv');
             Mage::app()->getResponse()->setHeader('Content-disposition', 'attachment;filename=' . basename($logFilePath) . '.csv');

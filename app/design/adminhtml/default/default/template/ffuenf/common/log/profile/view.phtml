@@ -28,7 +28,7 @@
 </div>
 <div class="entry-edit">
     <div class="entry-edit-head">
-        <h4><?php echo $this->__('System Log details'); ?></h4>
+        <h4><?php echo $this->__('Profile Log details'); ?></h4>
     </div>
     <div class="box">
         <table cellspacing="0" class="form-list">
@@ -38,12 +38,36 @@
                     <td class="value"><strong><?php echo $this->htmlEscape($this->getTimestamp()); ?></strong></td>
                 </tr>
                 <tr>
-                    <td class="label"><label><?php echo $this->__('Extension'); ?></label></td>
-                    <td class="value"><?php echo $this->escapeHtml($this->getExtension()); ?></td>
+                    <td class="label"><label><?php echo $this->__('Class'); ?></label></td>
+                    <td class="value"><?php echo $this->escapeHtml($this->getClass()); ?></td>
                 </tr>
                 <tr>
                     <td class="label"><label><?php echo $this->__('Type'); ?></label></td>
                     <td class="value"><?php echo $this->escapeHtml($this->getType()); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Items'); ?></label></td>
+                    <td class="value"><?php echo $this->escapeHtml($this->getItems()); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Page'); ?></label></td>
+                    <td class="value"><?php echo $this->escapeHtml($this->getPage()); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Start Time'); ?></label></td>
+                    <td class="value"><?php echo $this->escapeHtml($this->getStart()); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Stop Time'); ?></label></td>
+                    <td class="value"><?php echo $this->escapeHtml($this->getStop()); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Duration'); ?></label></td>
+                    <td class="value"><?php echo $this->escapeHtml($this->getDuration()); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Memory Consumption'); ?></label></td>
+                    <td class="value"><?php echo $this->escapeHtml($this->getMemory()); ?></td>
                 </tr>
             </tbody>
         </table>

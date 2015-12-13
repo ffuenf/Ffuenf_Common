@@ -16,14 +16,14 @@
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Block_Adminhtml_Log_System extends Ffuenf_Common_Block_Adminhtml_Log_Abstract
+class Ffuenf_Common_Block_Adminhtml_Log_Profile extends Ffuenf_Common_Block_Adminhtml_Log_Abstract
 {
-    protected $_logType = 'system';
+    protected $_logType = 'profile';
 
     public function __construct()
     {
         parent::__construct();
-        $this->_controller = 'adminhtml_log_system';
-        $this->_headerText = Mage::helper('ffuenf_common')->__('System Log');
+        $this->_controller = 'adminhtml_log_profile';
+        $this->_headerText = Mage::helper('ffuenf_common')->__('Profile Log');
     }
 }

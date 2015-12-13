@@ -28,7 +28,7 @@
                         <sysinfo translate="title" module="ffuenf_common">
                             <title>System Information</title>
                             <sort_order>100</sort_order>
-                            <action>ffuenf_common/adminhtml_sysinfo</action>
+                            <action>adminhtml/sysinfo</action>
                         </sysinfo>
                         <log translate="title" module="ffuenf_common">
                             <title>Logs</title>
@@ -37,12 +37,17 @@
                                 <system translate="title" module="ffuenf_common">
                                     <title>System</title>
                                     <sort_order>10</sort_order>
-                                    <action>ffuenf_common/adminhtml_log_system</action>
+                                    <action>adminhtml/log_system</action>
                                 </system>
+                                <profile translate="title" module="ffuenf_common">
+                                    <title>Profile</title>
+                                    <sort_order>10</sort_order>
+                                    <action>adminhtml/log_profile</action>
+                                </profile>
                                 <exception translate="title" module="ffuenf_common">
                                     <title>Exceptions</title>
                                     <sort_order>20</sort_order>
-                                    <action>ffuenf_common/adminhtml_log_exception</action>
+                                    <action>adminhtml/log_exception</action>
                                 </exception>
                             </children>
                         </log>
@@ -76,6 +81,9 @@
                                     <system translate="title">
                                         <title>System</title>
                                     </system>
+                                    <profile translate="title">
+                                        <title>Profile</title>
+                                    </profile>
                                 </children>
                             </log>
                         </children>
