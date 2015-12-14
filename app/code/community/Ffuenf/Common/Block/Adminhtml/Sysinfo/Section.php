@@ -19,9 +19,7 @@
 class Ffuenf_Common_Block_Adminhtml_Sysinfo_Section extends Mage_Adminhtml_Block_Template
 {
     protected $_id = null;
-
     protected $_sysinfoArea = 'general';
-
     protected $_showKeys = true;
 
     public function __construct()
