@@ -36,6 +36,7 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
     /**
      * Checks if for given config option callback function shall be used
      * On of the purposes of callbacks is to hide the confidential data
+     * @param string $key
      */
     protected function _formatConfigValueOutput($key, $value) {
         if (array_key_exists($key, $this->_configOutputCallbacks)) {
@@ -64,7 +65,7 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
      */
     protected function _getMagentoEdition()
     {
-        if (method_exists('Mage','getEdition')) {
+        if (method_exists('Mage', 'getEdition')) {
             return Mage::getEdition() . ' Edition';
         }
         return '';
@@ -79,11 +80,13 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
      */
     protected function _getElapsedTime($start, $end)
     {
-        if (!($start && $end)) return 'No';
+        if (!($start && $end)) {
+            return 'No';
+        }
         $diff = $end - $start;
         $days = (int)($diff / 86400);
-        $hours = (int)(($diff - $days * 86400)/ 3600);
-        $minutes = (int)(($diff - $days * 86400 - $hours * 3600)/60);
+        $hours = (int)(($diff - $days * 86400) / 3600);
+        $minutes = (int)(($diff - $days * 86400 - $hours * 3600) / 60);
         $seconds = (int)($diff - $days * 86400 - $hours * 3600 - $minutes * 60);
         $result = ($days ? $days . ' d ' : '') .
             ($hours ? $hours . ' h ' : '') .

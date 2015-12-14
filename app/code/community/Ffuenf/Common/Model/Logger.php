@@ -131,6 +131,9 @@ final class Ffuenf_Common_Model_Logger {
         }
     }
 
+    /**
+     * @param string $logType
+     */
     public static function getColumnMapping($logType)
     {
         switch ($logType) {
@@ -139,7 +142,7 @@ final class Ffuenf_Common_Model_Logger {
             case 'system':
                 return array('timestamp', 'extension', 'type', 'message');
             case 'profile':
-                return array('timestamp', 'class', 'type', 'items','page', 'start', 'stop', 'duration', 'memory', 'message');
+                return array('timestamp', 'class', 'type', 'items', 'page', 'start', 'stop', 'duration', 'memory', 'message');
             default:
                 return array('timestamp', 'extension', 'type', 'message');
         }

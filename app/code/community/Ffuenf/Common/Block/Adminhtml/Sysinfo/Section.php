@@ -62,8 +62,12 @@ class Ffuenf_Common_Block_Adminhtml_Sysinfo_Section extends Mage_Adminhtml_Block
 
     public function formatOutput($value)
     {
-        if (false === $value) return 'No';
-        if (true === $value) return 'Yes';
+        if (false === $value) {
+            return 'No';
+        }
+        if (true === $value) {
+            return 'Yes';
+        }
         return $value;
     }
 }

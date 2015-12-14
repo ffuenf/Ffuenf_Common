@@ -20,7 +20,7 @@ class Ffuenf_Common_Block_Adminhtml_Renderer_Timestamp extends Mage_Adminhtml_Bl
 {
     public function render(Varien_Object $row)
     {
-        $value =  $row->getData($this->getColumn()->getIndex());
+        $value = $row->getData($this->getColumn()->getIndex());
         return Mage::getSingleton('core/date')->date('Y-m-d\TH:i:s', $value);
     }
 }
