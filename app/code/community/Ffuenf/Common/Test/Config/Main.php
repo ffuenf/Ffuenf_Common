@@ -39,7 +39,8 @@ class Ffuenf_Common_Test_Config_Main extends EcomDev_PHPUnit_Test_Case_Config
     public function testHelperAliases()
     {
         $this->assertHelperAlias(
-            'ffuenf_common', 'Ffuenf_Common_Helper_Data',
+            'ffuenf_common',
+            'Ffuenf_Common_Helper_Data',
             'correct helper alias'
         );
     }

@@ -61,7 +61,7 @@ class Ffuenf_Common_Block_Adminhtml_Log_View_Abstract extends Mage_Adminhtml_Blo
     {
         if (null !== $this->_getLog()) {
             if (substr($method, 0, 3) == 'get') {
-                $key = $this->_underscore(substr($method,3));
+                $key = $this->_underscore(substr($method, 3));
                 return $this->_getLog()->getData($key);
             }
         }

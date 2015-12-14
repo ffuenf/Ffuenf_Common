@@ -30,7 +30,8 @@ class Ffuenf_Common_Block_Adminhtml_Log_Exception_View extends Ffuenf_Common_Blo
     {
         parent::setLog($model);
         if (is_object($model) && $model->getId()) {
-            $this->_headerText = $this->__('Ffuenf Exception | %s',
+            $this->_headerText = $this->__(
+                'Ffuenf Exception | %s',
                 $this->getTimestamp()
             );
         }

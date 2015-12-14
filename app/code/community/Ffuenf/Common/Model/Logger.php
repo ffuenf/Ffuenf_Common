@@ -16,8 +16,8 @@
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-final class Ffuenf_Common_Model_Logger {
-
+final class Ffuenf_Common_Model_Logger
+{
     const FFUENF_LOG_DIR            = 'ffuenf';
     const FFUENF_LOG_FILE           = 'system.log';
     const FFUENF_PROFILE_LOG_FILE   = 'profile.log';
@@ -29,7 +29,8 @@ final class Ffuenf_Common_Model_Logger {
      *
      * @return Ffuenf_Common_Model_Config
      */
-    private static function _getConfig() {
+    private static function _getConfig()
+    {
         return Mage::getSingleton('ffuenf_common/config');
     }
 
@@ -67,7 +68,8 @@ final class Ffuenf_Common_Model_Logger {
      *
      * @param array $logData
      */
-    public static function logSystem($logData) {
+    public static function logSystem($logData)
+    {
         if (self::_getConfig()->isLoggingActive()) {
             array_unshift($logData, Mage::getModel('core/date')->gmtTimestamp());
             if (($fileHandle = fopen(self::getAbsoluteLogFilePath('system'), 'a')) !== false) {
@@ -84,7 +86,8 @@ final class Ffuenf_Common_Model_Logger {
      *
      * @param array $logData
      */
-    public static function logProfile($logData) {
+    public static function logProfile($logData)
+    {
         if (self::_getConfig()->isLoggingActive()) {
             if (($fileHandle = fopen(self::getAbsoluteLogFilePath('profile'), 'a')) !== false) {
                 $message = (array_key_exists('message', $logData) ? $logData['message'] : '');

@@ -30,7 +30,8 @@ class Ffuenf_Common_Block_Adminhtml_Log_System_View extends Ffuenf_Common_Block_
     {
         parent::setLog($model);
         if (is_object($model) && $model->getId()) {
-            $this->_headerText = $this->__('Message',
+            $this->_headerText = $this->__(
+                'Message',
                 $this->getTimestamp(),
                 $this->getExtension(),
                 $this->getType(),

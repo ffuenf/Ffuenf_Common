@@ -76,12 +76,15 @@ class Ffuenf_Common_Block_Adminhtml_System_Extensioninfo extends Mage_Adminhtml_
         $extStatus = '<img class="ext-status" src="' . $this->getSkinUrl('images/fam_bullet_success.gif') . '" title="' . $this->__("Installed") . '"/>';
         $moduleName = $extStatus . '<a target="_blank" href="' . $this->_repoUrl . '/' . $this->_repoUser . '/' . $moduleName . '" title="' . $moduleName . '">' . $moduleName . '</a>';
         if ($ver) {
-            $field = $fieldset->addField($id, 'label',
-            array(
-                'name'  => $moduleKey,
-                'label' => $moduleName,
-                'value' => $ver,
-            ))->setRenderer($this->_getFieldRenderer());
+            $field = $fieldset->addField(
+                $id,
+                'label',
+                array(
+                    'name'  => $moduleKey,
+                    'label' => $moduleName,
+                    'value' => $ver,
+                )
+            )->setRenderer($this->_getFieldRenderer());
             return $field->toHtml();
         }
         return '';

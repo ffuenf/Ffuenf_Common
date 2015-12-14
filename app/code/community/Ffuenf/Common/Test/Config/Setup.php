@@ -23,7 +23,8 @@ class Ffuenf_Common_Test_Config_Setup extends EcomDev_PHPUnit_Test_Case_Config
      *
      * @test
      */
-    public function testSetupDefined() {
+    public function testSetupDefined()
+    {
         $this->assertSetupResourceDefined();
         $this->assertSchemeSetupExists();
     }
@@ -33,7 +34,8 @@ class Ffuenf_Common_Test_Config_Setup extends EcomDev_PHPUnit_Test_Case_Config
      *
      * @test
      */
-    public function testSetupExists() {
+    public function testSetupExists()
+    {
         $this->assertSchemeSetupScriptVersions(
             '1.0.0',
             $this->expected('module')->getVersion(),

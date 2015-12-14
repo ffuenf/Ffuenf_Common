@@ -17,4 +17,5 @@
  */
 
 class Ffuenf_Common_Exception extends Mage_Core_Exception
-{}
+{
+}

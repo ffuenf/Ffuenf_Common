@@ -38,7 +38,8 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
      * On of the purposes of callbacks is to hide the confidential data
      * @param string $key
      */
-    protected function _formatConfigValueOutput($key, $value) {
+    protected function _formatConfigValueOutput($key, $value)
+    {
         if (array_key_exists($key, $this->_configOutputCallbacks)) {
             return call_user_func_array($this->_configOutputCallbacks[$key], array($value));
         }
@@ -349,7 +350,7 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
         }
         if (null === $sysinfoArea) {
             return $this->_sysinfoData;
-        } else if (array_key_exists($sysinfoArea, $this->_sysinfoData)) {
+        } elseif (array_key_exists($sysinfoArea, $this->_sysinfoData)) {
             return $this->_sysinfoData[$sysinfoArea];
         }
         return array();
