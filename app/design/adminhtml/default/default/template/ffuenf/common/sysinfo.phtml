@@ -1,0 +1,29 @@
+<?php
+/**
+ * Ffuenf_Common extension.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the MIT License
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/mit-license.php
+ *
+ * @category   Ffuenf
+ *
+ * @author     Achim Rosenhagen <a.rosenhagen@ffuenf.de>
+ * @copyright  Copyright (c) 2015 ffuenf (http://www.ffuenf.de)
+ * @license    http://opensource.org/licenses/mit-license.php MIT License
+ */
+?>
+<div class="content-header">
+    <table cellspacing="0">
+        <tbody><tr>
+            <td style="width:50%;"><h3 class="head-ffuenf-sysinfo icon-head"><?php echo Mage::helper('ffuenf_common')->__('System Information') ?></h3></td>
+            <td class="form-buttons"><button onclick="setLocation('<?php echo $this->getDownloadUrl(); ?>')" class="scalable" type="button"><span>Download as file</span></button></td>
+        </tr>
+    </tbody></table>
+</div>
+<div>
+    <?php echo $this->getChildHtml('sysinfo_data'); ?>
+</div>

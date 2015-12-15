@@ -68,7 +68,7 @@
                     <show_in_default>1</show_in_default>
                     <show_in_website>0</show_in_website>
                     <show_in_store>0</show_in_store>
-                    <expanded>1</expanded>
+                    <expanded>0</expanded>
                     <fields>
                         <enable translate="label, comment" module="ffuenf_common">
                             <label>Enable</label>
@@ -76,7 +76,22 @@
                             <source_model>adminhtml/system_config_source_yesno</source_model>
                             <sort_order>10</sort_order>
                             <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
                         </enable>
+                        <allowed_ips translate="label, comment" module="ffuenf_common">
+                            <label>Allowed IPs (comma separated)</label>
+                            <comment>Leave empty for access from any location</comment>
+                            <comment><![CDATA[File is located in {{base_dir}}/var/log]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                            <sort_order>11</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </allowed_ips>
                         <file translate="label, comment" module="ffuenf_common">
                             <label>Name of logfile</label>
                             <comment><![CDATA[File is located in {{base_dir}}/var/log]]></comment>
@@ -84,7 +99,7 @@
                             <depends>
                                 <enable>1</enable>
                             </depends>
-                            <sort_order>11</sort_order>
+                            <sort_order>12</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
@@ -97,11 +112,24 @@
                             <depends>
                                 <enable>1</enable>
                             </depends>
-                            <sort_order>12</sort_order>
+                            <sort_order>13</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
                         </force>
+                        <echo translate="label, comment" module="ffuenf_common">
+                            <label>Echo logging on shell</label>
+                            <comment>Show logging output when calling script on console</comment>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                            <sort_order>14</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </echo>
                     </fields>
                 </log>
             </groups>

@@ -18,7 +18,7 @@
 */
 -->
 <layout version="0.1.0">
-    <adminhtml_system_config_edit>
+    <default>
         <reference name="head">
             <action method="addCss">
                 <stylesheet>ffuenf/common.css</stylesheet>
@@ -28,5 +28,49 @@
                 <name>ffuenf/common.js</name>
             </action>
         </reference>
-    </adminhtml_system_config_edit>
+    </default>
+    <adminhtml_sysinfo_index>
+        <reference name="content">
+            <block type="ffuenf_common/adminhtml_sysinfo" name="ffuenf_common_sysinfo_data" />
+        </reference>
+    </adminhtml_sysinfo_index>
+    <adminhtml_log_system_index>
+        <reference name="content">
+            <block type="ffuenf_common/adminhtml_log_system" name="ffuenf_common_log_system"/>
+        </reference>
+    </adminhtml_log_system_index>
+    <adminhtml_log_profile_index>
+        <reference name="content">
+            <block type="ffuenf_common/adminhtml_log_profile" name="ffuenf_common_log_profile"/>
+        </reference>
+    </adminhtml_log_profile_index>
+    <adminhtml_log_exception_index>
+        <reference name="content">
+            <block type="ffuenf_common/adminhtml_log_exception" name="ffuenf_common_log_exception"/>
+        </reference>
+    </adminhtml_log_exception_index>
+    <adminhtml_log_system_view>
+        <reference name="head">
+            <action method="addCss"><stylesheet>ffuenf/common-highlight.css</stylesheet></action>
+        </reference>
+        <reference name="before_body_end">
+            <block type="core/template" name="ffuenf_log.js" template="ffuenf/common/log/js.phtml"/>
+        </reference>
+    </adminhtml_log_system_view>
+    <adminhtml_log_profile_view>
+        <reference name="head">
+            <action method="addCss"><stylesheet>ffuenf/common-highlight.css</stylesheet></action>
+        </reference>
+        <reference name="before_body_end">
+            <block type="core/template" name="ffuenf_log.js" template="ffuenf/common/log/js.phtml"/>
+        </reference>
+    </adminhtml_log_profile_view>
+    <adminhtml_log_exception_view>
+        <reference name="head">
+            <action method="addCss"><stylesheet>ffuenf/common-highlight.css</stylesheet></action>
+        </reference>
+        <reference name="before_body_end">
+            <block type="core/template" name="ffuenf_log.js" template="ffuenf/common/log/js.phtml"/>
+        </reference>
+    </adminhtml_log_exception_view>
 </layout>

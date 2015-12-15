@@ -18,7 +18,7 @@
 
 class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
 {
-    const CONFIG_EXTENSION_ACTIVE = 'ffuenf_common/general/enable';
+    const XML_PATH_EXTENSION_ACTIVE = 'ffuenf_common/general/enable';
     const NEW_MAGENTO_CSS_LOCATION = 'lib/prototype/windows/themes/magento.css';
     const OLD_MAGENTO_CSS_LOCATION = 'prototype/windows/themes/magento.css';
 
@@ -36,7 +36,7 @@ class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
      */
     public function isExtensionActive()
     {
-        return $this->getStoreFlag(self::CONFIG_EXTENSION_ACTIVE, '_bExtensionActive');
+        return $this->getStoreFlag(self::XML_PATH_EXTENSION_ACTIVE, '_bExtensionActive');
     }
 
     /**
@@ -65,6 +65,17 @@ class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
         } else {
             return 'js_css';
         }
+    }
+
+    /**
+     * return human-readable sizes
+     *
+     * @return string
+     */
+    public function convert($size)
+    {
+        $unit = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');
+        return @round($size / pow(1024, ($i = floor(log($size, 1024)))), 2) . $unit[$i];
     }
 
     /**
