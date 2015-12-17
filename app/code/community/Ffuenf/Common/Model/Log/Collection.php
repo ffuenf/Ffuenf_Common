@@ -48,20 +48,23 @@ class Ffuenf_Common_Model_Log_Collection extends Varien_Data_Collection
         if ($this->isLoaded()) {
             return $this;
         }
+        $io = new Varien_Io_File();
+        $logFileName = Ffuenf_Common_Model_Logger::getLogFileName($this->_logType);
+        $logDirPath = Ffuenf_Common_Model_Logger::getAbsoluteLogDirPath($this->_logType);
         $logFilePath = Ffuenf_Common_Model_Logger::getAbsoluteLogFilePath($this->_logType);
-        if (file_exists($logFilePath)) {
+        $columnMapping = Ffuenf_Common_Model_Logger::getColumnMapping($this->_logType);
+        if ($io->fileExists($logFilePath, true)) {
             $logArray = array();
-            if (($fileHandle = fopen($logFilePath, 'r')) !== false) {
-                $id = 0;
-                $columnMapping = Ffuenf_Common_Model_Logger::getColumnMapping($this->_logType);
-                while (($row = fgetcsv($fileHandle, 0, $this->_getConfig()->getLogDelimiter(), $this->_getConfig()->getLogEnclosure())) !== false) {
-                    $log = array('id' => ++$id);
-                    foreach ($columnMapping as $index => $columnName) {
-                        $log[$columnName] = isset($row[$index]) ? $row[$index] : '';
-                    }
-                    if ($log = $this->_applyFilters($log)) {
-                        $logArray[] = new Varien_Object($log);
-                    }
+            $id = 0;
+            $io->open(array('path' => $logDirPath));
+            $io->streamOpen($logFileName, 'r');
+            while (false !== ($row = $io->streamReadCsv($this->_getConfig()->getLogDelimiter(), $this->_getConfig()->getLogEnclosure()))) {
+                $log = array('id' => ++$id);
+                foreach ($columnMapping as $index => $columnName) {
+                    $log[$columnName] = isset($row[$index]) ? $row[$index] : '';
+                }
+                if ($log = $this->_applyFilters($log)) {
+                    $logArray[] = new Varien_Object($log);
                 }
             }
             if (!empty($logArray)) {
@@ -111,7 +114,7 @@ class Ffuenf_Common_Model_Log_Collection extends Varien_Data_Collection
         return $this->addAttributeToFilter($attribute, $condition);
     }
 
-    public function loadData($printQuery = false, $logQuery = false)
+    public function loadData()
     {
         return $this->_loadData();
     }

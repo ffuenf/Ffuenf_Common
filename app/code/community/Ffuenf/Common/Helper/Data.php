@@ -46,7 +46,7 @@ class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
      */
     public function getOverlayFileName()
     {
-        if (file_exists($this->_getNewOverlayFileLocation())) {
+        if (Mage::helper('ffuenf_common/file')->exists($this->_getNewOverlayFileLocation())) {
             return self::NEW_MAGENTO_CSS_LOCATION;
         } else {
             return self::OLD_MAGENTO_CSS_LOCATION;
@@ -60,7 +60,7 @@ class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
      */
     public function getOverlayFileType()
     {
-        if (file_exists($this->_getNewOverlayFileLocation())) {
+        if (Mage::helper('ffuenf_common/file')->exists($this->_getNewOverlayFileLocation())) {
             return 'skin_css';
         } else {
             return 'js_css';

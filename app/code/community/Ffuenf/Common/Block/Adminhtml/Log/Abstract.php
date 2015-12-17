@@ -31,7 +31,7 @@ abstract class Ffuenf_Common_Block_Adminhtml_Log_Abstract extends Mage_Adminhtml
     {
         if (null !== $this->_logType) {
             $logFilePath = Ffuenf_Common_Model_Logger::getAbsoluteLogFilePath($this->_logType);
-            if (file_exists($logFilePath)) {
+            if (Mage::helper('ffuenf_common/file')->exists($logFilePath)) {
                 $this->_addButton('download', array(
                     'label'     => $this->_getDownloadButtonLabel(),
                     'onclick'   => 'setLocation(\'' . $this->_getDownloadUrl() . '\')',

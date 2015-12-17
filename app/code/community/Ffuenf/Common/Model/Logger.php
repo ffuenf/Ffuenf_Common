@@ -40,22 +40,63 @@ final class Ffuenf_Common_Model_Logger
      * @param string $logType
      * @return string|null
      */
+    public static function getAbsoluteLogDirPath()
+    {
+        try {
+            $io = new Varien_Io_File();
+            $logDir = Mage::getBaseDir('log') . DS . self::FFUENF_LOG_DIR;
+            $io->checkAndCreateFolder($logDir, 0755);
+            return $logDir;
+        } catch (Exception $e) {
+            Mage::logException($e);
+        }
+        return null;
+    }
+
+    /**
+     * Returns path for selected logs and creates missing folder if needed
+     *
+     * @param string $logType
+     * @return string|null
+     */
+    public static function getLogFileName($logType)
+    {
+        try {
+            switch ($logType) {
+                case 'exception':
+                    return self::FFUENF_EXCEPTION_LOG_FILE;
+                case 'system':
+                    return self::FFUENF_LOG_FILE;
+                case 'profile':
+                    return self::FFUENF_PROFILE_LOG_FILE;
+                default:
+                    return self::FFUENF_LOG_FILE;
+            }
+        } catch (Exception $e) {
+            Mage::logException($e);
+        }
+        return null;
+    }
+
+    /**
+     * Returns path for selected logs and creates missing folder if needed
+     *
+     * @param string $logType
+     * @return string|null
+     */
     public static function getAbsoluteLogFilePath($logType)
     {
         try {
-            $logDir = Mage::getBaseDir('log') . DS . self::FFUENF_LOG_DIR;
-            if (!is_dir($logDir)) {
-                mkdir($logDir, 0777, true);
-            }
+            $logDir = $this->getAbsoluteLogDirPath();
             switch ($logType) {
                 case 'exception':
-                    return $logDir . DS . self::FFUENF_EXCEPTION_LOG_FILE;
+                    return $logDir . DS . $this->getLogFileName('exception');
                 case 'system':
-                    return $logDir . DS . self::FFUENF_LOG_FILE;
+                    return $logDir . DS . $this->getLogFileName('system');
                 case 'profile':
-                    return $logDir . DS . self::FFUENF_PROFILE_LOG_FILE;
+                    return $logDir . DS . $this->getLogFileName('profile');
                 default:
-                    return $logDir . DS . self::FFUENF_LOG_FILE;
+                    return $logDir . DS . $this->getLogFileName();
             }
         } catch (Exception $e) {
             Mage::logException($e);
@@ -71,10 +112,15 @@ final class Ffuenf_Common_Model_Logger
     public static function logSystem($logData)
     {
         if (self::_getConfig()->isLoggingActive()) {
+            $io = new Varien_Io_File();
             array_unshift($logData, Mage::getModel('core/date')->gmtTimestamp());
-            if (($fileHandle = fopen(self::getAbsoluteLogFilePath('system'), 'a')) !== false) {
-                fputcsv($fileHandle, $logData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
-                fclose($fileHandle);
+            if ($io->fileExists(self::getAbsoluteLogFilePath('system'), true)) {
+                $io->open(array('path' => self::getAbsoluteLogDirPath('system')));
+                $io->streamOpen(self::getLogFileName('system'), 'w+');
+                $io->streamLock(true);
+                $io->streamWriteCsv($logData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
+                $io->close();
+                $io->streamUnlock();
             } else {
                 Mage::log('FFUENF: unable to open ' . self::getAbsoluteLogFilePath('system') . ' for writing.');
             }
@@ -89,22 +135,27 @@ final class Ffuenf_Common_Model_Logger
     public static function logProfile($logData)
     {
         if (self::_getConfig()->isLoggingActive()) {
-            if (($fileHandle = fopen(self::getAbsoluteLogFilePath('profile'), 'a')) !== false) {
-                $message = (array_key_exists('message', $logData) ? $logData['message'] : '');
-                $profileData = array(
-                    'timestamp' => Mage::getModel('core/date')->gmtTimestamp(),
-                    'class' => $logData['class'],
-                    'type' => $logData['type'],
-                    'items' => $logData['items'],
-                    'page' => $logData['page'],
-                    'start' => date('H:i:s', $logData['start']['time']),
-                    'stop' => date('H:i:s', $logData['stop']['time']),
-                    'duration' => date('H:i:s', ($logData['stop']['time'] - $logData['start']['time'])),
-                    'memory' => Mage::helper('ffuenf_common')->convert($logData['stop']['memory'] - $logData['start']['memory']),
-                    'message' => $message
-                );
-                fputcsv($fileHandle, $profileData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
-                fclose($fileHandle);
+            $io = new Varien_Io_File();
+            $message = (array_key_exists('message', $logData) ? $logData['message'] : '');
+            $profileData = array(
+                'timestamp' => Mage::getModel('core/date')->gmtTimestamp(),
+                'class' => $logData['class'],
+                'type' => $logData['type'],
+                'items' => $logData['items'],
+                'page' => $logData['page'],
+                'start' => date('H:i:s', $logData['start']['time']),
+                'stop' => date('H:i:s', $logData['stop']['time']),
+                'duration' => date('H:i:s', ($logData['stop']['time'] - $logData['start']['time'])),
+                'memory' => Mage::helper('ffuenf_common')->convert($logData['stop']['memory'] - $logData['start']['memory']),
+                'message' => $message
+            );
+            if ($io->fileExists(self::getAbsoluteLogFilePath('profile'), true)) {
+                $io->open(array('path' => self::getAbsoluteLogDirPath('profile')));
+                $io->streamOpen(self::getLogFileName('profile'), 'w+');
+                $io->streamLock(true);
+                $io->streamWriteCsv($profileData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
+                $io->close();
+                $io->streamUnlock();
             } else {
                 Mage::log('FFUENF: unable to open ' . self::getAbsoluteLogFilePath('profile') . ' for writing.');
             }
@@ -119,15 +170,20 @@ final class Ffuenf_Common_Model_Logger
     public static function logException(Exception $e)
     {
         if (self::_getConfig()->isLoggingActive()) {
-            if (($fileHandle = fopen(self::getAbsoluteLogFilePath('exception'), 'a')) !== false) {
-                $exceptionData = array(
-                    'timestamp' => Mage::getModel('core/date')->gmtTimestamp(),
-                    'exception_code' => $e->getCode(),
-                    'exception_message' => $e->getMessage(),
-                    'exception_trace' => $e->getTraceAsString()
-                );
-                fputcsv($fileHandle, $exceptionData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
-                fclose($fileHandle);
+            $io = new Varien_Io_File();
+            $exceptionData = array(
+                'timestamp' => Mage::getModel('core/date')->gmtTimestamp(),
+                'exception_code' => $e->getCode(),
+                'exception_message' => $e->getMessage(),
+                'exception_trace' => $e->getTraceAsString()
+            );
+            if ($io->fileExists(self::getAbsoluteLogFilePath('exception'), true)) {
+                $io->open(array('path' => self::getAbsoluteLogDirPath('exception')));
+                $io->streamOpen(self::getLogFileName('exception'), 'w+');
+                $io->streamLock(true);
+                $io->streamWriteCsv($exceptionData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
+                $io->close();
+                $io->streamUnlock();
             } else {
                 Mage::log('FFUENF: unable to open ' . self::getAbsoluteLogFilePath('exception') . ' for writing.');
             }
@@ -154,11 +210,11 @@ final class Ffuenf_Common_Model_Logger
 
     public static function rotateLogfiles()
     {
-        $logTypes = array('exception', 'system');
+        $logTypes = array('exception', 'system', 'profile');
         $maxFilesize = self::LOGFILE_ROTATION_SIZE * 1048576;
         foreach ($logTypes as $logType) {
             $filepath = self::getAbsoluteLogFilePath($logType);
-            if (file_exists($filepath) && filesize($filepath) > $maxFilesize) {
+            if (Mage::helper('ffuenf_common/file')->exists($filepath) && Mage::helper('ffuenf_common/file')->isBiggerThan($filepath, $maxFilesize)) {
                 rename($filepath, $filepath . '.' . Mage::getModel('core/date')->date("Ymdhis"));
             }
         }

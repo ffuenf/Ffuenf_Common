@@ -18,6 +18,8 @@
 
 class Ffuenf_Common_Adminhtml_Log_SystemController extends Mage_Adminhtml_Controller_Action
 {
+    const LOG_TYPE = 'system';
+
     protected function _getConfig()
     {
         return Mage::getSingleton('ffuenf_common/config');
@@ -25,7 +27,7 @@ class Ffuenf_Common_Adminhtml_Log_SystemController extends Mage_Adminhtml_Contro
 
     protected function _getCollection()
     {
-        return Mage::getModel('ffuenf_common/log_collection')->setLogType('system');
+        return Mage::getModel('ffuenf_common/log_collection')->setLogType(self::LOG_TYPE);
     }
 
     protected function _initAction()
@@ -62,16 +64,40 @@ class Ffuenf_Common_Adminhtml_Log_SystemController extends Mage_Adminhtml_Contro
 
     public function downloadAction()
     {
-        $logFilePath = Ffuenf_Common_Model_Logger::getAbsoluteLogFilePath('system');
-        if (file_exists($logFilePath)) {
-            $output = implode($this->_getConfig()->getLogDelimiter(), Ffuenf_Common_Model_Logger::getColumnMapping('system')) . "\n";
-            $output .= file_get_contents($logFilePath);
+        $io = new Varien_Io_File();
+        $logFileName = Ffuenf_Common_Model_Logger::getLogFileName(self::LOG_TYPE);
+        $logDirPath = Ffuenf_Common_Model_Logger::getAbsoluteLogDirPath(self::LOG_TYPE);
+        $logFilePath = Ffuenf_Common_Model_Logger::getAbsoluteLogFilePath(self::LOG_TYPE);
+        $columnMapping = Ffuenf_Common_Model_Logger::getColumnMapping(self::LOG_TYPE);
+        $logDelimiter = $this->_getConfig()->getLogDelimiter();
+        $logEnclosure = $this->_getConfig()->getLogEnclosure()
+        if ($io->fileExists($logFilePath, true)) {
+            $io->open(array('path' => $logDirPath));
+            $output = implode($logDelimiter, $columnMapping) . "\n";
+            $io->streamOpen($logFileName, 'r');
+            while (false !== ($row = $io->streamReadCsv($logDelimiter, $logEnclosure))) {
+                $fileOutput = array('id' => ++$id);
+                foreach ($columnMapping as $index => $columnName) {
+                    $fileOutput[$columnName] = isset($row[$index]) ? $row[$index] : '';
+                }
+            }
+            $io->close();
+            $output .= implode($this->_getConfig()->getLogDelimiter(), $fileOutput) . "\n";
             Mage::app()->getResponse()->setHeader('Content-type', 'text/csv');
-            Mage::app()->getResponse()->setHeader('Content-disposition', 'attachment;filename=' . basename($logFilePath) . '.csv');
+            Mage::app()->getResponse()->setHeader('Content-disposition', 'attachment;filename=' . $logFileName);
             Mage::app()->getResponse()->setHeader('Content-Length', filesize($logFilePath));
             Mage::app()->getResponse()->setBody($output);
         } else {
             $this->_redirect('*/*/');
         }
+    }
+
+    /**
+     * check whether the current user is allowed to access this controller
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('ffuenf_common');
     }
 }

@@ -44,4 +44,13 @@ class Ffuenf_Common_Adminhtml_SysinfoController extends Mage_Adminhtml_Controlle
         Mage::app()->getResponse()->setHeader('Content-disposition', 'attachment;filename=' . $filename);
         Mage::app()->getResponse()->setBody($sysinfoData);
     }
+
+    /**
+     * check whether the current user is allowed to access this controller
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('ffuenf_common');
+    }
 }

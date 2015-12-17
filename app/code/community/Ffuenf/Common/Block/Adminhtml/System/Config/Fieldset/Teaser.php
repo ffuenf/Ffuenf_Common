@@ -28,7 +28,7 @@ class Ffuenf_Common_Block_Adminhtml_System_Config_Fieldset_Teaser extends Mage_A
      * @param Varien_Data_Form_Element_Abstract $element
      * @return string
      */
-    public function render(Varien_Data_Form_Element_Abstract $element)
+    public function render()
     {
         return $this->toHtml();
     }
