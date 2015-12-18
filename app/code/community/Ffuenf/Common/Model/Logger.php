@@ -37,7 +37,6 @@ final class Ffuenf_Common_Model_Logger
     /**
      * Returns path for selected logs and creates missing folder if needed
      *
-     * @param string $logType
      * @return string|null
      */
     public static function getAbsoluteLogDirPath()

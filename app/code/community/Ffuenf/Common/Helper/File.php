@@ -85,7 +85,7 @@ class Ffuenf_Common_Helper_File extends Mage_Core_Helper_Abstract
     {
         $file1ModificationTime = $this->getModificationTime($file1);
         $file2ModificationTime = $this->getModificationTime($file2);
-        if($file1ModificationTime > $file2ModificationTime) {
+        if ($file1ModificationTime > $file2ModificationTime) {
             return true;
         }
         return false;
