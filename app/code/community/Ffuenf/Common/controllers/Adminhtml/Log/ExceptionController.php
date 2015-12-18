@@ -70,7 +70,7 @@ class Ffuenf_Common_Adminhtml_Log_ExceptionController extends Mage_Adminhtml_Con
         $logFilePath = Ffuenf_Common_Model_Logger::getAbsoluteLogFilePath(self::LOG_TYPE);
         $columnMapping = Ffuenf_Common_Model_Logger::getColumnMapping(self::LOG_TYPE);
         $logDelimiter = $this->_getConfig()->getLogDelimiter();
-        $logEnclosure = $this->_getConfig()->getLogEnclosure()
+        $logEnclosure = $this->_getConfig()->getLogEnclosure();
         if ($io->fileExists($logFilePath, true)) {
             $io->open(array('path' => $logDirPath));
             $output = implode($logDelimiter, $columnMapping) . "\n";

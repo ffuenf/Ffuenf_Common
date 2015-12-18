@@ -68,8 +68,6 @@ class Ffuenf_Common_Block_Adminhtml_System_Extensioninfo extends Mage_Adminhtml_
     {
         $configData = $this->getConfigData();
         $path = 'advanced/modules_disable_output/' . $moduleName;
-        $data = isset($configData[$path]) ? $configData[$path] : array();
-        $e = $this->_getDummyElement();
         $moduleKey = substr($moduleName, strpos($moduleName, '_') + 1);
         $ver = (Mage::getConfig()->getModuleConfig($moduleName)->version);
         $id = $moduleName;

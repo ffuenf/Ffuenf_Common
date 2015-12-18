@@ -58,23 +58,18 @@ final class Ffuenf_Common_Model_Logger
      * @param string $logType
      * @return string|null
      */
-    public static function getLogFileName($logType)
+    public static function getLogFileName($logType = 'system')
     {
-        try {
-            switch ($logType) {
-                case 'exception':
-                    return self::FFUENF_EXCEPTION_LOG_FILE;
-                case 'system':
-                    return self::FFUENF_LOG_FILE;
-                case 'profile':
-                    return self::FFUENF_PROFILE_LOG_FILE;
-                default:
-                    return self::FFUENF_LOG_FILE;
-            }
-        } catch (Exception $e) {
-            Mage::logException($e);
+        switch ($logType) {
+            case 'exception':
+                return self::FFUENF_EXCEPTION_LOG_FILE;
+            case 'system':
+                return self::FFUENF_LOG_FILE;
+            case 'profile':
+                return self::FFUENF_PROFILE_LOG_FILE;
+            default:
+                return self::FFUENF_LOG_FILE;
         }
-        return null;
     }
 
     /**
@@ -86,16 +81,16 @@ final class Ffuenf_Common_Model_Logger
     public static function getAbsoluteLogFilePath($logType)
     {
         try {
-            $logDir = $this->getAbsoluteLogDirPath();
+            $logDir = self::getAbsoluteLogDirPath();
             switch ($logType) {
                 case 'exception':
-                    return $logDir . DS . $this->getLogFileName('exception');
+                    return $logDir . DS . self::getLogFileName('exception');
                 case 'system':
-                    return $logDir . DS . $this->getLogFileName('system');
+                    return $logDir . DS . self::getLogFileName('system');
                 case 'profile':
-                    return $logDir . DS . $this->getLogFileName('profile');
+                    return $logDir . DS . self::getLogFileName('profile');
                 default:
-                    return $logDir . DS . $this->getLogFileName();
+                    return $logDir . DS . self::getLogFileName();
             }
         } catch (Exception $e) {
             Mage::logException($e);
@@ -114,7 +109,7 @@ final class Ffuenf_Common_Model_Logger
             $io = new Varien_Io_File();
             array_unshift($logData, Mage::getModel('core/date')->gmtTimestamp());
             if ($io->fileExists(self::getAbsoluteLogFilePath('system'), true)) {
-                $io->open(array('path' => self::getAbsoluteLogDirPath('system')));
+                $io->open(array('path' => self::getAbsoluteLogDirPath()));
                 $io->streamOpen(self::getLogFileName('system'), 'w+');
                 $io->streamLock(true);
                 $io->streamWriteCsv($logData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
@@ -149,7 +144,7 @@ final class Ffuenf_Common_Model_Logger
                 'message' => $message
             );
             if ($io->fileExists(self::getAbsoluteLogFilePath('profile'), true)) {
-                $io->open(array('path' => self::getAbsoluteLogDirPath('profile')));
+                $io->open(array('path' => self::getAbsoluteLogDirPath()));
                 $io->streamOpen(self::getLogFileName('profile'), 'w+');
                 $io->streamLock(true);
                 $io->streamWriteCsv($profileData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
@@ -177,7 +172,7 @@ final class Ffuenf_Common_Model_Logger
                 'exception_trace' => $e->getTraceAsString()
             );
             if ($io->fileExists(self::getAbsoluteLogFilePath('exception'), true)) {
-                $io->open(array('path' => self::getAbsoluteLogDirPath('exception')));
+                $io->open(array('path' => self::getAbsoluteLogDirPath()));
                 $io->streamOpen(self::getLogFileName('exception'), 'w+');
                 $io->streamLock(true);
                 $io->streamWriteCsv($exceptionData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
@@ -204,7 +199,6 @@ final class Ffuenf_Common_Model_Logger
             default:
                 return array('timestamp', 'extension', 'type', 'message');
         }
-        return null;
     }
 
     public static function rotateLogfiles()
@@ -213,7 +207,7 @@ final class Ffuenf_Common_Model_Logger
         $maxFilesize = self::LOGFILE_ROTATION_SIZE * 1048576;
         foreach ($logTypes as $logType) {
             $io = new Varien_Io_File();
-            $filepathdir = self::getAbsoluteLogDirPath($logType);
+            $filepathdir = self::getAbsoluteLogDirPath();
             $filepath = self::getAbsoluteLogFilePath($logType);
             try {
                 if (Mage::helper('ffuenf_common/file')->isBiggerThan($filepath, $maxFilesize)) {
