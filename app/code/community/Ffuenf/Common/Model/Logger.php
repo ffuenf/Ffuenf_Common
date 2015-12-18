@@ -106,18 +106,8 @@ final class Ffuenf_Common_Model_Logger
     public static function logSystem($logData)
     {
         if (self::_getConfig()->isLoggingActive()) {
-            $io = new Varien_Io_File();
             array_unshift($logData, Mage::getModel('core/date')->gmtTimestamp());
-            if ($io->fileExists(self::getAbsoluteLogFilePath('system'), true)) {
-                $io->open(array('path' => self::getAbsoluteLogDirPath()));
-                $io->streamOpen(self::getLogFileName('system'), 'w+');
-                $io->streamLock(true);
-                $io->streamWriteCsv($logData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
-                $io->close();
-                $io->streamUnlock();
-            } else {
-                Mage::log('FFUENF: unable to open ' . self::getAbsoluteLogFilePath('system') . ' for writing.');
-            }
+            self::_writeCsv(self::getAbsoluteLogFilePath('system'), self::getLogFileName('system'), $logData);
         }
     }
 
@@ -129,7 +119,6 @@ final class Ffuenf_Common_Model_Logger
     public static function logProfile($logData)
     {
         if (self::_getConfig()->isLoggingActive()) {
-            $io = new Varien_Io_File();
             $message = (array_key_exists('message', $logData) ? $logData['message'] : '');
             $profileData = array(
                 'timestamp' => Mage::getModel('core/date')->gmtTimestamp(),
@@ -143,16 +132,7 @@ final class Ffuenf_Common_Model_Logger
                 'memory' => Mage::helper('ffuenf_common')->convert($logData['stop']['memory'] - $logData['start']['memory']),
                 'message' => $message
             );
-            if ($io->fileExists(self::getAbsoluteLogFilePath('profile'), true)) {
-                $io->open(array('path' => self::getAbsoluteLogDirPath()));
-                $io->streamOpen(self::getLogFileName('profile'), 'w+');
-                $io->streamLock(true);
-                $io->streamWriteCsv($profileData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
-                $io->close();
-                $io->streamUnlock();
-            } else {
-                Mage::log('FFUENF: unable to open ' . self::getAbsoluteLogFilePath('profile') . ' for writing.');
-            }
+            self::_writeCsv(self::getAbsoluteLogFilePath('profile'), self::getLogFileName('profile'), $profileData);
         }
     }
 
@@ -164,23 +144,35 @@ final class Ffuenf_Common_Model_Logger
     public static function logException(Exception $e)
     {
         if (self::_getConfig()->isLoggingActive()) {
-            $io = new Varien_Io_File();
             $exceptionData = array(
                 'timestamp' => Mage::getModel('core/date')->gmtTimestamp(),
                 'exception_code' => $e->getCode(),
                 'exception_message' => $e->getMessage(),
                 'exception_trace' => $e->getTraceAsString()
             );
-            if ($io->fileExists(self::getAbsoluteLogFilePath('exception'), true)) {
-                $io->open(array('path' => self::getAbsoluteLogDirPath()));
-                $io->streamOpen(self::getLogFileName('exception'), 'w+');
-                $io->streamLock(true);
-                $io->streamWriteCsv($exceptionData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
-                $io->close();
-                $io->streamUnlock();
-            } else {
-                Mage::log('FFUENF: unable to open ' . self::getAbsoluteLogFilePath('exception') . ' for writing.');
-            }
+            self::_writeCsv(self::getAbsoluteLogFilePath('exception'), self::getLogFileName('exception'), $exceptionData);
+        }
+    }
+
+    /**
+     * Logs
+     *
+     * @param string $filePath
+     * @param string $fileName
+     * @param array $logData
+     */
+    protected function _writeCsv($filePath, $fileName, $logData)
+    {
+        $io = new Varien_Io_File();
+        if ($io->fileExists($filePath, true)) {
+            $io->open(array('path' => self::getAbsoluteLogDirPath()));
+            $io->streamOpen($fileName, 'w+');
+            $io->streamLock(true);
+            $io->streamWriteCsv($logData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
+            $io->close();
+            $io->streamUnlock();
+        } else {
+            Mage::log('FFUENF: unable to open ' . $filePath . ' for writing.');
         }
     }
 
