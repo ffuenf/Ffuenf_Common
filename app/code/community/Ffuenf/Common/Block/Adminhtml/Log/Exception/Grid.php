@@ -35,46 +35,58 @@ class Ffuenf_Common_Block_Adminhtml_Log_Exception_Grid extends Mage_Adminhtml_Bl
 
     protected function _prepareColumns()
     {
-        $this->addColumn('timestamp', array(
-            'header'        => Mage::helper('ffuenf_common')->__('Date'),
-            'index'         => 'timestamp',
-            'type'          => 'datetime',
-            'width'         => '150px',
-            'renderer'      => 'Ffuenf_Common_Block_Adminhtml_Renderer_Timestamp',
-            'filter'        => false,
-            'sortable'      => false
-        ));
-        $this->addColumn('exception_message', array(
-            'header'        => Mage::helper('ffuenf_common')->__('Exception message'),
-            'index'         => 'exception_message',
-            'filter'        => false,
-            'sortable'      => false
-        ));
-        $this->addColumn('exception_code', array(
-            'header'        => Mage::helper('ffuenf_common')->__('Exception code'),
-            'index'         => 'exception_code',
-            'align'         => 'center',
-            'width'         => '50px',
-            'filter'        => false,
-            'sortable'      => false
-        ));
-        $this->addColumn('preview_action', array(
-            'header'    => Mage::helper('ffuenf_common')->__('Details'),
-            'type'      => 'action',
-            'align'     => 'center',
-            'width'     => '50px',
-            'getter'    => 'getId',
-            'actions'   => array(
-                array(
-                    'caption' => Mage::helper('ffuenf_common')->__('Details'),
-                    'url'     => array('base' => '*/*/view'),
-                    'field'   => 'id'
-                )
-            ),
-            'filter'    => false,
-            'sortable'  => false,
-            'is_system' => true
-        ));
+        $this->addColumn(
+            'timestamp',
+            array(
+                'header'        => Mage::helper('ffuenf_common')->__('Date'),
+                'index'         => 'timestamp',
+                'type'          => 'datetime',
+                'width'         => '150px',
+                'renderer'      => 'Ffuenf_Common_Block_Adminhtml_Renderer_Timestamp',
+                'filter'        => false,
+                'sortable'      => false
+            )
+        );
+        $this->addColumn(
+            'exception_message',
+            array(
+                'header'        => Mage::helper('ffuenf_common')->__('Exception message'),
+                'index'         => 'exception_message',
+                'filter'        => false,
+                'sortable'      => false
+            )
+        );
+        $this->addColumn(
+            'exception_code',
+            array(
+                'header'        => Mage::helper('ffuenf_common')->__('Exception code'),
+                'index'         => 'exception_code',
+                'align'         => 'center',
+                'width'         => '50px',
+                'filter'        => false,
+                'sortable'      => false
+            )
+        );
+        $this->addColumn(
+            'preview_action',
+            array(
+                'header'    => Mage::helper('ffuenf_common')->__('Details'),
+                'type'      => 'action',
+                'align'     => 'center',
+                'width'     => '50px',
+                'getter'    => 'getId',
+                'actions'   => array(
+                    array(
+                        'caption' => Mage::helper('ffuenf_common')->__('Details'),
+                        'url'     => array('base' => '*/*/view'),
+                        'field'   => 'id'
+                    )
+                ),
+                'filter'    => false,
+                'sortable'  => false,
+                'is_system' => true
+            )
+        );
         return parent::_prepareColumns();
     }
 

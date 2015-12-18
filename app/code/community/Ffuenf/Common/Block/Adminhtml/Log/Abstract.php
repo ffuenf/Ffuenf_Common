@@ -32,18 +32,26 @@ abstract class Ffuenf_Common_Block_Adminhtml_Log_Abstract extends Mage_Adminhtml
         if (null !== $this->_logType) {
             $logFilePath = Ffuenf_Common_Model_Logger::getAbsoluteLogFilePath($this->_logType);
             if (Mage::helper('ffuenf_common/file')->exists($logFilePath)) {
-                $this->_addButton('download', array(
-                    'label'     => $this->_getDownloadButtonLabel(),
-                    'onclick'   => 'setLocation(\'' . $this->_getDownloadUrl() . '\')',
-                    'class'     => 'scalable'
-                ), -1);
+                $this->_addButton(
+                    'download',
+                    array(
+                        'label'     => $this->_getDownloadButtonLabel(),
+                        'onclick'   => 'setLocation(\'' . $this->_getDownloadUrl() . '\')',
+                        'class'     => 'scalable'
+                    ),
+                    -1
+                );
             } else {
-                $this->_addButton('download', array(
-                    'label'     => $this->_getDownloadButtonLabel(),
-                    'onclick'   => 'setLocation(\'' . $this->_getDownloadUrl() . '\')',
-                    'class'     => 'scalable',
-                    'disabled'  => true
-                ), -1);
+                $this->_addButton(
+                    'download',
+                    array(
+                        'label'     => $this->_getDownloadButtonLabel(),
+                        'onclick'   => 'setLocation(\'' . $this->_getDownloadUrl() . '\')',
+                        'class'     => 'scalable',
+                        'disabled'  => true
+                    ),
+                    -1
+                );
             }
         }
         return parent::_prepareLayout();

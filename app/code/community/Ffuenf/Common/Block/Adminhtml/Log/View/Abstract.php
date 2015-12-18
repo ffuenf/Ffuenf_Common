@@ -29,11 +29,14 @@ class Ffuenf_Common_Block_Adminhtml_Log_View_Abstract extends Mage_Adminhtml_Blo
     public function __construct()
     {
         parent::__construct();
-        $this->_addButton('back', array(
-            'label'     => Mage::helper('adminhtml')->__('Back'),
-            'onclick'   => 'window.location.href=\'' . $this->getUrl('*/*/') . '\'',
-            'class'     => 'back',
-        ));
+        $this->_addButton(
+            'back',
+            array(
+                'label'   => Mage::helper('adminhtml')->__('Back'),
+                'onclick' => 'window.location.href=\'' . $this->getUrl('*/*/') . '\'',
+                'class'   => 'back',
+            )
+        );
     }
 
     /**

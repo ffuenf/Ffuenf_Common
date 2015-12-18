@@ -16,7 +16,7 @@
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Adminhtml_Log_ExceptionController extends Mage_Adminhtml_Controller_Action
+class Ffuenf_Common_Adminhtml_Log_Abstract extends Mage_Adminhtml_Controller_Action
 {
     const LOG_TYPE = 'system';
     const TITLE_PATH = 'System';

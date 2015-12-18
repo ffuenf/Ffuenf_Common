@@ -35,74 +35,101 @@ class Ffuenf_Common_Block_Adminhtml_Log_Profile_Grid extends Mage_Adminhtml_Bloc
 
     protected function _prepareColumns()
     {
-        $this->addColumn('timestamp', array(
-            'header'        => Mage::helper('ffuenf_common')->__('Date'),
-            'index'         => 'timestamp',
-            'type'          => 'datetime',
-            'width'         => '150px',
-            'renderer'      => 'Ffuenf_Common_Block_Adminhtml_Renderer_Timestamp',
-            'filter'        => false,
-            'sortable'      => false
-        ));
-        $this->addColumn('type', array(
-            'header'        => Mage::helper('ffuenf_common')->__('Type'),
-            'index'         => 'type',
-            'filter'        => false,
-            'sortable'      => false
-        ));
-        $this->addColumn('items', array(
-            'header'        => Mage::helper('ffuenf_common')->__('Items'),
-            'index'         => 'items',
-            'filter'        => false,
-            'sortable'      => false
-        ));
-        $this->addColumn('page', array(
-            'header'        => Mage::helper('ffuenf_common')->__('Page'),
-            'index'         => 'page',
-            'filter'        => false,
-            'sortable'      => false
-        ));
-        $this->addColumn('start', array(
-            'header'        => Mage::helper('ffuenf_common')->__('Start Time'),
-            'index'         => 'start',
-            'filter'        => false,
-            'sortable'      => false
-        ));
-        $this->addColumn('stop', array(
-            'header'        => Mage::helper('ffuenf_common')->__('Stop Time'),
-            'index'         => 'stop',
-            'filter'        => false,
-            'sortable'      => false
-        ));
-        $this->addColumn('duration', array(
-            'header'        => Mage::helper('ffuenf_common')->__('Duration'),
-            'index'         => 'duration',
-            'filter'        => false,
-            'sortable'      => false
-        ));
-        $this->addColumn('memory', array(
-            'header'        => Mage::helper('ffuenf_common')->__('Memory Consumption'),
-            'index'         => 'memory',
-            'filter'        => false,
-            'sortable'      => false
-        ));
-        $this->addColumn('preview_action', array(
-            'header'    => Mage::helper('ffuenf_common')->__('Details'),
-            'type'      => 'action',
-            'align'     => 'center',
-            'width'     => '50px',
-            'getter'    => 'getId',
-            'actions'   => array(
-                array(
-                    'caption' => Mage::helper('ffuenf_common')->__('Details'),
-                    'url'     => array('base' => '*/*/view'),
-                    'field'   => 'id'
-                )
-            ),
-            'filter'    => false,
-            'sortable'  => false,
-            'is_system' => true
-        ));
+        $this->addColumn(
+            'timestamp',
+            array(
+                'header'   => Mage::helper('ffuenf_common')->__('Date'),
+                'index'    => 'timestamp',
+                'type'     => 'datetime',
+                'width'    => '150px',
+                'renderer' => 'Ffuenf_Common_Block_Adminhtml_Renderer_Timestamp',
+                'filter'   => false,
+                'sortable' => false
+            )
+        );
+        $this->addColumn(
+            'type',
+            array(
+                'header'   => Mage::helper('ffuenf_common')->__('Type'),
+                'index'    => 'type',
+                'filter'   => false,
+                'sortable' => false
+            )
+        );
+        $this->addColumn(
+            'items',
+            array(
+                'header'   => Mage::helper('ffuenf_common')->__('Items'),
+                'index'    => 'items',
+                'filter'   => false,
+                'sortable' => false
+            )
+        );
+        $this->addColumn(
+            'page',
+            array(
+                'header'   => Mage::helper('ffuenf_common')->__('Page'),
+                'index'    => 'page',
+                'filter'   => false,
+                'sortable' => false
+            )
+        );
+        $this->addColumn(
+            'start', 
+            array(
+                'header'   => Mage::helper('ffuenf_common')->__('Start Time'),
+                'index'    => 'start',
+                'filter'   => false,
+                'sortable' => false
+            )
+        );
+        $this->addColumn(
+            'stop', 
+            array(
+                'header'   => Mage::helper('ffuenf_common')->__('Stop Time'),
+                'index'    => 'stop',
+                'filter'   => false,
+                'sortable' => false
+            )
+        );
+        $this->addColumn(
+            'duration',
+            array(
+                'header'   => Mage::helper('ffuenf_common')->__('Duration'),
+                'index'    => 'duration',
+                'filter'   => false,
+                'sortable' => false
+            )
+        );
+        $this->addColumn(
+            'memory',
+            array(
+                'header'   => Mage::helper('ffuenf_common')->__('Memory Consumption'),
+                'index'    => 'memory',
+                'filter'   => false,
+                'sortable' => false
+            )
+        );
+        $this->addColumn(
+            'preview_action',
+            array(
+                'header'  => Mage::helper('ffuenf_common')->__('Details'),
+                'type'    => 'action',
+                'align'   => 'center',
+                'width'   => '50px',
+                'getter'  => 'getId',
+                'actions' => array(
+                    array(
+                        'caption' => Mage::helper('ffuenf_common')->__('Details'),
+                        'url'     => array('base' => '*/*/view'),
+                        'field'   => 'id'
+                    )
+                ),
+                'filter'    => false,
+                'sortable'  => false,
+                'is_system' => true
+            )
+        );
         return parent::_prepareColumns();
     }
 
