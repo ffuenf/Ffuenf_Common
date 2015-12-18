@@ -29,7 +29,7 @@ final class Ffuenf_Common_Model_Logger
      *
      * @return Ffuenf_Common_Model_Config
      */
-    private static function _getConfig()
+    public static function _getConfig()
     {
         return Mage::getSingleton('ffuenf_common/config');
     }
@@ -213,9 +213,17 @@ final class Ffuenf_Common_Model_Logger
         $logTypes = array('exception', 'system', 'profile');
         $maxFilesize = self::LOGFILE_ROTATION_SIZE * 1048576;
         foreach ($logTypes as $logType) {
+            $io = new Varien_Io_File();
+            $filepathdir = self::getAbsoluteLogDirPath($logType);
             $filepath = self::getAbsoluteLogFilePath($logType);
-            if (Mage::helper('ffuenf_common/file')->exists($filepath) && Mage::helper('ffuenf_common/file')->isBiggerThan($filepath, $maxFilesize)) {
-                rename($filepath, $filepath . '.' . Mage::getModel('core/date')->date("Ymdhis"));
+            try {
+                if (Mage::helper('ffuenf_common/file')->isBiggerThan($filepath, $maxFilesize)) {
+                    $io->open(array('path' => $filepathdir));
+                    $io->mv($filepath, $filepath . '.' . Mage::getModel('core/date')->date("Ymdhis"));
+                    $io->close();
+                }
+            } catch (Exception $e) {
+                Mage::logException($e);
             }
         }
     }

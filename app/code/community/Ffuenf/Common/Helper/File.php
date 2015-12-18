@@ -104,7 +104,7 @@ class Ffuenf_Common_Helper_File extends Mage_Core_Helper_Abstract
         $testMaxFilesize = new Zend_Validate_File_Size(array(
             'min' => $maxFilesize
         ));
-        if ($testMaxFilesize->isValid($filepath)) {
+        if ($testMaxFilesize->isValid($file)) {
             return true;
         }
         return false;

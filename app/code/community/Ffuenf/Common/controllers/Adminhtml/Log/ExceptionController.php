@@ -81,11 +81,12 @@ class Ffuenf_Common_Adminhtml_Log_ExceptionController extends Mage_Adminhtml_Con
                     $fileOutput[$columnName] = isset($row[$index]) ? $row[$index] : '';
                 }
             }
+            $filesize = $io->streamStat('size');
             $io->close();
             $output .= implode($this->_getConfig()->getLogDelimiter(), $fileOutput) . "\n";
             Mage::app()->getResponse()->setHeader('Content-type', 'text/csv');
             Mage::app()->getResponse()->setHeader('Content-disposition', 'attachment;filename=' . $logFileName);
-            Mage::app()->getResponse()->setHeader('Content-Length', filesize($logFilePath));
+            Mage::app()->getResponse()->setHeader('Content-Length', $filesize);
             Mage::app()->getResponse()->setBody($output);
         } else {
             $this->_redirect('*/*/');
