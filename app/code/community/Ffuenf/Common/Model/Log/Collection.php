@@ -21,11 +21,17 @@ class Ffuenf_Common_Model_Log_Collection extends Varien_Data_Collection
 
     protected $_logType = 'exception';
 
+    /**
+     * @return Ffuenf_Common_Model_Config
+     */
     protected function _getConfig()
     {
         return Mage::getSingleton('ffuenf_common/config');
     }
 
+    /**
+     * @return null|array
+     */
     protected function _applyFilters($log)
     {
         if (!empty($this->_filters)) {
@@ -50,7 +56,7 @@ class Ffuenf_Common_Model_Log_Collection extends Varien_Data_Collection
         }
         $io = new Varien_Io_File();
         $logFileName = Ffuenf_Common_Model_Logger::getLogFileName($this->_logType);
-        $logDirPath = Ffuenf_Common_Model_Logger::getAbsoluteLogDirPath($this->_logType);
+        $logDirPath = Ffuenf_Common_Model_Logger::getAbsoluteLogDirPath();
         $logFilePath = Ffuenf_Common_Model_Logger::getAbsoluteLogFilePath($this->_logType);
         $columnMapping = Ffuenf_Common_Model_Logger::getColumnMapping($this->_logType);
         if ($io->fileExists($logFilePath, true)) {

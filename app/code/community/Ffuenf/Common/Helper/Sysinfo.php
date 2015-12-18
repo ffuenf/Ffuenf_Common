@@ -158,12 +158,18 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
         $stores['Group ID'][0] = '0';
         $stores['Website ID'][0] = '0';
         foreach ($this->_getStoreCollection() as $store) {
-            $baseUrl = Mage::getModel('core/url')->setStore($store->getId())->getUrl('/', array(
-                '_current' => false, '_nosid' => true, '_store' => $store->getId()
-            ));
-            $secureUrl = Mage::getModel('core/url')->setStore($store->getId())->getUrl('/', array(
-                '_current' => false, '_secure' => true, '_nosid' => true, '_store' => $store->getId()
-            ));
+            $baseUrl = Mage::getModel('core/url')->setStore($store->getId())->getUrl(
+                '/',
+                array(
+                    '_current' => false, '_nosid' => true, '_store' => $store->getId()
+                )
+            );
+            $secureUrl = Mage::getModel('core/url')->setStore($store->getId())->getUrl(
+                '/',
+                array(
+                    '_current' => false, '_secure' => true, '_nosid' => true, '_store' => $store->getId()
+                )
+            );
             $stores['__titles__'][$store->getCode()] = $store->getName();
             $stores['Code'][$store->getCode()] = $store->getCode();
             $stores['Base URL'][$store->getCode()] = sprintf('<a href="%s">%s</a>', $baseUrl, $baseUrl);
