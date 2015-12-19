@@ -60,7 +60,7 @@ class Ffuenf_Common_Block_Adminhtml_Log_View_Abstract extends Mage_Adminhtml_Blo
         return strtolower(preg_replace('/(.)([A-Z])/', "$1_$2", $name));
     }
 
-    public function __call($method)
+    public function __call($method, $args)
     {
         if (null !== $this->_getLog()) {
             if (substr($method, 0, 3) == 'get') {
