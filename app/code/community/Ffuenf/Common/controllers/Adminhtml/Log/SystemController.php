@@ -16,8 +16,18 @@
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Adminhtml_Log_SystemController extends Ffuenf_Common_Adminhtml_Log_Abstract
+class Ffuenf_Common_Adminhtml_Log_SystemController extends Ffuenf_Common_Controller_AbstractController
 {
     const LOG_TYPE = 'system';
     const TITLE_PATH = 'System';
+
+    /**
+     * ACL checking
+     *
+     * @return bool
+     */
+    protected function _isAllowed()
+    {
+        return Mage::getSingleton('admin/session')->isAllowed('system/ffuenf/log/system');
+    }
 }

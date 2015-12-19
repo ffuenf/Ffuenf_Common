@@ -16,7 +16,7 @@
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Adminhtml_Log_Abstract extends Mage_Adminhtml_Controller_Action
+abstract class Ffuenf_Common_Controller_AbstractController extends Mage_Adminhtml_Controller_Action
 {
     const LOG_TYPE = 'system';
     const TITLE_PATH = 'System';
@@ -103,11 +103,12 @@ class Ffuenf_Common_Adminhtml_Log_Abstract extends Mage_Adminhtml_Controller_Act
     }
 
     /**
-     * check whether the current user is allowed to access this controller
+     * ACL checking
+     *
      * @return bool
      */
     protected function _isAllowed()
     {
-        return Mage::getSingleton('admin/session')->isAllowed('ffuenf_common');
+        return Mage::getSingleton('admin/session')->isAllowed('system/ffuenf/log');
     }
 }
