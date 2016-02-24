@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of Ffuenf_Common.
 
+## 1.1.1 (February 25, 2016)
+
+* update travis build-matrix
+* [docs] copyright notice
+
 ## 1.1.0 (December 15, 2015)
 
 * add system information panel
