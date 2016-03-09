@@ -7,11 +7,11 @@ php:
 matrix:
   fast_finish: true
   allow_failures:
-  - env: MAGENTO_VERSION=magento-ce-1.9.1.1
+  - env: MAGENTO_VERSION=ce-1.9.1.1
   - php: 5.6
-    env: MAGENTO_VERSION=magento-ce-1.8.1.0
+    env: MAGENTO_VERSION=ce-1.8.1.0
   - php: 7.0
-    env: MAGENTO_VERSION=magento-ce-1.8.1.0
+    env: MAGENTO_VERSION=ce-1.8.1.0
 env:
   global:
   - APPNAME=Ffuenf_Common
@@ -19,11 +19,11 @@ env:
   - secure: XNwFIPehHCcYgtZWOhTxZ0D17tFhFH0jn1b367zQwiz0yz0SKDdBxI7aH3Kp1T1gjqgS27PxCQnVDVbwgcDb5JbZuKyWkSn3HVVaJD3YJhtifCuBdc1Cew+uXfwXlZst3DgGxnr7eZsMgEBRvANarBS7PQP4Hb2XmtpoKBlOTG4jN3/GuTlP0q8XRE0gWhcY9c02h7wABBVCD/zbte5ld1rDl1Qaxpvai6Pq/ETnwWeWP+2H7ynP1jldSinBRmcjVMjhnq54gKdTnGKeBY5PTQIjJrcJFjdKNhdKxUqSZGbNCDg8s1Stm18tD4o3lwH4ebjhbkarJCc6gqAeVj8sLj36O3l4rY5B72pH91vJgxUWv9P5g45d4wz/98k3p7XIvUIg9ZJ/mDArqA/JcfQkqvIL1HqPtL1nKcviNId9YMw6nKxzBsv2EV6hf6Gtkchlou29Qi3ytB1Uw5lqVgBsFl0DYTq+rgyUVgtu+hRu57iLgvwKfKfIONNl+2JocL7AWpRdnhsjeq5rm7jlQ6yuFNcQZA/QEwmg7mL+zY8dwtBcv9uQTZaTjseG8soObWkEzk+HrhTEDQMuSZSE2tiZT4wT2doeqAX24fbSv61zaT6LAZDvXZCajVnTyU1s3l58usc1Y+uZxC2UvjcWnvfTZ4N51LBU8t7xJOLagKBqkJ4=
   - secure: ninxwtnpoD+ioc8Uli9Vv9llMbd9mUyM9Cz4ILSmfOfq4tjydzn029jyHdgGp+C/rqqBKrhHnNo+fdSG6PI2SSA1OLnu2WNtS9+ndHmFxa/nzWX0il7mzwAd/NLWOkvuu2iMuTyfiGU3ADaNJAt6IsqrCN6NlSYgf2lmnp6+BQXAFNeep6UfYySbDi6ZMfPvP6sNWBwkmxJIf9dWTEE1GDUoKiUd7AO5D6SSVuRWHuC5OrSH9afrXEMK+QA9DYPJt8xdzsATNiKTD8T5uDO9gtiHQ+xQXE7hl26SaGwRo7J+W1G7P2h0etgLA8Fl3G3ivr5kplUfooqdEGnf9HGkyAAl6IS1uHfDs6RwWewo00wlII4Vr9H0c83JzyKvOvdQ04DBWRQQe58VxuT5UnYGk6pC1GaGkVAWx0Na2culk3uXvzGc9JqpTXXK4NnwpyeWqMd+R7YwLmYZn4Qj5PZEAf8Cqgah/HMTmi7xQ5rb1Wgrn3O60efgJs9v/uB2Wr2ed+NBlabdjGvX8RxAW45uorxtpVV5rygNsYjzYkxPL5KGeHzBzrFfF0BcCZkCNrl1ngOMYdBflKM26Kgx8Spf3rbZtlsLizsLfM++uQx1R5Q4FdTQ5l2dZMxSl14DH7ChmCSsSKsCt+HSLPafcVheYvbhXZ3v11Ml09YRJc1e08Y=
   matrix:
-  - MAGENTO_VERSION=magento-ce-1.9.2.4
-  - MAGENTO_VERSION=magento-ce-1.9.1.1
-  - MAGENTO_VERSION=magento-ce-1.8.1.0
-  - MAGENTO_VERSION=magento-ce-1.7.0.2
-  - MAGENTO_VERSION=magento-ce-1.6.2.0
+  - MAGENTO_VERSION=ce-1.9.2.4
+  - MAGENTO_VERSION=ce-1.9.1.1
+  - MAGENTO_VERSION=ce-1.8.1.0
+  - MAGENTO_VERSION=ce-1.7.0.2
+  - MAGENTO_VERSION=ce-1.6.2.0
 before_script:
 - echo > ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
 - echo 'memory_limit = -1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
@@ -32,7 +32,7 @@ before_script:
 - composer config github-oauth.github.com "$GITHUB_TOKEN"
 - composer install --no-interaction --prefer-dist
 script:
-- curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh
+- curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/dev/setup.sh
   | bash
 deploy:
   provider: releases
