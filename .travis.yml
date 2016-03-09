@@ -31,7 +31,7 @@ before_script:
 - curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/dev/before_script.sh
   | bash
 script:
-- curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/dev/setup.sh
+- curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/dev/script.sh
   | bash
 deploy:
   provider: releases
