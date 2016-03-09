@@ -24,13 +24,12 @@ env:
   - MAGENTO_VERSION=ce-1.8.1.0
   - MAGENTO_VERSION=ce-1.7.0.2
   - MAGENTO_VERSION=ce-1.6.2.0
+before_install:
+- curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/dev/before_install.sh
+  | bash
 before_script:
-- echo > ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/xdebug.ini
-- echo 'memory_limit = -1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-- phpenv rehash;
-- composer self-update
-- composer config github-oauth.github.com "$GITHUB_TOKEN"
-- composer install --no-interaction --prefer-dist
+- curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/dev/before_script.sh
+  | bash
 script:
 - curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/dev/setup.sh
   | bash
