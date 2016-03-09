@@ -18,7 +18,7 @@
 
 class Ffuenf_Common_Adminhtml_Log_ExceptionController extends Ffuenf_Common_Controller_AbstractController
 {
-    const LOG_TYPE = 'exception';
+    const LOG_TYPE   = 'exception';
     const TITLE_PATH = 'Exception';
 
     /**

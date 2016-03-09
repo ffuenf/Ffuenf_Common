@@ -18,7 +18,7 @@
 
 class Ffuenf_Common_Adminhtml_Log_SystemController extends Ffuenf_Common_Controller_AbstractController
 {
-    const LOG_TYPE = 'system';
+    const LOG_TYPE   = 'system';
     const TITLE_PATH = 'System';
 
     /**

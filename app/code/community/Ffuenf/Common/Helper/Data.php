@@ -19,8 +19,8 @@
 class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
 {
     const XML_PATH_EXTENSION_ACTIVE = 'ffuenf_common/general/enable';
-    const NEW_MAGENTO_CSS_LOCATION = 'lib/prototype/windows/themes/magento.css';
-    const OLD_MAGENTO_CSS_LOCATION = 'prototype/windows/themes/magento.css';
+    const NEW_MAGENTO_CSS_LOCATION  = 'lib/prototype/windows/themes/magento.css';
+    const OLD_MAGENTO_CSS_LOCATION  = 'prototype/windows/themes/magento.css';
 
     /**
      * Variable for if the extension is active.

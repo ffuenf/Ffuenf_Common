@@ -35,9 +35,9 @@ abstract class Ffuenf_Common_Block_Adminhtml_Log_Abstract extends Mage_Adminhtml
                 $this->_addButton(
                     'download',
                     array(
-                        'label'     => $this->_getDownloadButtonLabel(),
-                        'onclick'   => 'setLocation(\'' . $this->_getDownloadUrl() . '\')',
-                        'class'     => 'scalable'
+                        'label'   => $this->_getDownloadButtonLabel(),
+                        'onclick' => 'setLocation(\'' . $this->_getDownloadUrl() . '\')',
+                        'class'   => 'scalable'
                     ),
                     -1
                 );
@@ -45,10 +45,10 @@ abstract class Ffuenf_Common_Block_Adminhtml_Log_Abstract extends Mage_Adminhtml
                 $this->_addButton(
                     'download',
                     array(
-                        'label'     => $this->_getDownloadButtonLabel(),
-                        'onclick'   => 'setLocation(\'' . $this->_getDownloadUrl() . '\')',
-                        'class'     => 'scalable',
-                        'disabled'  => true
+                        'label'    => $this->_getDownloadButtonLabel(),
+                        'onclick'  => 'setLocation(\'' . $this->_getDownloadUrl() . '\')',
+                        'class'    => 'scalable',
+                        'disabled' => true
                     ),
                     -1
                 );

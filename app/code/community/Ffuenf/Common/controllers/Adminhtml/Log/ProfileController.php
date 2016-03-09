@@ -18,7 +18,7 @@
 
 class Ffuenf_Common_Adminhtml_Log_ProfileController extends Ffuenf_Common_Controller_AbstractController
 {
-    const LOG_TYPE = 'profile';
+    const LOG_TYPE   = 'profile';
     const TITLE_PATH = 'Profile';
 
     /**

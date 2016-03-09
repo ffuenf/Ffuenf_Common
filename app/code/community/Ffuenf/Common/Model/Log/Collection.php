@@ -54,10 +54,10 @@ class Ffuenf_Common_Model_Log_Collection extends Varien_Data_Collection
         if ($this->isLoaded()) {
             return $this;
         }
-        $io = new Varien_Io_File();
-        $logFileName = Ffuenf_Common_Model_Logger::getLogFileName($this->_logType);
-        $logDirPath = Ffuenf_Common_Model_Logger::getAbsoluteLogDirPath();
-        $logFilePath = Ffuenf_Common_Model_Logger::getAbsoluteLogFilePath($this->_logType);
+        $io            = new Varien_Io_File();
+        $logFileName   = Ffuenf_Common_Model_Logger::getLogFileName($this->_logType);
+        $logDirPath    = Ffuenf_Common_Model_Logger::getAbsoluteLogDirPath();
+        $logFilePath   = Ffuenf_Common_Model_Logger::getAbsoluteLogFilePath($this->_logType);
         $columnMapping = Ffuenf_Common_Model_Logger::getColumnMapping($this->_logType);
         if ($io->fileExists($logFilePath, true)) {
             $logArray = array();
