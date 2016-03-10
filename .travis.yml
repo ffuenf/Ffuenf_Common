@@ -1,4 +1,3 @@
-dist: trusty
 language: php
 sudo: false
 cache:
@@ -6,6 +5,8 @@ cache:
   directories:
     - $HOME/.composer/cache
     - $HOME/.cache/bin
+    - $HOME/.n98-magerun/modules
+    - $HOME/.cache/magento
 php:
 - 5.5
 - 5.6
