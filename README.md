@@ -21,19 +21,41 @@ Usage
 The common log functionality can be used either for arbitary logging:
 
 ```
+<?php
+
     Ffuenf_Common_Model_Logger::logSystem(
         array(
-            'timestamp' => 'datetime',
             'extension' => 'extension',
             'type' => 'type',
-            'message' => 'message'
+            'message' => 'message',
+            'details' => 'details'
         )
     );
+```
+
+The types are based on `Zend_Log` values, so you may use e.g. `Zend_Log::DEBUG`:
+
+```
+<?php
+
+    class Zend_Log
+    {
+        const EMERG   = 0;  // Emergency: system is unusable
+        const ALERT   = 1;  // Alert: action must be taken immediately
+        const CRIT    = 2;  // Critical: critical conditions
+        const ERR     = 3;  // Error: error conditions
+        const WARN    = 4;  // Warning: warning conditions
+        const NOTICE  = 5;  // Notice: normal but significant condition
+        const INFO    = 6;  // Informational: informational messages
+        const DEBUG   = 7;  // Debug: debug messages
+    }
 ```
 
 as profile/performance logging:
 
 ```
+<?php
+
     Ffuenf_Common_Model_Logger::logProfile(
         array(
             'timestamp' => 'timestamp'
@@ -53,6 +75,8 @@ as profile/performance logging:
 as exception logging:
 
 ```
+<?php
+
     try {
         ...
     } catch (Exception $e) {
@@ -64,6 +88,8 @@ throw new Ffuenf_Common_Exception('message');
 or as exception handling:
 
 ```
+<?php
+
     try {
         ...
     } catch (Exception $e) {
