@@ -56,7 +56,7 @@ final class Ffuenf_Common_Model_Logger
      * Returns path for selected logs and creates missing folder if needed
      *
      * @param string $logType
-     * @return string|null
+     * @return string
      */
     public static function getLogFileName($logType = 'system')
     {
@@ -165,7 +165,7 @@ final class Ffuenf_Common_Model_Logger
     {
         $io = new Varien_Io_File();
         if ($io->fileExists($filePath, true)) {
-	    $io->open(array('path' => self::getAbsoluteLogDirPath()));
+            $io->open(array('path' => self::getAbsoluteLogDirPath()));
             $io->streamOpen($fileName, 'w+');
             $io->streamLock(true);
             $io->streamWriteCsv($logData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
