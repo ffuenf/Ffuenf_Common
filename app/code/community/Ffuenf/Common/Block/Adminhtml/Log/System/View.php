@@ -41,6 +41,9 @@ class Ffuenf_Common_Block_Adminhtml_Log_System_View extends Ffuenf_Common_Block_
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getLogTypeHtml($typeId)
     {
         $html = Mage::getModel('ffuenf_common/logger')->getLogTypeHtml($typeId);

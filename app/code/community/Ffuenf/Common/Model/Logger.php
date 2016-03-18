@@ -195,7 +195,6 @@ final class Ffuenf_Common_Model_Logger
 
     /**
      * @param int $logType
-     * @param string $html
      */
     public function getLogTypeHtml($logType)
     {
