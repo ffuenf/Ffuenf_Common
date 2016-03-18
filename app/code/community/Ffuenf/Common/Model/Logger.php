@@ -106,7 +106,20 @@ final class Ffuenf_Common_Model_Logger
     public static function logSystem($logData)
     {
         if (self::_getConfig()->isLoggingActive()) {
+            $logData['extension'] = isset($logData['extension']) ? $logData['extension'] : Mage::app()->getRequest()->getControllerModule();
+            $extensionNameLower = strtolower($logData['extension']);
+            try {
+                $helper = Mage::helper($extensionNameLower);
+                $method = 'isLoggingActive';
+                if (is_callable(array($helper, $method), true, $method) && method_exists(Mage::helper($extensionNameLower), 'isLoggingActive') && !Mage::helper($extensionNameLower)->isLoggingActive()) {
+                    return;
+                }
+            } catch (Exception $e){
+                self::logException($e);
+                return;
+            }
             array_unshift($logData, Mage::getModel('core/date')->gmtTimestamp());
+            $logData['extension'] = isset($logData['extension']) ? $logData['extension'] : $extensionName;
             self::_writeCsv(self::getAbsoluteLogFilePath('system'), self::getLogFileName('system'), $logData);
         }
     }

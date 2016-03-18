@@ -6,6 +6,7 @@ This file is used to list changes made in each version of Ffuenf_Common.
 
 * add details to system logging (full content)
 * format log-types in system.log with its own renderer
+* add dependent logging setting in extensions (depends on isLoggingActive() in extensions helper)
 * fix php strict notices
 
 ## 1.1.1 (March 12, 2016)
