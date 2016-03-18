@@ -39,21 +39,25 @@
                 </tr>
                 <tr>
                     <td class="label"><label><?php echo $this->__('Extension'); ?></label></td>
-                    <td class="value"><?php echo $this->escapeHtml($this->getExtension()); ?></td>
+                    <td class="value"><?php echo $this->htmlEscape($this->getExtension()); ?></td>
                 </tr>
                 <tr>
                     <td class="label"><label><?php echo $this->__('Type'); ?></label></td>
-                    <td class="value"><?php echo $this->escapeHtml($this->getType()); ?></td>
+                    <td class="value"><?php echo $this->getLogTypeHtml($this->getType()); ?></td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Message'); ?></label></td>
+                    <td class="value"><?php echo $this->htmlEscape($this->getMessage()); ?></td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <?php if ($this->getMessage() != ''): ?>
+    <?php if ($this->getDescription() != ''): ?>
     <div class="entry-edit-head">
-        <h4><?php echo $this->__('Message'); ?></h4>
+        <h4><?php echo $this->__('Description'); ?></h4>
     </div>
     <div class="box box-code">
-        <pre><code class="language-php-extras"><?php echo $this->htmlEscape($this->getMessage()); ?></code></pre>
+        <pre><code class="language-php-extras"><?php echo $this->htmlEscape($this->getDescription()); ?></code></pre>
     </div>
     <?php endif; ?>
 </div>

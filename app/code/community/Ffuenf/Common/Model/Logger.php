@@ -161,11 +161,11 @@ final class Ffuenf_Common_Model_Logger
      * @param string $fileName
      * @param array $logData
      */
-    protected function _writeCsv($filePath, $fileName, $logData)
+    protected static function _writeCsv($filePath, $fileName, $logData)
     {
         $io = new Varien_Io_File();
         if ($io->fileExists($filePath, true)) {
-            $io->open(array('path' => self::getAbsoluteLogDirPath()));
+	    $io->open(array('path' => self::getAbsoluteLogDirPath()));
             $io->streamOpen($fileName, 'w+');
             $io->streamLock(true);
             $io->streamWriteCsv($logData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
@@ -185,12 +185,77 @@ final class Ffuenf_Common_Model_Logger
             case 'exception':
                 return array('timestamp', 'exception_code', 'exception_message', 'exception_trace');
             case 'system':
-                return array('timestamp', 'extension', 'type', 'message');
+                return array('timestamp', 'extension', 'type', 'message', 'description');
             case 'profile':
                 return array('timestamp', 'class', 'type', 'items', 'page', 'start', 'stop', 'duration', 'memory', 'message');
             default:
                 return array('timestamp', 'extension', 'type', 'message');
         }
+    }
+
+    /**
+     * @param int $logType
+     * @param string $html
+     */
+    public function getLogTypeHtml($logType)
+    {
+        switch ($logType) {
+            case Zend_Log::EMERG:
+                # Emergency: system is unusable
+                $title       = 'Emergency';
+                $description = 'system is unusable';
+                $cssClass    = 'grid-severity-critical';
+                break;
+            case Zend_Log::ALERT:
+                # Alert: action must be taken immediately
+                $title       = 'Alert';
+                $description = 'action must be taken immediately';
+                $cssClass    = 'grid-severity-critical';
+                break;
+            case Zend_Log::CRIT:
+                # Critical: critical conditions
+                $title       = 'Critical';
+                $description = 'critical conditions';
+                $cssClass    = 'grid-severity-critical';
+                break;
+            case Zend_Log::ERR:
+                # Error: error conditions
+                $title       = 'Error';
+                $description = 'error conditions';
+                $cssClass    = 'grid-severity-major';
+                break;
+            case Zend_Log::WARN:
+                # Warning: warning conditions
+                $title       = 'Warning';
+                $description = 'warning conditions';
+                $cssClass    = 'grid-severity-minor';
+                break;
+            case Zend_Log::NOTICE:
+                # Notice: normal but significant condition
+                $title       = 'Notice';
+                $description = 'normal but significant condition';
+                $cssClass    = 'grid-severity-notice';
+                break;
+            case Zend_Log::INFO:
+                # Informational: informational messages
+                $title       = 'Informational';
+                $description = 'informational messages';
+                $cssClass    = 'grid-severity-notice';
+                break;
+            case Zend_Log::DEBUG:
+                # Debug: debug messages
+                $title       = 'Debug';
+                $description = 'debug messages';
+                $cssClass    = 'grid-severity-notice';
+                break;
+            default:
+                $title       = 'None';
+                $description = 'no specific log type';
+                $cssClass = 'grid-severity-notice';
+                break;
+        }
+        $html = '<span class="' . $cssClass . '" title="' . $description . '"><span>' . $title . '</span></span>';
+        return $html;
     }
 
     public static function rotateLogfiles()

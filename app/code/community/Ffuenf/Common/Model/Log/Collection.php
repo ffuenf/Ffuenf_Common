@@ -120,7 +120,7 @@ class Ffuenf_Common_Model_Log_Collection extends Varien_Data_Collection
         return $this->addAttributeToFilter($attribute, $condition);
     }
 
-    public function loadData()
+    public function loadData($printQuery = false, $logQuery = false)
     {
         return $this->_loadData();
     }

@@ -2,7 +2,13 @@
 
 This file is used to list changes made in each version of Ffuenf_Common.
 
-## 1.1.1 (February 25, 2016)
+## 1.2.0 (March 18, 2016)
+
+* add description to system logging (full content)
+* format log-types in system.log with its own renderer
+* fix php strict notices
+
+## 1.1.1 (March 12, 2016)
 
 * update travis build-matrix
 * [docs] copyright notice

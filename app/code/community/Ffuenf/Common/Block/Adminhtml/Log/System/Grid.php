@@ -48,19 +48,22 @@ class Ffuenf_Common_Block_Adminhtml_Log_System_Grid extends Mage_Adminhtml_Block
             )
         );
         $this->addColumn(
-            'extension',
+            'type',
             array(
-                'header'   => Mage::helper('ffuenf_common')->__('Extension'),
-                'index'    => 'extension',
+                'header'   => Mage::helper('ffuenf_common')->__('Type'),
+                'index'    => 'type',
+                'width'    => '120px',
+                'renderer' => 'Ffuenf_Common_Block_Adminhtml_Renderer_Type',
                 'filter'   => false,
                 'sortable' => false
             )
         );
         $this->addColumn(
-            'type',
+            'extension',
             array(
-                'header'   => Mage::helper('ffuenf_common')->__('Type'),
-                'index'    => 'type',
+                'header'   => Mage::helper('ffuenf_common')->__('Extension'),
+                'index'    => 'extension',
+                'width'    => '200px',
                 'filter'   => false,
                 'sortable' => false
             )
