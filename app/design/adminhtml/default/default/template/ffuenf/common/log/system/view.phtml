@@ -52,12 +52,12 @@
             </tbody>
         </table>
     </div>
-    <?php if ($this->getDescription() != ''): ?>
+    <?php if ($this->getDetails() != ''): ?>
     <div class="entry-edit-head">
-        <h4><?php echo $this->__('Description'); ?></h4>
+        <h4><?php echo $this->__('Details'); ?></h4>
     </div>
     <div class="box box-code">
-        <pre><code class="language-php-extras"><?php echo $this->htmlEscape($this->getDescription()); ?></code></pre>
+        <pre><code class="language-php-extras"><?php echo $this->htmlEscape($this->getDetails()); ?></code></pre>
     </div>
     <?php endif; ?>
 </div>

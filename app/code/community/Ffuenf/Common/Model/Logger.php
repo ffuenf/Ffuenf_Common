@@ -185,7 +185,7 @@ final class Ffuenf_Common_Model_Logger
             case 'exception':
                 return array('timestamp', 'exception_code', 'exception_message', 'exception_trace');
             case 'system':
-                return array('timestamp', 'extension', 'type', 'message', 'description');
+                return array('timestamp', 'extension', 'type', 'message', 'details');
             case 'profile':
                 return array('timestamp', 'class', 'type', 'items', 'page', 'start', 'stop', 'duration', 'memory', 'message');
             default:

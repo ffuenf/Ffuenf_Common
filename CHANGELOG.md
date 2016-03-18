@@ -4,7 +4,7 @@ This file is used to list changes made in each version of Ffuenf_Common.
 
 ## 1.2.0 (March 18, 2016)
 
-* add description to system logging (full content)
+* add details to system logging (full content)
 * format log-types in system.log with its own renderer
 * fix php strict notices
 
