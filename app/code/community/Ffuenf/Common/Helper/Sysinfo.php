@@ -240,7 +240,7 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
     /**
      * Returns Magento patches settings
      *
-     * @return array
+     * @return null|array
      */
     protected function _getMagentoPatchesData()
     {
@@ -248,7 +248,7 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
             'patch'       => 'Name',
             'releasedate' => 'Released on',
             'patchdate'   => 'Applied on',
-            'version'     => 'Affected Versions',
+            'version'     => 'Version',
             'revision'    => 'Revision',
             'checksum'    => 'Checksum'
         ));

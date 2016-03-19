@@ -49,17 +49,17 @@ class Ffuenf_Common_Block_Adminhtml_Sysinfo extends Mage_Adminhtml_Block_Templat
             )
         );
         $accordion->addItem(
-            'magento_patches',
-            array(
-                'title'   => Mage::helper('ffuenf_common')->__('Installed Magento Patches'),
-                'content' => $this->getLayout()->createBlock('ffuenf_common/adminhtml_sysinfo_section_table')->setSysinfoArea('magento_patches')->setShowKeys(false)->toHtml()
-            )
-        );
-        $accordion->addItem(
             'cronjobs',
             array(
                 'title'   => Mage::helper('ffuenf_common')->__('Cronjobs'),
                 'content' => $this->getLayout()->createBlock('ffuenf_common/adminhtml_sysinfo_section_table')->setSysinfoArea('cronjobs')->setShowKeys(false)->toHtml()
+            )
+        );
+        $accordion->addItem(
+            'magento_patches',
+            array(
+                'title'   => Mage::helper('ffuenf_common')->__('Installed Magento Patches'),
+                'content' => $this->getLayout()->createBlock('ffuenf_common/adminhtml_sysinfo_section_table')->setSysinfoArea('magento_patches')->setShowKeys(false)->toHtml()
             )
         );
         $accordion->addItem(

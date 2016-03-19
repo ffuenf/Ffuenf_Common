@@ -68,7 +68,6 @@ final class Ffuenf_Common_Model_Logger
         } catch (Exception $e) {
             Mage::logException($e);
         }
-        return null;
     }
 
     /**
@@ -114,7 +113,6 @@ final class Ffuenf_Common_Model_Logger
         } catch (Exception $e) {
             Mage::logException($e);
         }
-        return null;
     }
 
     /**
