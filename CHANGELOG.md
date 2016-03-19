@@ -12,6 +12,7 @@ This file is used to list changes made in each version of Ffuenf_Common.
 * remove event observers from system information
 * fix cron information to list all cronjobs by ffuenf
 * add origin in system logging to get originating classes
+* add system information about installed magento patches
 
 ## 1.1.1 (March 12, 2016)
 
