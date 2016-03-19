@@ -240,7 +240,7 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
     /**
      * Returns Magento patches settings
      *
-     * @return null|array<string,array<string,array<string,string>>
+     * @return null|array
      */
     protected function _getMagentoPatchesData()
     {
@@ -279,7 +279,7 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
     /**
      * Returns cronjobs status array
      *
-     * @return array<string,array<string,string>>
+     * @return array
      */
     protected function _getCronjobsData()
     {
@@ -311,17 +311,17 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
      *
      * @return array
      */
-    protected function _getCronjobData($cronjob)
+    protected function _getCronjobData($job)
     {
         $dateModel = Mage::getSingleton('core/date');
         $cronjob = array();
-        $cronjob[$cron->getId()]['job_code']     = $cronjob->getJobCode();
-        $cronjob[$cron->getId()]['job_id']       = $cronjob->getId();
-        $cronjob[$cron->getId()]['status']       = $cronjob->getStatus();
-        $cronjob[$cron->getId()]['scheduled_at'] = ($cronjob->getScheduledAt() && $cronjob->getScheduledAt() != '0000-00-00 00:00:00') ? $dateModel->date("Y-m-d H:i:s", $cronjob->getScheduledAt()) : '';
-        $cronjob[$cron->getId()]['executed_at']  = ($cronjob->getExecutedAt() && $cronjob->getExecutedAt() != '0000-00-00 00:00:00') ? $dateModel->date("Y-m-d H:i:s", $cronjob->getExecutedAt()) : '';
-        $cronjob[$cron->getId()]['finished_at']  = ($cronjob->getFinishedAt() && $cronjob->getFinishedAt() != '0000-00-00 00:00:00') ? $dateModel->date("Y-m-d H:i:s", $cronjob->getFinishedAt()) : '';
-        $cronjob[$cron->getId()]['created_at']   = ($cronjob->getCreatedAt() && $cronjob->getCreatedAt() != '0000-00-00 00:00:00') ? $dateModel->date("Y-m-d H:i:s", $cronjob->getCreatedAt()) : '';
+        $cronjob[$job->getId()]['job_code']     = $job->getJobCode();
+        $cronjob[$job->getId()]['job_id']       = $job->getId();
+        $cronjob[$job->getId()]['status']       = $job->getStatus();
+        $cronjob[$job->getId()]['scheduled_at'] = ($job->getScheduledAt() && $job->getScheduledAt() != '0000-00-00 00:00:00') ? $dateModel->date("Y-m-d H:i:s", $job->getScheduledAt()) : '';
+        $cronjob[$job->getId()]['executed_at']  = ($job->getExecutedAt() && $job->getExecutedAt() != '0000-00-00 00:00:00') ? $dateModel->date("Y-m-d H:i:s", $job->getExecutedAt()) : '';
+        $cronjob[$job->getId()]['finished_at']  = ($job->getFinishedAt() && $job->getFinishedAt() != '0000-00-00 00:00:00') ? $dateModel->date("Y-m-d H:i:s", $job->getFinishedAt()) : '';
+        $cronjob[$job->getId()]['created_at']   = ($job->getCreatedAt() && $job->getCreatedAt() != '0000-00-00 00:00:00') ? $dateModel->date("Y-m-d H:i:s", $job->getCreatedAt()) : '';
         return $cronjob;
     }
 
