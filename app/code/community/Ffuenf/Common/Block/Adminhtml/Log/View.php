@@ -60,6 +60,9 @@ class Ffuenf_Common_Block_Adminhtml_Log_View extends Mage_Adminhtml_Block_Widget
         return strtolower(preg_replace('/(.)([A-Z])/', "$1_$2", $name));
     }
 
+    /**
+     * @return string
+     */
     public function __call($method, $args)
     {
         if (null !== $this->_getLog()) {
@@ -70,6 +73,9 @@ class Ffuenf_Common_Block_Adminhtml_Log_View extends Mage_Adminhtml_Block_Widget
         }
     }
 
+    /**
+     * @return null|string
+     */
     public function getTimestamp()
     {
         if (null !== $this->_getLog()) {
@@ -78,12 +84,18 @@ class Ffuenf_Common_Block_Adminhtml_Log_View extends Mage_Adminhtml_Block_Widget
         return null;
     }
 
+    /**
+     * @return Ffuenf_Common_Block_Adminhtml_Log_View
+     */
     public function setLog($model)
     {
         $this->_model = $model;
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getHeaderCssClass()
     {
         return 'icon-head head-ffuenf-log ' . parent::getHeaderCssClass();

@@ -54,22 +54,42 @@ class Ffuenf_Common_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_Widget
         return parent::_prepareCollection();
     }
 
+    /**
+     * Prepare grid columns object
+     *
+     * @return Mage_Adminhtml_Block_Widget_Grid
+     */
     protected function _prepareColumns()
     {
         $this->addExportType('*/*/exportCsvEnhanced', Mage::helper('ffuenf_common')->__('CSVe'));
         return parent::_prepareColumns();
     }
 
+    /**
+     * Get URL to detail view
+     *
+     * @return string
+     */
     public function getRowUrl($row)
     {
         return $this->getUrl('*/*/view', array('id' => $row->getId()));
     }
 
+    /**
+     * Get css class for header
+     *
+     * @return string
+     */
     public function getHeaderCssClass()
     {
         return 'head-ffuenf-icon';
     }
 
+    /**
+     * Get grid csv download
+     *
+     * @return array
+     */
     public function getCsvFileEnhanced()
     {
         $this->_isExport = true;

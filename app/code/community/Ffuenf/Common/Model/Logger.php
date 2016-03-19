@@ -25,6 +25,21 @@ final class Ffuenf_Common_Model_Logger
     const LOGFILE_ROTATION_SIZE     = 8;
 
     /**
+     * Check if a helper method on a given extension exists
+     *
+     * @return bool
+     */
+    public function checkExtensionHelperMethod($extensionNameLower, $method)
+    {
+        try {
+            $helper = Mage::helper($extensionNameLower);
+            return (is_callable(array($helper, $method), true, $method) && method_exists(Mage::helper($extensionNameLower), $method));
+        } catch (Exception $e) {
+            self::logException($e);
+        }
+    }
+
+    /**
      * Returns config model instance
      *
      * @return Ffuenf_Common_Model_Config
@@ -113,17 +128,11 @@ final class Ffuenf_Common_Model_Logger
         $origin = Mage::app()->getRequest()->getControllerModule();
         $logData['class']   = isset($logData['class']) ? $logData['class'] : $origin;
         $extensionNameLower = strtolower($logData['class']);
-        try {
-            $helper = Mage::helper($extensionNameLower);
-            $method = 'isLogActive';
-            if (is_callable(array($helper, $method), true, $method) && method_exists(Mage::helper($extensionNameLower), $method) && !Mage::helper($extensionNameLower)->isLogActive()) {
-                return;
-            }
-        } catch (Exception $e) {
-            self::logException($e);
+        if ($this->checkExtensionHelperMethod($extensionNameLower, 'isLogActive') && !Mage::helper($extensionNameLower)->isLogActive()) {
+            return;
         }
         array_unshift($logData, Mage::getModel('core/date')->gmtTimestamp());
-        $logData['class'] = isset($logData['class']) ? $logData['class'] : $extensionName;
+        $logData['class'] = isset($logData['class']) ? $logData['class'] : $logData['class'];
         $logData['origin'] = $origin;
         self::_writeCsv(self::getLogFileName('system'), $logData);
     }
@@ -141,14 +150,7 @@ final class Ffuenf_Common_Model_Logger
         $message = (array_key_exists('message', $logData) ? $logData['message'] : '');
         $logData['class'] = isset($logData['class']) ? $logData['class'] : Mage::app()->getRequest()->getControllerModule();
         $extensionNameLower = strtolower($logData['class']);
-        try {
-            $helper = Mage::helper($extensionNameLower);
-            $method = 'isLogProfileActive';
-            if (is_callable(array($helper, $method), true, $method) && method_exists(Mage::helper($extensionNameLower), $method) && !Mage::helper($extensionNameLower)->isLogProfileActive()) {
-                return;
-            }
-        } catch (Exception $e) {
-            self::logException($e);
+        if ($this->checkExtensionHelperMethod($extensionNameLower, 'isLogProfileActive') && !Mage::helper($extensionNameLower)->isLogProfileActive()) {
             return;
         }
         $profileData = array(
@@ -178,14 +180,7 @@ final class Ffuenf_Common_Model_Logger
         }
         $extension = Mage::app()->getRequest()->getControllerModule();
         $extensionNameLower = strtolower($extension);
-        try {
-            $helper = Mage::helper($extensionNameLower);
-            $method = 'isLogExceptionActive';
-            if (is_callable(array($helper, $method), true, $method) && method_exists(Mage::helper($extensionNameLower), $method) && !Mage::helper($extensionNameLower)->isLogExceptionActive()) {
-                return;
-            }
-        } catch (Exception $e) {
-            Mage::logException($e);
+        if ($this->checkExtensionHelperMethod($extensionNameLower, 'isLogExceptionActive') && !Mage::helper($extensionNameLower)->isLogExceptionActive()) {
             return;
         }
         $exceptionData = array(
@@ -201,7 +196,6 @@ final class Ffuenf_Common_Model_Logger
     /**
      * Logs
      *
-     * @param string $filePath
      * @param string $fileName
      * @param array $logData
      */
