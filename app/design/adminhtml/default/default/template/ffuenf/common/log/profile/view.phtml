@@ -12,7 +12,7 @@
  * @category   Ffuenf
  *
  * @author     Achim Rosenhagen <a.rosenhagen@ffuenf.de>
- * @copyright  Copyright (c) 2015 ffuenf (http://www.ffuenf.de)
+ * @copyright  Copyright (c) 2016 ffuenf (http://www.ffuenf.de)
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 ?>
@@ -39,35 +39,35 @@
                 </tr>
                 <tr>
                     <td class="label"><label><?php echo $this->__('Class'); ?></label></td>
-                    <td class="value"><?php echo $this->escapeHtml($this->getClass()); ?></td>
+                    <td class="value"><?php echo $this->htmlEscape($this->getClass()); ?></td>
                 </tr>
                 <tr>
                     <td class="label"><label><?php echo $this->__('Type'); ?></label></td>
-                    <td class="value"><?php echo $this->escapeHtml($this->getType()); ?></td>
+                    <td class="value"><?php echo $this->htmlEscape($this->getType()); ?></td>
                 </tr>
                 <tr>
                     <td class="label"><label><?php echo $this->__('Items'); ?></label></td>
-                    <td class="value"><?php echo $this->escapeHtml($this->getItems()); ?></td>
+                    <td class="value"><?php echo $this->htmlEscape($this->getItems()); ?></td>
                 </tr>
                 <tr>
                     <td class="label"><label><?php echo $this->__('Page'); ?></label></td>
-                    <td class="value"><?php echo $this->escapeHtml($this->getPage()); ?></td>
+                    <td class="value"><?php echo $this->htmlEscape($this->getPage()); ?></td>
                 </tr>
                 <tr>
                     <td class="label"><label><?php echo $this->__('Start Time'); ?></label></td>
-                    <td class="value"><?php echo $this->escapeHtml($this->getStart()); ?></td>
+                    <td class="value"><?php echo $this->htmlEscape($this->getStart()); ?></td>
                 </tr>
                 <tr>
                     <td class="label"><label><?php echo $this->__('Stop Time'); ?></label></td>
-                    <td class="value"><?php echo $this->escapeHtml($this->getStop()); ?></td>
+                    <td class="value"><?php echo $this->htmlEscape($this->getStop()); ?></td>
                 </tr>
                 <tr>
                     <td class="label"><label><?php echo $this->__('Duration'); ?></label></td>
-                    <td class="value"><?php echo $this->escapeHtml($this->getDuration()); ?></td>
+                    <td class="value"><?php echo $this->htmlEscape($this->getDuration()); ?></td>
                 </tr>
                 <tr>
                     <td class="label"><label><?php echo $this->__('Memory Consumption'); ?></label></td>
-                    <td class="value"><?php echo $this->escapeHtml($this->getMemory()); ?></td>
+                    <td class="value"><?php echo $this->htmlEscape($this->getMemory()); ?></td>
                 </tr>
             </tbody>
         </table>

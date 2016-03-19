@@ -21,12 +21,62 @@ Usage
 The common log functionality can be used either for arbitary logging:
 
 ```
-    Ffuenf_Common_Model_Logger::logSystem('datetime', 'extension', 'type', 'message');
+<?php
+
+    Ffuenf_Common_Model_Logger::logSystem(
+        array(
+            'class' => 'extension name',
+            'level' => 'level',
+            'message' => 'message',
+            'details' => 'details'
+        )
+    );
+```
+
+The levels are based on `Zend_Log` values, so you may use e.g. `Zend_Log::DEBUG`:
+
+```
+<?php
+
+    class Zend_Log
+    {
+        const EMERG   = 0;  // Emergency: system is unusable
+        const ALERT   = 1;  // Alert: action must be taken immediately
+        const CRIT    = 2;  // Critical: critical conditions
+        const ERR     = 3;  // Error: error conditions
+        const WARN    = 4;  // Warning: warning conditions
+        const NOTICE  = 5;  // Notice: normal but significant condition
+        const INFO    = 6;  // Informational: informational messages
+        const DEBUG   = 7;  // Debug: debug messages
+    }
+```
+
+as profile/performance logging:
+
+```
+<?php
+
+    Ffuenf_Common_Model_Logger::logProfile(
+        array(
+            'timestamp' => 'timestamp'
+            'class' => 'class'
+            'type' => 'type'
+            'items' => 'items'
+            'page' => 'page'
+            'start' => 'start'
+            'stop' => 'stop'
+            'duration' => 'duration'
+            'memory' => 'memory'
+            'message' => 'message'
+        )
+    );
 ```
 
 as exception logging:
 
 ```
+<?php
+
     try {
         ...
     } catch (Exception $e) {
@@ -38,6 +88,8 @@ throw new Ffuenf_Common_Exception('message');
 or as exception handling:
 
 ```
+<?php
+
     try {
         ...
     } catch (Exception $e) {
@@ -51,9 +103,8 @@ Platform
 
 The following versions are supported and tested:
 
-* Magento Community Edition 1.9.2.2
-* Magento Community Edition 1.9.2.1
-* Magento Community Edition 1.9.2.0
+* Magento Community Edition 1.9.2.4
+* Magento Community Edition 1.9.1.1
 * Magento Community Edition 1.8.1.0
 * Magento Community Edition 1.7.0.2
 * Magento Community Edition 1.6.2.0
@@ -63,15 +114,15 @@ Other versions are assumed to work.
 Requirements
 ------------
 
-|                                                                     | PHP 5.3        | PHP 5.4        | PHP 5.5           | PHP 5.6       | PHP 7.0       |
-| ------------------------------------------------------------------- | -------------- | -------------- | ----------------- | ------------- | ------------- |
-| [EOL](https://secure.php.net/supported-versions.php) / STABLE / RC  | EOL            | EOL            | STABLE            | **STABLE**    | STABLE        |
-| automated tests on [travis]                                         | allow failure  | allow failure  | **required pass** | allow failure | allow failure |
+|                                                                     | PHP 5.5           | PHP 5.6           | PHP 7.0           |
+| ------------------------------------------------------------------- | ----------------- | ----------------- | ----------------- |
+| [EOL](https://secure.php.net/supported-versions.php) / STABLE / RC  | STABLE            | **STABLE**        | **STABLE**        |
+| automated tests on [travis]                                         | **required pass** | **required pass** | **required pass** |
 
 Magento Community Edition officially supports PHP 5.4 and PHP 5.5.
 
 Non-official compatibility to PHP 5.6 may be reached by following the tips on [Use of iconv.internal_encoding is deprecated](https://magento.stackexchange.com/questions/34015/magento-1-9-php-5-6-use-of-iconv-internal-encoding-is-deprecated).
-Non-official compatibility to PHP 7.0 may be reached by following the tips on [Is Magento ready for PHP 7?](https://magento.stackexchange.com/questions/74008/is-magento-ready-for-php-7).
+Non-official compatibility to PHP 7.0 may be reached by using [Inchoo_PHP7](https://github.com/Inchoo/Inchoo_PHP7).
 
 Installation
 ------------
@@ -119,7 +170,7 @@ License and Author
 ------------------
 
 - Author:: Achim Rosenhagen (<a.rosenhagen@ffuenf.de>)
-- Copyright:: 2015, ffuenf
+- Copyright:: 2016, ffuenf
 
 The MIT License (MIT)
 

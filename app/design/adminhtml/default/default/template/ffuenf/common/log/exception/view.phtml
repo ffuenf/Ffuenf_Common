@@ -12,7 +12,7 @@
  * @category   Ffuenf
  *
  * @author     Achim Rosenhagen <a.rosenhagen@ffuenf.de>
- * @copyright  Copyright (c) 2015 ffuenf (http://www.ffuenf.de)
+ * @copyright  Copyright (c) 2016 ffuenf (http://www.ffuenf.de)
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 ?>
@@ -35,15 +35,19 @@
             <tbody>
                 <tr>
                     <td class="label"><label><?php echo $this->__('Date'); ?></label></td>
-                    <td class="value"><strong><?php echo $this->escapeHtml($this->getTimestamp()); ?></strong></td>
+                    <td class="value"><strong><?php echo $this->htmlEscape($this->getTimestamp()); ?></strong></td>
+                </tr>
+                <tr>
+                    <td class="label"><label><?php echo $this->__('Class'); ?></label></td>
+                    <td class="value"><?php echo $this->htmlEscape($this->getClass()); ?></td>
                 </tr>
                 <tr>
                     <td class="label"><label><?php echo $this->__('Code'); ?></label></td>
-                    <td class="value"><?php echo $this->escapeHtml($this->getExceptionCode()); ?></td>
+                    <td class="value"><?php echo $this->htmlEscape($this->getExceptionCode()); ?></td>
                 </tr>
                 <tr>
                     <td class="label"><label><?php echo $this->__('Message'); ?></label></td>
-                    <td class="value"><?php echo $this->escapeHtml($this->getExceptionMessage()); ?></td>
+                    <td class="value"><?php echo $this->htmlEscape($this->getExceptionMessage()); ?></td>
                 </tr>
             </tbody>
         </table>

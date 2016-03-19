@@ -12,18 +12,18 @@
  * @category   Ffuenf
  *
  * @author     Achim Rosenhagen <a.rosenhagen@ffuenf.de>
- * @copyright  Copyright (c) 2015 ffuenf (http://www.ffuenf.de)
+ * @copyright  Copyright (c) 2016 ffuenf (http://www.ffuenf.de)
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
 class Ffuenf_Common_Block_Adminhtml_System_Config_Fieldset_Teaser extends Mage_Adminhtml_Block_Abstract implements Varien_Data_Form_Element_Renderer_Interface
 {
-    protected $_template = 'ffuenf/common/teaser.phtml';
+    protected $_template   = 'ffuenf/common/teaser.phtml';
     protected $_moduleName = 'Ffuenf_Common';
-    protected $_repoUser = 'ffuenf';
+    protected $_repoUser   = 'ffuenf';
 
     /**
-     * Render fieldset html
+     * Render element html
      *
      * @param Varien_Data_Form_Element_Abstract $element
      * @return string
@@ -62,6 +62,9 @@ class Ffuenf_Common_Block_Adminhtml_System_Config_Fieldset_Teaser extends Mage_A
     {
         if ($repoType == 'github') {
             return 'https://github.com/' . $this->_repoUser . '/' . $this->_moduleName;
+        }
+        if ($repoType == 'bitbucket') {
+            return 'https://bitbucket.org/' . $this->_repoUser . '/' . $this->_moduleName;
         }
         return '';
     }

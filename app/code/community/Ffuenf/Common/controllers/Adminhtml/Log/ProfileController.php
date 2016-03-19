@@ -12,66 +12,22 @@
  * @category   Ffuenf
  *
  * @author     Achim Rosenhagen <a.rosenhagen@ffuenf.de>
- * @copyright  Copyright (c) 2015 ffuenf (http://www.ffuenf.de)
+ * @copyright  Copyright (c) 2016 ffuenf (http://www.ffuenf.de)
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Adminhtml_Log_ProfileController extends Mage_Adminhtml_Controller_Action
+class Ffuenf_Common_Adminhtml_Log_ProfileController extends Ffuenf_Common_Controller_AbstractController
 {
-    protected function _getConfig()
-    {
-        return Mage::getSingleton('ffuenf_common/config');
-    }
+    const LOG_TYPE   = 'profile';
+    const TITLE_PATH = 'Profile';
 
-    protected function _getCollection()
+    /**
+     * ACL checking
+     *
+     * @return bool
+     */
+    protected function _isAllowed()
     {
-        return Mage::getModel('ffuenf_common/log_collection')->setLogType('profile');
-    }
-
-    protected function _initAction()
-    {
-        $this->loadLayout()
-            ->_setActiveMenu('system/ffuenf/log/system')
-            ->_addBreadcrumb($this->__('Ffuenf'), $this->__('Ffuenf'))
-            ->_addBreadcrumb($this->__('Logs'), $this->__('Logs'))
-            ->_addBreadcrumb($this->__('Profile'), $this->__('Profile'));
-        return $this;
-    }
-
-    public function indexAction()
-    {
-        $this->_title($this->__('Ffuenf'))->_title($this->__('Logs'))->_title($this->__('Profile'));
-        $this->_initAction()
-            ->renderLayout();
-    }
-
-    public function viewAction()
-    {
-        $id = $this->getRequest()->getParam('id');
-        $log = $this->_getCollection()->getItemById($id);
-        if (is_object($log) && $log->getId()) {
-            $this->_title($this->__('Ffuenf'))->_title($this->__('Logs'))->_title($this->__('Profile'))->_title($this->__('Details'));
-            $this->_initAction();
-            $this->_addContent($this->getLayout()->createBlock('ffuenf_common/adminhtml_log_profile_view')->setLog($log));
-            $this->renderLayout();
-        } else {
-            Mage::getSingleton('adminhtml/session')->addError(Mage::helper('ffuenf_common')->__('Log does not exist'));
-            $this->_redirect('*/*/');
-        }
-    }
-
-    public function downloadAction()
-    {
-        $logFilePath = Ffuenf_Common_Model_Logger::getAbsoluteLogFilePath('profile');
-        if (file_exists($logFilePath)) {
-            $output = implode($this->_getConfig()->getLogDelimiter(), Ffuenf_Common_Model_Logger::getColumnMapping('profile')) . "\n";
-            $output .= file_get_contents($logFilePath);
-            Mage::app()->getResponse()->setHeader('Content-type', 'text/csv');
-            Mage::app()->getResponse()->setHeader('Content-disposition', 'attachment;filename=' . basename($logFilePath) . '.csv');
-            Mage::app()->getResponse()->setHeader('Content-Length', filesize($logFilePath));
-            Mage::app()->getResponse()->setBody($output);
-        } else {
-            $this->_redirect('*/*/');
-        }
+        return Mage::getSingleton('admin/session')->isAllowed('system/ffuenf/log/profile');
     }
 }

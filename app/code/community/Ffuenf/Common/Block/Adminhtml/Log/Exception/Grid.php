@@ -12,79 +12,75 @@
  * @category   Ffuenf
  *
  * @author     Achim Rosenhagen <a.rosenhagen@ffuenf.de>
- * @copyright  Copyright (c) 2015 ffuenf (http://www.ffuenf.de)
+ * @copyright  Copyright (c) 2016 ffuenf (http://www.ffuenf.de)
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Block_Adminhtml_Log_Exception_Grid extends Mage_Adminhtml_Block_Widget_Grid
+class Ffuenf_Common_Block_Adminhtml_Log_Exception_Grid extends Ffuenf_Common_Block_Adminhtml_Log_Grid
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $this->setId('ffuenf_common_log_exception_grid');
-        $this->setFilterVisibility(false);
-        $this->setSaveParametersInSession(true);
-    }
-
-    protected function _prepareCollection()
-    {
-        $collection = Mage::getModel('ffuenf_common/log_collection')->setLogType('exception');
-        $this->setCollection($collection);
-        return parent::_prepareCollection();
-    }
+    /**
+     * Type of log
+     *
+     * @var string
+     */
+    protected $_logType = 'exception';
 
     protected function _prepareColumns()
     {
-        $this->addColumn('timestamp', array(
-            'header'        => Mage::helper('ffuenf_common')->__('Date'),
-            'index'         => 'timestamp',
-            'type'          => 'datetime',
-            'width'         => '150px',
-            'renderer'      => 'Ffuenf_Common_Block_Adminhtml_Renderer_Timestamp',
-            'filter'        => false,
-            'sortable'      => false
-        ));
-        $this->addColumn('exception_message', array(
-            'header'        => Mage::helper('ffuenf_common')->__('Exception message'),
-            'index'         => 'exception_message',
-            'filter'        => false,
-            'sortable'      => false
-        ));
-        $this->addColumn('exception_code', array(
-            'header'        => Mage::helper('ffuenf_common')->__('Exception code'),
-            'index'         => 'exception_code',
-            'align'         => 'center',
-            'width'         => '50px',
-            'filter'        => false,
-            'sortable'      => false
-        ));
-        $this->addColumn('preview_action', array(
-            'header'    => Mage::helper('ffuenf_common')->__('Details'),
-            'type'      => 'action',
-            'align'     => 'center',
-            'width'     => '50px',
-            'getter'    => 'getId',
-            'actions'   => array(
-                array(
-                    'caption' => Mage::helper('ffuenf_common')->__('Details'),
-                    'url'     => array('base' => '*/*/view'),
-                    'field'   => 'id'
-                )
-            ),
-            'filter'    => false,
-            'sortable'  => false,
-            'is_system' => true
-        ));
+        $this->addColumn(
+            'timestamp',
+            array(
+                'header' => Mage::helper('ffuenf_common')->__('Date'),
+                'index'  => 'timestamp',
+                'type'   => 'datetime',
+                'format' => Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM, true),
+                'width'  => '150px'
+            )
+        );
+        $this->addColumn(
+            'class',
+            array(
+                'header' => Mage::helper('ffuenf_common')->__('Class'),
+                'index'  => 'class',
+                'width'  => '200px'
+            )
+        );
+        $this->addColumn(
+            'exception_code',
+            array(
+                'header' => Mage::helper('ffuenf_common')->__('Exception code'),
+                'index'  => 'exception_code',
+                'align'  => 'center',
+                'width'  => '50px'
+            )
+        );
+        $this->addColumn(
+            'exception_message',
+            array(
+                'header' => Mage::helper('ffuenf_common')->__('Exception message'),
+                'index'  => 'exception_message'
+            )
+        );
+        $this->addColumn(
+            'preview_action',
+            array(
+                'header'  => Mage::helper('ffuenf_common')->__('Details'),
+                'type'    => 'action',
+                'align'   => 'center',
+                'width'   => '50px',
+                'getter'  => 'getId',
+                'actions' => array(
+                    array(
+                        'caption' => Mage::helper('ffuenf_common')->__('Details'),
+                        'url'     => array('base' => '*/*/view'),
+                        'field'   => 'id'
+                    )
+                ),
+                'filter'    => false,
+                'sortable'  => false,
+                'is_system' => true
+            )
+        );
         return parent::_prepareColumns();
-    }
-
-    public function getRowUrl($row)
-    {
-        return $this->getUrl('*/*/view', array('id' => $row->getId()));
-    }
-
-    public function getHeaderCssClass()
-    {
-        return 'head-ffuenf-icon';
     }
 }

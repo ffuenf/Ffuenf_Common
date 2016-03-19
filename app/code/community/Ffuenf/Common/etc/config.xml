@@ -20,7 +20,7 @@
 <config>
     <modules>
         <Ffuenf_Common>
-            <version>1.1.0</version>
+            <version>1.2.0</version>
         </Ffuenf_Common>
     </modules>
     <global>
@@ -83,9 +83,13 @@
         <ffuenf_common>
             <log>
                 <enable>0</enable>
+                <file>ffuenf/system.log</file>
+                <level>0</level>
                 <force>0</force>
                 <echo>0</echo>
-                <file>ffuenf/system.log</file>
+                <allowed_ips></allowed_ips>
+                <profile_enable>0</profile_enable>
+                <exception_enable>0</exception_enable>
             </log>
         </ffuenf_common>
     </default>

@@ -16,20 +16,15 @@
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-abstract class Ffuenf_Common_Block_Adminhtml_Log_Abstract extends Mage_Adminhtml_Block_Widget_Grid_Container
+class Ffuenf_Common_Block_Adminhtml_Renderer_Level extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract
 {
-    protected $_logType = null;
-
-    public function __construct()
+    /**
+     * @return string
+     */
+    public function render(Varien_Object $row)
     {
-        parent::__construct();
-        $this->_blockGroup = 'ffuenf_common';
-        $this->_controller = 'adminhtml_log_' . $this->_logType;
-        $this->_removeButton('add');
-    }
-
-    public function getHeaderCssClass()
-    {
-        return 'head-ffuenf-log ' . parent::getHeaderCssClass();
+        $value = $row->getData($this->getColumn()->getIndex());
+        $html = Mage::getModel('ffuenf_common/logger')->getLogLevelHtml($value);
+        return $html;
     }
 }

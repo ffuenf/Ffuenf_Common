@@ -12,11 +12,11 @@
  * @category   Ffuenf
  *
  * @author     Achim Rosenhagen <a.rosenhagen@ffuenf.de>
- * @copyright  Copyright (c) 2015 ffuenf (http://www.ffuenf.de)
+ * @copyright  Copyright (c) 2016 ffuenf (http://www.ffuenf.de)
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Block_Adminhtml_Log_View_Abstract extends Mage_Adminhtml_Block_Widget_Container
+class Ffuenf_Common_Block_Adminhtml_Log_View extends Mage_Adminhtml_Block_Widget_Container
 {
 
     /**
@@ -29,11 +29,14 @@ class Ffuenf_Common_Block_Adminhtml_Log_View_Abstract extends Mage_Adminhtml_Blo
     public function __construct()
     {
         parent::__construct();
-        $this->_addButton('back', array(
-            'label'     => Mage::helper('adminhtml')->__('Back'),
-            'onclick'   => 'window.location.href=\'' . $this->getUrl('*/*/') . '\'',
-            'class'     => 'back',
-        ));
+        $this->_addButton(
+            'back',
+            array(
+                'label'   => Mage::helper('adminhtml')->__('Back'),
+                'onclick' => 'window.location.href=\'' . $this->getUrl('*/*/') . '\'',
+                'class'   => 'back',
+            )
+        );
     }
 
     /**
@@ -57,6 +60,9 @@ class Ffuenf_Common_Block_Adminhtml_Log_View_Abstract extends Mage_Adminhtml_Blo
         return strtolower(preg_replace('/(.)([A-Z])/', "$1_$2", $name));
     }
 
+    /**
+     * @return string
+     */
     public function __call($method, $args)
     {
         if (null !== $this->_getLog()) {
@@ -67,6 +73,9 @@ class Ffuenf_Common_Block_Adminhtml_Log_View_Abstract extends Mage_Adminhtml_Blo
         }
     }
 
+    /**
+     * @return null|string
+     */
     public function getTimestamp()
     {
         if (null !== $this->_getLog()) {
@@ -75,12 +84,18 @@ class Ffuenf_Common_Block_Adminhtml_Log_View_Abstract extends Mage_Adminhtml_Blo
         return null;
     }
 
+    /**
+     * @return Ffuenf_Common_Block_Adminhtml_Log_View
+     */
     public function setLog($model)
     {
         $this->_model = $model;
         return $this;
     }
 
+    /**
+     * @return string
+     */
     public function getHeaderCssClass()
     {
         return 'icon-head head-ffuenf-log ' . parent::getHeaderCssClass();

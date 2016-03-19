@@ -43,7 +43,7 @@
                 </teaser>
                 <extensions translate="label, comment" module="ffuenf_common">
                     <label>Extensions Installed</label>
-                    <comment>Here you can find a list of all ffuenf extensions currently installed on your system.</comment>
+                    <comment><![CDATA[Here you can find a list of all ffuenf extensions currently installed on your system.]]></comment>
                     <sort_order>100</sort_order>
                     <show_in_default>1</show_in_default>
                     <show_in_website>0</show_in_website>
@@ -71,65 +71,94 @@
                     <expanded>0</expanded>
                     <fields>
                         <enable translate="label, comment" module="ffuenf_common">
-                            <label>Enable</label>
+                            <label>Enable system logging</label>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <sort_order>10</sort_order>
+                            <sort_order>1</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
                         </enable>
-                        <allowed_ips translate="label, comment" module="ffuenf_common">
-                            <label>Allowed IPs (comma separated)</label>
-                            <comment>Leave empty for access from any location</comment>
-                            <comment><![CDATA[File is located in {{base_dir}}/var/log]]></comment>
-                            <frontend_type>text</frontend_type>
-                            <depends>
-                                <enable>1</enable>
-                            </depends>
-                            <sort_order>11</sort_order>
-                            <show_in_default>1</show_in_default>
-                            <show_in_website>0</show_in_website>
-                            <show_in_store>0</show_in_store>
-                        </allowed_ips>
                         <file translate="label, comment" module="ffuenf_common">
-                            <label>Name of logfile</label>
+                            <label>Name of system logfile</label>
                             <comment><![CDATA[File is located in {{base_dir}}/var/log]]></comment>
                             <frontend_type>text</frontend_type>
-                            <depends>
-                                <enable>1</enable>
-                            </depends>
-                            <sort_order>12</sort_order>
+                            <sort_order>2</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
                         </file>
+                        <level translate="label, comment" module="ffuenf_common">
+                            <label>System log level</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>Ffuenf_Common_Model_Adminhtml_System_Config_Source_Loglevel</source_model>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </level>
                         <force translate="label, comment" module="ffuenf_common">
-                            <label>Force logging</label>
-                            <comment>Force logging even if the Magento setting is off</comment>
+                            <label>Force system logging</label>
+                            <comment><![CDATA[Force logging even if the Magento setting is off]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <depends>
-                                <enable>1</enable>
-                            </depends>
-                            <sort_order>13</sort_order>
+                            <sort_order>4</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
                         </force>
                         <echo translate="label, comment" module="ffuenf_common">
-                            <label>Echo logging on shell</label>
-                            <comment>Show logging output when calling script on console</comment>
+                            <label>Echo system logging on shell</label>
+                            <comment><![CDATA[Show log output when calling script on console]]></comment>
                             <frontend_type>select</frontend_type>
                             <source_model>adminhtml/system_config_source_yesno</source_model>
-                            <depends>
-                                <enable>1</enable>
-                            </depends>
-                            <sort_order>14</sort_order>
+                            <sort_order>5</sort_order>
                             <show_in_default>1</show_in_default>
                             <show_in_website>0</show_in_website>
                             <show_in_store>0</show_in_store>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
                         </echo>
+                        <allowed_ips translate="label, comment" module="ffuenf_common">
+                            <label>Allowed IPs (comma separated)</label>
+                            <comment><![CDATA[Leave empty for access from any location]]></comment>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>6</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <depends>
+                                <enable>1</enable>
+                            </depends>
+                        </allowed_ips>
+                        <profile_enable translate="label, comment" module="ffuenf_common">
+                            <label>Enable profile logging</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>7</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </profile_enable>
+                        <exception_enable translate="label, comment" module="ffuenf_common">
+                            <label>Enable exception logging</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>8</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>0</show_in_website>
+                            <show_in_store>0</show_in_store>
+                        </exception_enable>
                     </fields>
                 </log>
             </groups>

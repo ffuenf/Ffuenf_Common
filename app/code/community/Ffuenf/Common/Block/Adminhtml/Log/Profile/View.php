@@ -12,11 +12,11 @@
  * @category   Ffuenf
  *
  * @author     Achim Rosenhagen <a.rosenhagen@ffuenf.de>
- * @copyright  Copyright (c) 2015 ffuenf (http://www.ffuenf.de)
+ * @copyright  Copyright (c) 2016 ffuenf (http://www.ffuenf.de)
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Block_Adminhtml_Log_Profile_View extends Ffuenf_Common_Block_Adminhtml_Log_View_Abstract
+class Ffuenf_Common_Block_Adminhtml_Log_Profile_View extends Ffuenf_Common_Block_Adminhtml_Log_View
 {
     public function __construct()
     {

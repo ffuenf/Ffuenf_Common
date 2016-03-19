@@ -1,49 +1,41 @@
 language: php
 sudo: false
+cache:
+  apt: true
+  directories:
+  - "$HOME/.composer/cache"
+  - "$HOME/.cache/bin"
+  - "$HOME/.n98-magerun/modules"
+  - "$HOME/.cache/magento"
 php:
-- 5.3
-- 5.4
 - 5.5
 - 5.6
 - 7.0
 matrix:
-  allow_failures:
-  - env: MAGENTO_VERSION=magento-ce-1.9.1.1
-  - env: MAGENTO_VERSION=magento-ce-1.9.1.0
-  - php: 5.3
-  - php: 5.4
-    env: MAGENTO_VERSION=magento-ce-1.9.2.2
-  - php: 5.4
-    env: MAGENTO_VERSION=magento-ce-1.9.2.1
-  - php: 5.4
-    env: MAGENTO_VERSION=magento-ce-1.9.2.0
-  - php: 5.6
-    env: MAGENTO_VERSION=magento-mirror-1.8.1.0
-  - php: 7.0
-    env: MAGENTO_VERSION=magento-mirror-1.8.1.0
   fast_finish: true
+  allow_failures:
+  - php: 5.6
+    env: MAGENTO_VERSION=ce-1.8.1.0
+  - php: 7.0
+    env: MAGENTO_VERSION=ce-1.8.1.0
 env:
   global:
   - APPNAME=Ffuenf_Common
-  - secure: B2Oj6DB2pSpzHmisLomwq/CywgIm2fnIJXoXZLh3+SJ8LjswFUJX5OVZTUbkfYV8whI/aUleq69IJPk1RboHCYp8H0XoMySiGew+N9AotkxoAVq3S0XoiCqf3R0lMjoMFfcrMU6CbYCY4+yfuIjGs3LTSbbKv0ag5DvQX8FaZ5NQbuchuTp5mZpntqt0TKb47qBkoCSLk1z4qs+CGSQXOS4rPgzhzlHrClTc41ITwaZi9z37YLAum+hFH2La47drPC9gMZ5pJsLDVZ4VU82sAiN+IEf82VrrqvACtNGP+r4bQWxQ83WPBPoaN0jlmIEsWwNqlgqmGejSHKuFbCNzcaHE3LdvUGiIO4MwEVUE19xpDH5ewDL6EWaC86WtjIvT46yLDtql2X6R8a/vgz23e8rt17E+iO0sGCfyrLpXE6TErDgEBAoL1BWVbFDrLkVYxjs4/G9gT7kGPq3XxQvV54JBXcFJ5PEAvux9cllvZt1PjgG+M+gc5g5rGC7n5nmWjgK9nR/R2JXNnFkTac/G7xpnPVK9vwbKLuYIBl23akk4IXuuKfcEOdi59L1sxXEEMOQLFMWQBvxYhQJHSld8nbNEMvAtBNJkdcZoDBMjAalIBYSvT3n6aq2A8c+alJLiTuUV1A5iQPohXyXbiNlQjjHjXOK+WmpkSxdobi+DHSA=
-  - secure: or+Ilp/U1CyVsKy+SWQr2iP5oo1aYzYrr5cAo1KCIgohhCWhPNDU+y07xeWHvEoVsahjk3zkvB/rLIvUmbsONEOSrAeGCKAw5iyVtPOheDyE+ccxv3BpRGWRePygb/phui4EVVAJTzaKwSvC97dNxmlxD5D31KHVvlOG60yKuBW32aptjFXefHZViMXo2bsa95WCp9LMH1hAarVBM/k4ySlPjvNNia9rNoYu23rLzk8qvKjn9nAmcne1hjMPJV6LiYpVlcjM6FuWVxkpWxIrcQBcCVEgY/O46GdxJinrXM8t4RUi+dN2fM9HO24yAQTBE2M7fRmshtIZkuyj/w6ehoz6jUZcy5PK9/qrPp076uyY6aF8R/yGntpoUQgCT70uCac5mOcIUM1rkrRoZVph/cN0N88SliutOMpPx3ZXYAIlGpNZDwjVykGvMdkM4A/jIHP7u/PPFuvwIUuS9Li0bkbANAfbRN+AGsWgt/n3z+1QESce1cohee8IzF+pU1CwoRKVI9z5pIeYfMrUAMlP9s5pyYSwmgYJI2mWjH+NoUxkm1FfUKlsDwpPyiR41zkRabAlweHd4TYYqTIDCNN72Bdg1ep9J6SVkEGDuvv8Qy8IqaUeWss3O3azXSuCCU2XpceiymeUZcX2qGBmU2AR2LjlmB5+4pPfOeFpfImHBGM=
+  - secure: FuGOU7M8k678RHLiyycD91A3vho+3cFMRslQ0ALoiQTtEyqoHW75saF+zZGPDKj0dFo90q98FT6c5+Tww2r9bKkpacgfkOKLrzXr5K3zgepPZlvpQl8EVKIuJ8lvppCMa6cZOfu4FT0t1ypqe4r4QgeEs3uI5+7CjFecW8z+c1jjnZKMYVVoflECtwrEXOVymdV61OJJP8FTlv23NKFljSe9Hcj9p1hcsa0ALvOpvTVzkBXpxMucIsDFVM/fbSOujTy+XW+rQOobgHIxrcgQRtPMEeLaPPC3KAOWuUue84KghHSaZii9A29BkbG2esYp63CQ1vHVxGbxT3q3r3va6t7+cy8GmBFIaAu38i36WWq1MR5hMBeuiHDMy9RtnNpcOTJeKUjoSl8mJXwaOz5F9qb9rZVahx3Ydf2aFXjp0K4LZW1/eTMaxW26ZMioTqXIbDxQz29f4aQDGvCOm957jCspWvraN5sG1ue9GMZ4QTJ9DHnA8FHiCDiYjVBX/3XNNe856aaV2TsUnBEng5icsr3yitvYmJVkvjvt0bClVz495VlSnkyCf2vyApcgktn02EExcvEatA+ICRjQovxVPUeMq+8YgD833/JIinFHqdvYdorOwLKWz3a1eqYr8O9QeWWtDTImmCkpmDY26ervgGoD9Npq4oo8dkV5C0ACjxU=
+  - secure: Dx9kDWMtZI7z2FVBFuF5WXleOrxfxlgyyZYiMELTWNCk6B8I6WZEV3fdIbVMgutPBA6o0JN1pLGeq0u0oMODpTvN7uAaNY0CxHZ78im9qtCE3MHG9k75nCi7VC2WCj8rAGjbCTCY0ar0f3gih2D7a93IDuDCPATz9dYpWPam5oeWKEkDuwYKa4qoH2X0XDnFm2CcL1oaZ7TYFUge6Ina1T+IoLu0+suUe9Gshe0CY8QQb+Byk2c8ZDQinVZKftcsQKE3wJkv9jdf9MXSxiJ3Tkm7qT0pbGdOJc20JDN4j6OQhyiZykikNhFJe7GdQyTpPC5dvq7yVbTTFPVufSe7V6VAvVMD2ewbcg/JlvUdNPr4XqF18z009UyFsYABIdZDJn9oDNEQqHNPTaM1DSBnjPCRhhYVGz7EelvridPifAxBOb24XCVeDJagMYPzuSxnIv5Iuj5C2U1pNihgvf9SHu+5wnYjxGOsmpVqZ8etgrIIo46JrM6bXm5dB7ZYUoLCu+2hSEAph2qT4SynPIa1jZgcUTHbkdJBC5VCX2Pp7E7unBD13uywUb6jhDPQdpzLc/mMtbAHPgnOnYItC1jGX5mCLaqPL/8MgHN35KvWJbIzqzmWDE5GrQPF+5H2LcVM4asT73egFEkNnfOM+UJQ+zWcKgjo81wfi78AqCpu/54=
+  - secure: aSBRDMZl+SkKunTTwTS8hRVqKWdz6DiWnna6M7G1A5j1oEkOhnF6veWNMHeFTgvk6MvW6c0wD50+y4dfpLiuWuvIhoVV3VVuKAGinE0y3q7GAnYeub4ieMWbpAX9s6DYQKr2t+Uwcs8U2MW9albEaAbg95Qq8M8+ERAdhkeYrQ0JZjgX4lnmO6BvUg7Tg59eOLEBE/wLTv0zd5EiWUpHXu8y8MIiVaQ/qI5reEYAm1UhmyHlhzydDIoBMKnkZ+8re5dUcGhbb8EhJjYuHQQJB6gNHn2gGACcor7rxZwpF6ZICUrFI3QDTKLPVKsfvDq35qVE20OqDJD/u+b3Ozhjoagcwa3Z59kq/byaVb0j113r+jK4agn0fqiBjjUsG+7AbdHHkmNdm6UaT/HwceDYVnUOfek6dTnrOhpmOVpaTqa05us7a4f+EEujA2YEp4ewHkjcsYbgjr/Lq7TkFEkyb7uFJCPpm9s6IuPUTYqv6GmK644yq/v487REAJ86Sidh2ekLtrPZIcZeXp051XgL7ZKciohn2xjmW5Kqg3wxUjvcd0Qcuu7PVfSl8KGlPHrSc9OOcOx4CKZpYG/swDrIvFrFt5L9w3bFTAxsbiyMr4nBRDKqaQgEYj8AHFJqkMc9EuBaoKNE+vpuzBbZ+DvqOtx3moIjcpPuIC9PFVscmOA=
   matrix:
-  - MAGENTO_VERSION=magento-ce-1.9.2.2
-  - MAGENTO_VERSION=magento-ce-1.9.2.1
-  - MAGENTO_VERSION=magento-ce-1.9.2.0
-  - MAGENTO_VERSION=magento-ce-1.9.1.1
-  - MAGENTO_VERSION=magento-ce-1.9.1.0
-  - MAGENTO_VERSION=magento-mirror-1.8.1.0
-  - MAGENTO_VERSION=magento-mirror-1.7.0.2
-  - MAGENTO_VERSION=magento-mirror-1.6.2.0
-before_script:
-- composer self-update
-- composer install --prefer-source
-script:
-- curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/setup.sh
+  - MAGENTO_VERSION=ce-1.9.2.4
+  - MAGENTO_VERSION=ce-1.9.1.1
+  - MAGENTO_VERSION=ce-1.8.1.0
+  - MAGENTO_VERSION=ce-1.7.0.2
+  - MAGENTO_VERSION=ce-1.6.2.0
+before_install:
+- curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/before_install.sh
   | bash
-before_deploy:
-- gem install mime-types -v 2.6.2
+script:
+- curl -sSL https://raw.githubusercontent.com/ffuenf/MageTestStand/master/script.sh
+  | bash
 deploy:
   provider: releases
   file:
@@ -54,7 +46,7 @@ deploy:
     branch: master
     tags: true
   api_key:
-    secure: OzvUikrrZFGBpRgCNLp9kxLLObe6/0h3//lxrCr9b/m3YjYjOO8YcxizutZS93C4O88w9gFbajcyn1MgQP10QgcsLXgorgLOItj9rG53ORTmRJuvpqcU5lP0xOh9Xw9G+xRAfS8RgO2ooi97/EWg3gQP4CnccdK2l7SAx22+e2omGtAAYdk+naxdGNsHd7OpF7zuc1DTCq9nHffkfmETP2OhT1hBCUg1MPvEu1/5R16fw8yV28w2KOlgqOnFWL4Fu7sjNO/HpRJUND+MUAGqjKf+H6l4iag2l4ZYJUx7mPmMeV3pqsKV3/+ehjLBBO60mYR8deB+iD/MyRQL2rJ9CwoT65kmTQ4kvlfjOjfh4ZyppTqCRferyUvrPF939pgSidqYRBCqEuYxJAbM+YCZwBIfRwe86mAAVYv7Xa2ItPACl/+qsgiXCMDan+/IkxcWFGpeO0I7K3Te1QeY7/Shj4WrN/9MvW/PJhKTrYf2eiKllOBzDio8r9JrhsFXcpKGozj1i8XJmUk+trSVA02jIRIx2/j/LcopZcEsoQb7W+FACg3GAX700Qym8adhenP5c+/U3QJabPfjkWtGFCxT/90FbcysB0g69AtssccGLGAUjRWyNy315EVtL4geVJndO0qvM8hSjg7NsaDLD3z9PoQDsquVkJnqYO329K1HiCQ=
+    secure: VXMDIv3nE9n+uNUex0UDNrodrE9SinQ1A/+fVUQFI7B6P/1FwgMv1lbgHXuWiG7JGPHPzrlUjLoY1EV/sBzmFp9SUze+lmzm1JUTAtRN0+YsXGH51/gaWVfmJT522+FxO20mEwvj17fn0nYBgRkZoTCvEnSS5wGRfn/exKcaurQVVTvhe3LzxPZQ0SAz3TOFOKWe86gaM3/ixmiYwBBaepF4EbriZ3KUePZ5ToYQb96JRW+bJegw+0/rrD8SUYJeeWbHbeAHDO0RRV3rCgm+hs2QUo1Hc0HDDM74Sefi9UPQgWES2zo/nE+Cix+RDX3rGrLvzwaOl4PZXq5Xm5iuYdFmOfPx9HehNG6UjvDHUKWA1L+EX/oqYpdRefv5R7JaXGfGVcT3/r1TV+DZdgA9UInuQ82/UobOj43wS+tr4naeuYm3IXDNS7Me2o6i0jkIkgbyvV0+DfB/mKR0sy0yhSTCqcP+UM7XgpuqJeb5oEg6pkjp9FbnshnY92RAMQaDzpk3Mgeq9BU0i9ssi9fhQSiws15f8+i/4rKyGUYwqJ2Q0N5FcstMgnt+oxQJJ0zoX9vv4cC/0zXMHz18iK2Ocg018H1tgRRKnfT2R1FI3TvBLg6GY0VF0nyyUQRDIrTao/wpqqOWuct1kunuRRIEYijIkd2oQsCXhLgz6ThAYoU=
 notifications:
   slack:
-    secure: FHp8MEC6g7vrQzNtb7jXXrqSgUGS+xf/ySv1dww34FHMuPGfInisBcn/IsdQJYulMqSYCIfB+jYIjjCWtOV+X+kKr+9rlL4mnJ29Io7sm6xVB28CHoaVCja0wZ6EObhZNEbleD7cAMjvlNjFRkfraJ6RHrlfGvRxVlb9Y9UIc2Pqm0+x2T+s+xMeEqL143g1DmhU9TNTARPoFEgXchDCVq0yqcG8dIVBoAMWrlZYA7xDRaKuEAY/OAwfZwdIBndngipyCTkxrxKfrgtLmNra6Y/R9AfUGvjB5r0M781IO9oA0FQwzs93RZ3UgG9Q7EK4f6ODh7QuSkDpjavZ4yPCTWewkRZ+57CaGLFZzKWmjBYdu5VdzCbgo6AlcxQo0ANN5SbDXHgraDkI+BLUj13Z/kkLpW6e6PmDXrWQkH29vPquNNNZSsI1RKaCkhUwDaneTWXo8czgtiWOUIyv0HHJZNnW9gP9cOS+rL47rx0Ve4rBmd+ae2TplB37UQ8ovsT86i/lN53jvD756nVBw54uTq5JiRMe2m9wdGVnfa/RlcSHJW9gJ+9D2e4um/vUrr29510bWoL7HJLXcKcn51M7ZfiOKMRioBvB9CqacWjUJyLqG3EW/7WD/ItkBaZGTLYZCb6AMZR53nhTTZrrdodFBTiE/DmOppT6Y5oFmlF3/Vw=
+    secure: pHiTrQtTITBeVv22C2JojW4Vgps72R1/WKGYSjCMuo7r8eUyRSi0DmnrybIUygkyrzrNvxk9f6KrYoNXpfa+c9tHSKtSNr7MyCRlI577Fz5w4Q8ypKJxDVkesAVJuiJmTISMFF22ceIIv6p+Ic6S7fRbEVYH9ek5AKDawj5GiqgRmv3XxK24/8ubsEaFjoJ+IBx1JWXq1hW7GNt6ho07qgPm4AOGYXwJuvxPmHeQ+z1M+67ltUmwx/oM46gbAOMZPpcW/iDWE/zULIlO9G/r7HHs1ZfInc+W3nROpelUEly5Ef9aCZo30pDUofbBMc02nBjlCpVdHy7yCa/9m96H7uJaQ+Xt2A3FqEgfS7R79OR5xaXQWA38dOztIo6+h4lb98lTREzct0RpG9QZRgo5F7MrPlQiUcbvhRDCr30AXGmPdrg4F98iQrCBqGf5TFNWWKhuAbXc3rpDvODAmc/xxCyIAlyhAXGl2EkSb45mQGfSb1g6qEtK4gtYDXYzo6KglVhaTZVStkRnz5Hi3nVyuFyL7UEoRmrTBBtzZa2fuk1JI4YRTrbzcYdsvTsaAflUiAvLijSCqijrJJ455Wufu7bDBMdgU9pIf/5KRx2TAEovAZywsAHzuEwn2sOoUVNKzqSkBdd/S0CX2AorqWbehcDhG2N3zTnvy/aA9xVm7YU=

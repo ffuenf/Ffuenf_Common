@@ -12,11 +12,11 @@
  * @category   Ffuenf
  *
  * @author     Achim Rosenhagen <a.rosenhagen@ffuenf.de>
- * @copyright  Copyright (c) 2015 ffuenf (http://www.ffuenf.de)
+ * @copyright  Copyright (c) 2016 ffuenf (http://www.ffuenf.de)
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Block_Adminhtml_Log_System_View extends Ffuenf_Common_Block_Adminhtml_Log_View_Abstract
+class Ffuenf_Common_Block_Adminhtml_Log_System_View extends Ffuenf_Common_Block_Adminhtml_Log_View
 {
     public function __construct()
     {
@@ -33,11 +33,21 @@ class Ffuenf_Common_Block_Adminhtml_Log_System_View extends Ffuenf_Common_Block_
             $this->_headerText = $this->__(
                 'Message',
                 $this->getTimestamp(),
-                $this->getExtension(),
-                $this->getType(),
+                $this->getClass(),
+                $this->getOrigin(),
+                $this->getLevel(),
                 $this->getMessage()
             );
         }
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLogLevelHtml($levelId)
+    {
+        $html = Mage::getModel('ffuenf_common/logger')->getLogLevelHtml($levelId);
+        return $html;
     }
 }

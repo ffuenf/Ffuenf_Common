@@ -12,7 +12,7 @@
  * @category   Ffuenf
  *
  * @author     Achim Rosenhagen <a.rosenhagen@ffuenf.de>
- * @copyright  Copyright (c) 2015 ffuenf (http://www.ffuenf.de)
+ * @copyright  Copyright (c) 2016 ffuenf (http://www.ffuenf.de)
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
@@ -21,12 +21,12 @@ class Ffuenf_Common_Block_Adminhtml_System_Extensioninfo extends Mage_Adminhtml_
     protected $_dummyElement;
     protected $_fieldRenderer;
     protected $_values;
-    protected $_repoUrl = 'https://github.com';
+    protected $_repoUrl  = 'https://github.com';
     protected $_repoUser = 'ffuenf';
 
     public function render(Varien_Data_Form_Element_Abstract $element)
     {
-        $html = '';
+        $html    = '';
         $modules = array_keys((array)Mage::getConfig()->getNode('modules')->children());
         sort($modules);
         foreach ($modules as $moduleName) {
@@ -66,10 +66,6 @@ class Ffuenf_Common_Block_Adminhtml_System_Extensioninfo extends Mage_Adminhtml_
      */
     protected function _getFieldHtml($fieldset, $moduleName)
     {
-        $configData = $this->getConfigData();
-        $path = 'advanced/modules_disable_output/' . $moduleName;
-        $data = isset($configData[$path]) ? $configData[$path] : array();
-        $e = $this->_getDummyElement();
         $moduleKey = substr($moduleName, strpos($moduleName, '_') + 1);
         $ver = (Mage::getConfig()->getModuleConfig($moduleName)->version);
         $id = $moduleName;

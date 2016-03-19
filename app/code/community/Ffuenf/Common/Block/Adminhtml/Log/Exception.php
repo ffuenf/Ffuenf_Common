@@ -12,7 +12,7 @@
  * @category   Ffuenf
  *
  * @author     Achim Rosenhagen <a.rosenhagen@ffuenf.de>
- * @copyright  Copyright (c) 2015 ffuenf (http://www.ffuenf.de)
+ * @copyright  Copyright (c) 2016 ffuenf (http://www.ffuenf.de)
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
@@ -23,7 +23,6 @@ class Ffuenf_Common_Block_Adminhtml_Log_Exception extends Ffuenf_Common_Block_Ad
     public function __construct()
     {
         parent::__construct();
-        $this->_controller = 'adminhtml_log_exception';
         $this->_headerText = Mage::helper('ffuenf_common')->__('Ffuenf Exceptions');
     }
 }

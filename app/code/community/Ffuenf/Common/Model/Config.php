@@ -12,19 +12,23 @@
  * @category   Ffuenf
  *
  * @author     Achim Rosenhagen <a.rosenhagen@ffuenf.de>
- * @copyright  Copyright (c) 2015 ffuenf (http://www.ffuenf.de)
+ * @copyright  Copyright (c) 2016 ffuenf (http://www.ffuenf.de)
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
 class Ffuenf_Common_Model_Config
 {
-    const XML_PATH_LOG_ALLOWED_IPS = 'ffuenf_common/log/allowed_ips';
-    const XML_PATH_LOG_ACTIVE      = 'ffuenf_common/log/enable';
+    const XML_PATH_LOG_ALLOWED_IPS      = 'ffuenf_common/log/allowed_ips';
+    const XML_PATH_LOG_SYSTEM_ACTIVE    = 'ffuenf_common/log/enable';
+    const XML_PATH_LOG_PROFILE_ACTIVE   = 'ffuenf_common/log/profile_enable';
+    const XML_PATH_LOG_EXCEPTION_ACTIVE = 'ffuenf_common/log/exception_enable';
 
-    public function isLoggingActive($store = null)
-    {
-        return Mage::getStoreConfigFlag(self::XML_PATH_LOG_ACTIVE, $store);
-    }
+    /**
+     * Variable for if IP is allowed.
+     *
+     * @var bool
+     */
+    protected $_bLogAllowedIp;
 
     public function getLogDelimiter()
     {
@@ -36,6 +40,11 @@ class Ffuenf_Common_Model_Config
         return '"';
     }
 
+    /**
+     * Check to see if IP is allowed.
+     *
+     * @return bool
+     */
     public function isCurrentIpAllowed($store = null)
     {
         $allowedIps = trim(Mage::getStoreConfig(self::XML_PATH_LOG_ALLOWED_IPS, $store), ' ,');
@@ -46,9 +55,40 @@ class Ffuenf_Common_Model_Config
                 if (Mage::app()->getRequest()->getServer('HTTP_X_FORWARDED_FOR')) {
                     $currentIp = Mage::app()->getRequest()->getServer('HTTP_X_FORWARDED_FOR');
                 }
-                return in_array($currentIp, $allowedIps);
+                $this->_bLogAllowedIp = in_array($currentIp, $allowedIps);
+                return $this->_bLogAllowedIp;
             }
         }
-        return true;
+        return false;
+    }
+
+    /**
+     * Check to see if logging is active.
+     *
+     * @return bool
+     */
+    public function isLogActive()
+    {
+        return Mage::getStoreConfigFlag(self::XML_PATH_LOG_SYSTEM_ACTIVE);
+    }
+
+    /**
+     * Check to see if profile logging is active.
+     *
+     * @return bool
+     */
+    public function isLogProfileActive()
+    {
+        return Mage::getStoreConfigFlag(self::XML_PATH_LOG_PROFILE_ACTIVE);
+    }
+
+    /**
+     * Check to see if exception logging is active.
+     *
+     * @return bool
+     */
+    public function isLogExceptionActive()
+    {
+        return Mage::getStoreConfigFlag(self::XML_PATH_LOG_EXCEPTION_ACTIVE);
     }
 }
