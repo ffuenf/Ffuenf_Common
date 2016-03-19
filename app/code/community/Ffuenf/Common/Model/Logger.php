@@ -105,23 +105,25 @@ final class Ffuenf_Common_Model_Logger
      */
     public static function logSystem($logData)
     {
-        if (self::_getConfig()->isLoggingActive()) {
-            $logData['extension'] = isset($logData['extension']) ? $logData['extension'] : Mage::app()->getRequest()->getControllerModule();
-            $extensionNameLower = strtolower($logData['extension']);
-            try {
-                $helper = Mage::helper($extensionNameLower);
-                $method = 'isLoggingActive';
-                if (is_callable(array($helper, $method), true, $method) && method_exists(Mage::helper($extensionNameLower), 'isLoggingActive') && !Mage::helper($extensionNameLower)->isLoggingActive()) {
-                    return;
-                }
-            } catch (Exception $e){
-                self::logException($e);
+        if (!self::_getConfig()->isLogActive()) {
+            return;
+        }
+        $origin = Mage::app()->getRequest()->getControllerModule();
+        $logData['class']   = isset($logData['class']) ? $logData['class'] : $origin;
+        $extensionNameLower = strtolower($logData['class']);
+        try {
+            $helper = Mage::helper($extensionNameLower);
+            $method = 'isLogActive';
+            if (is_callable(array($helper, $method), true, $method) && method_exists(Mage::helper($extensionNameLower), $method) && !Mage::helper($extensionNameLower)->isLogActive()) {
                 return;
             }
-            array_unshift($logData, Mage::getModel('core/date')->gmtTimestamp());
-            $logData['extension'] = isset($logData['extension']) ? $logData['extension'] : $extensionName;
-            self::_writeCsv(self::getAbsoluteLogFilePath('system'), self::getLogFileName('system'), $logData);
+        } catch (Exception $e) {
+            self::logException($e);
         }
+        array_unshift($logData, Mage::getModel('core/date')->gmtTimestamp());
+        $logData['class'] = isset($logData['class']) ? $logData['class'] : $extensionName;
+        $logData['origin'] = $origin;
+        self::_writeCsv(self::getAbsoluteLogFilePath('system'), self::getLogFileName('system'), $logData);
     }
 
     /**
@@ -131,22 +133,35 @@ final class Ffuenf_Common_Model_Logger
      */
     public static function logProfile($logData)
     {
-        if (self::_getConfig()->isLoggingActive()) {
-            $message = (array_key_exists('message', $logData) ? $logData['message'] : '');
-            $profileData = array(
-                'timestamp' => Mage::getModel('core/date')->gmtTimestamp(),
-                'class' => $logData['class'],
-                'type' => $logData['type'],
-                'items' => $logData['items'],
-                'page' => $logData['page'],
-                'start' => date('H:i:s', $logData['start']['time']),
-                'stop' => date('H:i:s', $logData['stop']['time']),
-                'duration' => date('H:i:s', ($logData['stop']['time'] - $logData['start']['time'])),
-                'memory' => Mage::helper('ffuenf_common')->convert($logData['stop']['memory'] - $logData['start']['memory']),
-                'message' => $message
-            );
-            self::_writeCsv(self::getAbsoluteLogFilePath('profile'), self::getLogFileName('profile'), $profileData);
+        if (!self::_getConfig()->isLogProfileActive()) {
+            return;
         }
+        $message = (array_key_exists('message', $logData) ? $logData['message'] : '');
+        $logData['class'] = isset($logData['class']) ? $logData['class'] : Mage::app()->getRequest()->getControllerModule();
+        $extensionNameLower = strtolower($logData['class']);
+        try {
+            $helper = Mage::helper($extensionNameLower);
+            $method = 'isLogProfileActive';
+            if (is_callable(array($helper, $method), true, $method) && method_exists(Mage::helper($extensionNameLower), $method) && !Mage::helper($extensionNameLower)->isLogProfileActive()) {
+                return;
+            }
+        } catch (Exception $e) {
+            self::logException($e);
+            return;
+        }
+        $profileData = array(
+            'timestamp' => Mage::getModel('core/date')->gmtTimestamp(),
+            'class' => $logData['class'],
+            'type' => $logData['type'],
+            'items' => $logData['items'],
+            'page' => $logData['page'],
+            'start' => date('H:i:s', $logData['start']['time']),
+            'stop' => date('H:i:s', $logData['stop']['time']),
+            'duration' => date('H:i:s', ($logData['stop']['time'] - $logData['start']['time'])),
+            'memory' => Mage::helper('ffuenf_common')->convert($logData['stop']['memory'] - $logData['start']['memory']),
+            'message' => $message
+        );
+        self::_writeCsv(self::getAbsoluteLogFilePath('profile'), self::getLogFileName('profile'), $profileData);
     }
 
     /**
@@ -156,15 +171,29 @@ final class Ffuenf_Common_Model_Logger
      */
     public static function logException(Exception $e)
     {
-        if (self::_getConfig()->isLoggingActive()) {
-            $exceptionData = array(
-                'timestamp' => Mage::getModel('core/date')->gmtTimestamp(),
-                'exception_code' => $e->getCode(),
-                'exception_message' => $e->getMessage(),
-                'exception_trace' => $e->getTraceAsString()
-            );
-            self::_writeCsv(self::getAbsoluteLogFilePath('exception'), self::getLogFileName('exception'), $exceptionData);
+        if (!self::_getConfig()->isLogExceptionActive()) {
+            return;
         }
+        $extension = Mage::app()->getRequest()->getControllerModule();
+        $extensionNameLower = strtolower($extension);
+        try {
+            $helper = Mage::helper($extensionNameLower);
+            $method = 'isLogExceptionActive';
+            if (is_callable(array($helper, $method), true, $method) && method_exists(Mage::helper($extensionNameLower), $method) && !Mage::helper($extensionNameLower)->isLogExceptionActive()) {
+                return;
+            }
+        } catch (Exception $e) {
+            Mage::logException($e);
+            return;
+        }
+        $exceptionData = array(
+            'timestamp' => Mage::getModel('core/date')->gmtTimestamp(),
+            'class' => $extension,
+            'exception_code' => $e->getCode(),
+            'exception_message' => $e->getMessage(),
+            'exception_trace' => $e->getTraceAsString()
+        );
+        self::_writeCsv(self::getAbsoluteLogFilePath('exception'), self::getLogFileName('exception'), $exceptionData);
     }
 
     /**
@@ -179,9 +208,17 @@ final class Ffuenf_Common_Model_Logger
         $io = new Varien_Io_File();
         if ($io->fileExists($filePath, true)) {
             $io->open(array('path' => self::getAbsoluteLogDirPath()));
+            $io->streamOpen($fileName, 'r');
+            $data = array();
+            while ($existingData = $io->streamReadCsv(self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure())){
+                $data[] = $existingData;
+            }
+            $data[] = $logData;
             $io->streamOpen($fileName, 'w+');
             $io->streamLock(true);
-            $io->streamWriteCsv($logData, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
+            foreach ($data as $dataLine) {
+                $io->streamWriteCsv($dataLine, self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure());
+            }
             $io->close();
             $io->streamUnlock();
         } else {
@@ -196,22 +233,22 @@ final class Ffuenf_Common_Model_Logger
     {
         switch ($logType) {
             case 'exception':
-                return array('timestamp', 'exception_code', 'exception_message', 'exception_trace');
+                return array('timestamp', 'class', 'exception_code', 'exception_message', 'exception_trace');
             case 'system':
-                return array('timestamp', 'extension', 'type', 'message', 'details');
+                return array('timestamp', 'class', 'level', 'message', 'details', 'origin');
             case 'profile':
                 return array('timestamp', 'class', 'type', 'items', 'page', 'start', 'stop', 'duration', 'memory', 'message');
             default:
-                return array('timestamp', 'extension', 'type', 'message');
+                return array('timestamp', 'class', 'level', 'message', 'details', 'origin');
         }
     }
 
     /**
-     * @param int $logType
+     * @param int $levelId
      */
-    public function getLogTypeHtml($logType)
+    public function getLogLevelHtml($levelId)
     {
-        switch ($logType) {
+        switch ($levelId) {
             case Zend_Log::EMERG:
                 # Emergency: system is unusable
                 $title       = 'Emergency';

@@ -16,7 +16,7 @@
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Block_Adminhtml_Log_Profile_View extends Ffuenf_Common_Block_Adminhtml_Log_View_Abstract
+class Ffuenf_Common_Block_Adminhtml_Log_Profile_View extends Ffuenf_Common_Block_Adminhtml_Log_View
 {
     public function __construct()
     {

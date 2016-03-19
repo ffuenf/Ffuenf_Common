@@ -16,7 +16,7 @@
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Block_Adminhtml_Log_View_Abstract extends Mage_Adminhtml_Block_Widget_Container
+class Ffuenf_Common_Block_Adminhtml_Log_View extends Mage_Adminhtml_Block_Widget_Container
 {
 
     /**

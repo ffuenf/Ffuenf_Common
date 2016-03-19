@@ -2,12 +2,16 @@
 
 This file is used to list changes made in each version of Ffuenf_Common.
 
-## 1.2.0 (March 18, 2016)
+## 1.2.0 (March 19, 2016)
 
 * add details to system logging (full content)
-* format log-types in system.log with its own renderer
+* format log-types in system.log with its own renderer (based on Zend_Log)
 * add dependent logging setting in extensions (depends on isLoggingActive() in extensions helper)
 * fix php strict notices
+* fix log download functionality
+* remove event observers from system information
+* fix cron information to list all cronjobs by ffuenf
+* add origin in system logging to get originating classes
 
 ## 1.1.1 (March 12, 2016)
 

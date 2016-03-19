@@ -25,15 +25,15 @@ The common log functionality can be used either for arbitary logging:
 
     Ffuenf_Common_Model_Logger::logSystem(
         array(
-            'extension' => 'extension',
-            'type' => 'type',
+            'class' => 'extension name',
+            'level' => 'level',
             'message' => 'message',
             'details' => 'details'
         )
     );
 ```
 
-The types are based on `Zend_Log` values, so you may use e.g. `Zend_Log::DEBUG`:
+The levels are based on `Zend_Log` values, so you may use e.g. `Zend_Log::DEBUG`:
 
 ```
 <?php

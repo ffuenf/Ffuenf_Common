@@ -30,6 +30,17 @@ class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
     protected $_bExtensionActive;
 
     /**
+     * path of new magento.css file
+     *
+     * @return string
+     */
+    protected function _getNewOverlayFileLocation()
+    {
+        return BP . DS . 'skin' . DS . 'adminhtml' . DS . 'default' . DS . 'default'
+        . DS . 'lib' . DS . 'prototype' . DS . 'windows' . DS . 'themes' . DS . 'magento.css';
+    }
+
+    /**
      * Check to see if the extension is active.
      *
      * @return bool
@@ -76,16 +87,5 @@ class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
     {
         $unit = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');
         return @round($size / pow(1024, ($i = floor(log($size, 1024)))), 2) . $unit[$i];
-    }
-
-    /**
-     * path of new magento.css file
-     *
-     * @return string
-     */
-    protected function _getNewOverlayFileLocation()
-    {
-        return BP . DS . 'skin' . DS . 'adminhtml' . DS . 'default' . DS . 'default'
-        . DS . 'lib' . DS . 'prototype' . DS . 'windows' . DS . 'themes' . DS . 'magento.css';
     }
 }

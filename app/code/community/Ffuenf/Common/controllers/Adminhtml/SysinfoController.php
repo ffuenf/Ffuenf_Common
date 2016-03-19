@@ -37,7 +37,7 @@ class Ffuenf_Common_Adminhtml_SysinfoController extends Mage_Adminhtml_Controlle
     public function downloadAction()
     {
         $sysinfoData = Mage::helper('ffuenf_common/sysinfo')->getSysinfoData();
-        $filename = str_replace(array('.', '/', '\\'), array('_'), Mage::getSingleton('core/url')->parseUrl(Mage::getStoreConfig(Mage_Core_Model_Store::XML_PATH_UNSECURE_BASE_URL), PHP_URL_HOST)) .
+        $filename = str_replace(array('.', '/', '\\'), array('_'), Mage::getStoreConfig(Mage_Core_Model_Store::XML_PATH_UNSECURE_BASE_URL)) .
             '_ffuenf_debug_' . Mage::getModel('core/date')->gmtTimestamp() . '.dmp';
         $sysinfoData = base64_encode(serialize($sysinfoData));
         Mage::app()->getResponse()->setHeader('Content-type', 'application/base64');

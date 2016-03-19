@@ -18,7 +18,7 @@
 
 abstract class Ffuenf_Common_Controller_AbstractController extends Mage_Adminhtml_Controller_Action
 {
-    const LOG_TYPE = 'system';
+    const LOG_TYPE   = 'system';
     const TITLE_PATH = 'System';
 
     /**
@@ -68,16 +68,26 @@ abstract class Ffuenf_Common_Controller_AbstractController extends Mage_Adminhtm
             $this->_redirect('*/*/');
         }
     }
+    
+    /**
+     * Export log grid to CSVi format
+     */
+    public function exportCsvEnhancedAction()
+    {
+        $fileName   = self::LOG_TYPE . '-' . gmdate('YmdHis') . '.csv';
+        $grid = $this->getLayout()->createBlock('ffuenf_common/adminhtml_log_' . self::LOG_TYPE . '_grid');
+        $this->_prepareDownloadResponse($fileName, $grid->getCsvFileEnhanced());
+    }
 
     public function downloadAction()
     {
-        $io = new Varien_Io_File();
-        $logFileName = Ffuenf_Common_Model_Logger::getLogFileName(self::LOG_TYPE);
-        $logDirPath = Ffuenf_Common_Model_Logger::getAbsoluteLogDirPath();
-        $logFilePath = Ffuenf_Common_Model_Logger::getAbsoluteLogFilePath(self::LOG_TYPE);
+        $io            = new Varien_Io_File();
+        $logFileName   = Ffuenf_Common_Model_Logger::getLogFileName(self::LOG_TYPE);
+        $logDirPath    = Ffuenf_Common_Model_Logger::getAbsoluteLogDirPath();
+        $logFilePath   = Ffuenf_Common_Model_Logger::getAbsoluteLogFilePath(self::LOG_TYPE);
         $columnMapping = Ffuenf_Common_Model_Logger::getColumnMapping(self::LOG_TYPE);
-        $logDelimiter = $this->_getConfig()->getLogDelimiter();
-        $logEnclosure = $this->_getConfig()->getLogEnclosure();
+        $logDelimiter  = $this->_getConfig()->getLogDelimiter();
+        $logEnclosure  = $this->_getConfig()->getLogEnclosure();
         if ($io->fileExists($logFilePath, true)) {
             $io->open(array('path' => $logDirPath));
             $output = implode($logDelimiter, $columnMapping) . "\n";

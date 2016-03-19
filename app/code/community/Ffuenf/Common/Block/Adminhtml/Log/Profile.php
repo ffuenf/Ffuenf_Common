@@ -23,7 +23,6 @@ class Ffuenf_Common_Block_Adminhtml_Log_Profile extends Ffuenf_Common_Block_Admi
     public function __construct()
     {
         parent::__construct();
-        $this->_controller = 'adminhtml_log_profile';
         $this->_headerText = Mage::helper('ffuenf_common')->__('Profile Log');
     }
 }

@@ -52,4 +52,46 @@ class Ffuenf_Common_Test_Helper_Data extends EcomDev_PHPUnit_Test_Case
             'Extension is not active please check config'
         );
     }
+
+    /**
+     * Tests whether extension logging is active.
+     *
+     * @test
+     * @covers Ffuenf_Common_Helper_Data::isLoggingActive
+     */
+    public function testIsLoggingActive()
+    {
+        $this->assertTrue(
+            $this->_helper->isLoggingActive(),
+            'Logging is not active please check config'
+        );
+    }
+
+    /**
+     * Tests whether extension profile logging is active.
+     *
+     * @test
+     * @covers Ffuenf_Common_Helper_Data::isProfileLoggingActive
+     */
+    public function testIsProfileLoggingActive()
+    {
+        $this->assertTrue(
+            $this->_helper->isProfileLoggingActive(),
+            'Profile logging is not active please check config'
+        );
+    }
+
+    /**
+     * Tests whether extension exception logging is active.
+     *
+     * @test
+     * @covers Ffuenf_Common_Helper_Data::isExceptionLoggingActive
+     */
+    public function testIsExceptionLoggingActive()
+    {
+        $this->assertTrue(
+            $this->_helper->isExceptionLoggingActive(),
+            'Exception logging is not active please check config'
+        );
+    }
 }

@@ -23,7 +23,6 @@ class Ffuenf_Common_Block_Adminhtml_Log_Exception extends Ffuenf_Common_Block_Ad
     public function __construct()
     {
         parent::__construct();
-        $this->_controller = 'adminhtml_log_exception';
         $this->_headerText = Mage::helper('ffuenf_common')->__('Ffuenf Exceptions');
     }
 }

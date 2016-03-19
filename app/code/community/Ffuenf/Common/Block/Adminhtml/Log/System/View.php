@@ -16,7 +16,7 @@
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Block_Adminhtml_Log_System_View extends Ffuenf_Common_Block_Adminhtml_Log_View_Abstract
+class Ffuenf_Common_Block_Adminhtml_Log_System_View extends Ffuenf_Common_Block_Adminhtml_Log_View
 {
     public function __construct()
     {
@@ -33,8 +33,9 @@ class Ffuenf_Common_Block_Adminhtml_Log_System_View extends Ffuenf_Common_Block_
             $this->_headerText = $this->__(
                 'Message',
                 $this->getTimestamp(),
-                $this->getExtension(),
-                $this->getType(),
+                $this->getClass(),
+                $this->getOrigin(),
+                $this->getLevel(),
                 $this->getMessage()
             );
         }
@@ -44,9 +45,9 @@ class Ffuenf_Common_Block_Adminhtml_Log_System_View extends Ffuenf_Common_Block_
     /**
      * @return string
      */
-    public function getLogTypeHtml($typeId)
+    public function getLogLevelHtml($levelId)
     {
-        $html = Mage::getModel('ffuenf_common/logger')->getLogTypeHtml($typeId);
+        $html = Mage::getModel('ffuenf_common/logger')->getLogLevelHtml($levelId);
         return $html;
     }
 }

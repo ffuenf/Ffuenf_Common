@@ -23,7 +23,6 @@ class Ffuenf_Common_Block_Adminhtml_Log_System extends Ffuenf_Common_Block_Admin
     public function __construct()
     {
         parent::__construct();
-        $this->_controller = 'adminhtml_log_system';
         $this->_headerText = Mage::helper('ffuenf_common')->__('System Log');
     }
 }

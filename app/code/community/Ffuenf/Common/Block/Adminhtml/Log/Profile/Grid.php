@@ -16,98 +16,88 @@
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Block_Adminhtml_Log_Profile_Grid extends Mage_Adminhtml_Block_Widget_Grid
+class Ffuenf_Common_Block_Adminhtml_Log_Profile_Grid extends Ffuenf_Common_Block_Adminhtml_Log_Grid
 {
-    public function __construct()
-    {
-        parent::__construct();
-        $this->setId('ffuenf_common_log_profile_grid');
-        $this->setFilterVisibility(false);
-        $this->setSaveParametersInSession(true);
-    }
-
-    protected function _prepareCollection()
-    {
-        $collection = Mage::getModel('ffuenf_common/log_collection')->setLogType('profile');
-        $this->setCollection($collection);
-        return parent::_prepareCollection();
-    }
+    /**
+     * Type of log
+     *
+     * @var string
+     */
+    protected $_logType = 'profile';
 
     protected function _prepareColumns()
     {
         $this->addColumn(
             'timestamp',
             array(
-                'header'   => Mage::helper('ffuenf_common')->__('Date'),
-                'index'    => 'timestamp',
-                'type'     => 'datetime',
-                'width'    => '150px',
-                'renderer' => 'Ffuenf_Common_Block_Adminhtml_Renderer_Timestamp',
-                'filter'   => false,
-                'sortable' => false
+                'header' => Mage::helper('ffuenf_common')->__('Date'),
+                'index'  => 'timestamp',
+                'type'   => 'datetime',
+                'format' => Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM, true),
+                'width'  => '150px'
             )
         );
         $this->addColumn(
-            'type',
+            'class',
             array(
-                'header'   => Mage::helper('ffuenf_common')->__('Type'),
-                'index'    => 'type',
-                'filter'   => false,
-                'sortable' => false
+                'header'   => Mage::helper('ffuenf_common')->__('Class'),
+                'index'    => 'class',
+                'width'  => '200px'
+            )
+        );
+        $this->addColumn(
+            'level',
+            array(
+                'header'   => Mage::helper('ffuenf_common')->__('Level'),
+                'index'    => 'level'
             )
         );
         $this->addColumn(
             'items',
             array(
                 'header'   => Mage::helper('ffuenf_common')->__('Items'),
-                'index'    => 'items',
-                'filter'   => false,
-                'sortable' => false
+                'index'    => 'items'
             )
         );
         $this->addColumn(
             'page',
             array(
                 'header'   => Mage::helper('ffuenf_common')->__('Page'),
-                'index'    => 'page',
-                'filter'   => false,
-                'sortable' => false
+                'index'    => 'page'
             )
         );
         $this->addColumn(
-            'start', 
+            'start',
             array(
-                'header'   => Mage::helper('ffuenf_common')->__('Start Time'),
-                'index'    => 'start',
-                'filter'   => false,
-                'sortable' => false
+                'header' => Mage::helper('ffuenf_common')->__('Start Time'),
+                'index'  => 'start',
+                'type'   => 'date',
+                'format' => Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM)
             )
         );
         $this->addColumn(
-            'stop', 
+            'stop',
             array(
-                'header'   => Mage::helper('ffuenf_common')->__('Stop Time'),
-                'index'    => 'stop',
-                'filter'   => false,
-                'sortable' => false
+                'header' => Mage::helper('ffuenf_common')->__('Stop Time'),
+                'index'  => 'stop',
+                'type'   => 'date',
+                'format' => Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM)
             )
         );
         $this->addColumn(
             'duration',
             array(
-                'header'   => Mage::helper('ffuenf_common')->__('Duration'),
-                'index'    => 'duration',
-                'filter'   => false,
-                'sortable' => false
+                'header' => Mage::helper('ffuenf_common')->__('Duration'),
+                'index'  => 'duration',
+                'type'   => 'number'
             )
         );
         $this->addColumn(
             'memory',
             array(
-                'header'   => Mage::helper('ffuenf_common')->__('Memory Consumption'),
-                'index'    => 'memory',
-                'filter'   => false,
-                'sortable' => false
+                'header' => Mage::helper('ffuenf_common')->__('Memory Consumption'),
+                'index'  => 'memory',
+                'type'   => 'number'
             )
         );
         $this->addColumn(
@@ -131,10 +121,5 @@ class Ffuenf_Common_Block_Adminhtml_Log_Profile_Grid extends Mage_Adminhtml_Bloc
             )
         );
         return parent::_prepareColumns();
-    }
-
-    public function getRowUrl($row)
-    {
-        return $this->getUrl('*/*/view', array('id' => $row->getId()));
     }
 }

@@ -16,7 +16,7 @@
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Block_Adminhtml_Renderer_Type extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract
+class Ffuenf_Common_Block_Adminhtml_Renderer_Level extends Mage_Adminhtml_Block_Widget_Grid_Column_Renderer_Abstract
 {
     /**
      * @return string
@@ -24,7 +24,7 @@ class Ffuenf_Common_Block_Adminhtml_Renderer_Type extends Mage_Adminhtml_Block_W
     public function render(Varien_Object $row)
     {
         $value = $row->getData($this->getColumn()->getIndex());
-        $html = Mage::getModel('ffuenf_common/logger')->getLogTypeHtml($value);
+        $html = Mage::getModel('ffuenf_common/logger')->getLogLevelHtml($value);
         return $html;
     }
 }

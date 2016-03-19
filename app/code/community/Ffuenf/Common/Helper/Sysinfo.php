@@ -97,35 +97,6 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
     }
 
     /**
-     * Returns all observers (class and its method) binded to the given event
-     *
-     * @param string $eventName
-     * @return array
-     */
-    protected function _getEventObservers($eventName)
-    {
-        $observers = array();
-        $areas = array(
-            Mage_Core_Model_App_Area::AREA_GLOBAL,
-            Mage_Core_Model_App_Area::AREA_FRONTEND,
-            Mage_Core_Model_App_Area::AREA_ADMIN,
-            Mage_Core_Model_App_Area::AREA_ADMINHTML
-        );
-        foreach ($areas as $area) {
-            $eventConfig = Mage::getConfig()->getEventConfig($area, $eventName);
-            if ($eventConfig) {
-                foreach ($eventConfig->observers->children() as $obsName => $obsConfig) {
-                    $class            = Mage::getConfig()->getModelClassName($obsConfig->class ? (string)$obsConfig->class : $obsConfig->getClassName());
-                    $method           = (string)$obsConfig->method;
-                    $args             = implode(', ', (array)$obsConfig->args);
-                    $observers[$area] = $class . '::' . $method . '(' . $args . ')';
-                }
-            }
-        }
-        return $observers;
-    }
-
-    /**
      * Returns store views collection
      *
      * @return Mage_Core_Model_Resource_Store_Collection
@@ -283,7 +254,7 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
             'created_at'   => 'Created at'
         ));
         $cronSchedule = Mage::getModel('cron/schedule')->getCollection()
-            ->addFieldToFilter('job_code', array('ffuenf_log_rotate'))
+            ->addFieldToFilter('job_code', array('like' => '%ffuenf%'))
             ->setOrder('job_code', 'ASC')
             ->setOrder('scheduled_at', 'DESC')
             ->setOrder('executed_at', 'DESC')

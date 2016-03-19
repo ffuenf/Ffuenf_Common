@@ -16,7 +16,7 @@
  * @license    http://opensource.org/licenses/mit-license.php MIT License
  */
 
-class Ffuenf_Common_Block_Adminhtml_Log_Exception_View extends Ffuenf_Common_Block_Adminhtml_Log_View_Abstract
+class Ffuenf_Common_Block_Adminhtml_Log_Exception_View extends Ffuenf_Common_Block_Adminhtml_Log_View
 {
     public function __construct()
     {
@@ -32,7 +32,8 @@ class Ffuenf_Common_Block_Adminhtml_Log_Exception_View extends Ffuenf_Common_Blo
         if (is_object($model) && $model->getId()) {
             $this->_headerText = $this->__(
                 'Ffuenf Exception | %s',
-                $this->getTimestamp()
+                $this->getTimestamp(),
+                $this->getClass()
             );
         }
         return $this;

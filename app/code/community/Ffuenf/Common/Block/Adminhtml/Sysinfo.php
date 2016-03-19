@@ -56,13 +56,6 @@ class Ffuenf_Common_Block_Adminhtml_Sysinfo extends Mage_Adminhtml_Block_Templat
             )
         );
         $accordion->addItem(
-            'event_observers',
-            array(
-                'title'   => Mage::helper('ffuenf_common')->__('Event Observers'),
-                'content' => $this->getLayout()->createBlock('ffuenf_common/adminhtml_sysinfo_section')->setSysinfoArea('event_observers')->toHtml()
-            )
-        );
-        $accordion->addItem(
             'magento_extensions',
             array(
                 'title'   => Mage::helper('ffuenf_common')->__('Installed Magento extensions'),

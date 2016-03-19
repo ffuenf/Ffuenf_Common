@@ -21,12 +21,12 @@ class Ffuenf_Common_Block_Adminhtml_System_Extensioninfo extends Mage_Adminhtml_
     protected $_dummyElement;
     protected $_fieldRenderer;
     protected $_values;
-    protected $_repoUrl = 'https://github.com';
+    protected $_repoUrl  = 'https://github.com';
     protected $_repoUser = 'ffuenf';
 
     public function render(Varien_Data_Form_Element_Abstract $element)
     {
-        $html = '';
+        $html    = '';
         $modules = array_keys((array)Mage::getConfig()->getNode('modules')->children());
         sort($modules);
         foreach ($modules as $moduleName) {
