@@ -238,6 +238,45 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
     }
 
     /**
+     * Returns Magento patches settings
+     *
+     * @return array
+     */
+    protected function _getMagentoPatchesData()
+    {
+        $patches = array('__titles__' => array(
+            'patch'       => 'Name',
+            'releasedate' => 'Released on',
+            'patchdate'   => 'Applied on',
+            'version'     => 'Affected Versions',
+            'revision'    => 'Revision',
+            'checksum'    => 'Checksum'
+        ));
+        $patchFile = Mage::getBaseDir('etc') . DS . 'applied.patches.list';
+        $ioAdapter = new Varien_Io_File();
+        if (!$ioAdapter->fileExists($patchFile)) {
+            return;
+        }
+        $ioAdapter->open(array('path' => $ioAdapter->dirname($patchFile)));
+        $ioAdapter->streamOpen($patchFile, 'r');
+        $i = 0;
+        while ($buffer = $ioAdapter->streamRead()) {
+            if (stristr($buffer, '|')) {
+                $i++;
+                list($appliedDate, $patch, $version, $revision, $checksum, $releaseDate) = array_map('trim', explode('|', $buffer));
+                $patches[$i]['patch']       = $patch;
+                $patches[$i]['releasedate'] = $releaseDate;
+                $patches[$i]['patchdate']   = $appliedDate;
+                $patches[$i]['version']     = $version;
+                $patches[$i]['revision']    = $revision;
+                $patches[$i]['checksum']    = $checksum;
+            }
+        }
+        $ioAdapter->streamClose();
+        return $patches;
+    }
+
+    /**
      * Returns cronjobs status array
      *
      * @return array
@@ -325,6 +364,7 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
                 'general'            => $this->_getGeneralSysinfoData(),
                 'stores'             => $this->_getStoreData(),
                 'magento_general'    => $this->_getMagentoGeneralData(),
+                'magento_patches'    => $this->_getMagentoPatchesData(),
                 'cronjobs'           => $this->_getCronjobsData(),
                 'magento_extensions' => $this->_getMagentoExtensionsData(),
                 'php_modules'        => $this->_getPhpModulesData()
