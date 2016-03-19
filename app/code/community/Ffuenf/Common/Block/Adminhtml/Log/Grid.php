@@ -88,7 +88,7 @@ class Ffuenf_Common_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_Widget
     /**
      * Get grid csv download
      *
-     * @return array
+     * @return array<string,string|boolean>
      */
     public function getCsvFileEnhanced()
     {

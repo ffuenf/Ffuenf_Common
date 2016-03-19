@@ -27,7 +27,7 @@ class Ffuenf_Common_Helper_File extends Mage_Core_Helper_Abstract
     public function exists($file)
     {
         $validator = new Zend_Validate_File_Exists();
-        return $validator->isValid($file) == true;
+        return $validator->isValid($file) === true;
     }
 
     /**
@@ -80,9 +80,9 @@ class Ffuenf_Common_Helper_File extends Mage_Core_Helper_Abstract
      */
     public function isNewerThan($file1, $file2)
     {
-        $file1ModificationTime = $this->getModificationTime($file1);
-        $file2ModificationTime = $this->getModificationTime($file2);
-        return $file1ModificationTime > $file2ModificationTime == true;
+        $fileOneModificationTime = $this->getModificationTime($file1);
+        $fileTwoModificationTime = $this->getModificationTime($file2);
+        return $fileOneModificationTime > $fileTwoModificationTime === true;
     }
 
     /**
@@ -98,6 +98,6 @@ class Ffuenf_Common_Helper_File extends Mage_Core_Helper_Abstract
         $testMaxFilesize = new Zend_Validate_File_Size(array(
             'min' => $maxFilesize
         ));
-        return $testMaxFilesize->isValid($file) == true;
+        return $testMaxFilesize->isValid($file) === true;
     }
 }

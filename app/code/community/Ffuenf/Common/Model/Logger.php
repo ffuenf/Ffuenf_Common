@@ -27,7 +27,9 @@ final class Ffuenf_Common_Model_Logger
     /**
      * Check if a helper method on a given extension exists
      *
-     * @return bool
+     * @param string $extensionNameLower
+     * @param string $method
+     * @return boolean|null
      */
     public function checkExtensionHelperMethod($extensionNameLower, $method)
     {
@@ -128,7 +130,7 @@ final class Ffuenf_Common_Model_Logger
         $origin = Mage::app()->getRequest()->getControllerModule();
         $logData['class']   = isset($logData['class']) ? $logData['class'] : $origin;
         $extensionNameLower = strtolower($logData['class']);
-        if ($this->checkExtensionHelperMethod($extensionNameLower, 'isLogActive') && !Mage::helper($extensionNameLower)->isLogActive()) {
+        if (self::checkExtensionHelperMethod($extensionNameLower, 'isLogActive') && !Mage::helper($extensionNameLower)->isLogActive()) {
             return;
         }
         array_unshift($logData, Mage::getModel('core/date')->gmtTimestamp());
@@ -150,7 +152,7 @@ final class Ffuenf_Common_Model_Logger
         $message = (array_key_exists('message', $logData) ? $logData['message'] : '');
         $logData['class'] = isset($logData['class']) ? $logData['class'] : Mage::app()->getRequest()->getControllerModule();
         $extensionNameLower = strtolower($logData['class']);
-        if ($this->checkExtensionHelperMethod($extensionNameLower, 'isLogProfileActive') && !Mage::helper($extensionNameLower)->isLogProfileActive()) {
+        if (self::checkExtensionHelperMethod($extensionNameLower, 'isLogProfileActive') && !Mage::helper($extensionNameLower)->isLogProfileActive()) {
             return;
         }
         $profileData = array(
@@ -180,7 +182,7 @@ final class Ffuenf_Common_Model_Logger
         }
         $extension = Mage::app()->getRequest()->getControllerModule();
         $extensionNameLower = strtolower($extension);
-        if ($this->checkExtensionHelperMethod($extensionNameLower, 'isLogExceptionActive') && !Mage::helper($extensionNameLower)->isLogExceptionActive()) {
+        if (self::checkExtensionHelperMethod($extensionNameLower, 'isLogExceptionActive') && !Mage::helper($extensionNameLower)->isLogExceptionActive()) {
             return;
         }
         $exceptionData = array(
