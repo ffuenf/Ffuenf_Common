@@ -73,15 +73,15 @@ class Ffuenf_Common_Helper_File extends Mage_Core_Helper_Abstract
     /**
      * Method to check if a $file1 is newer than a $file2
      *
-     * @param $file1
-     * @param $file2
+     * @param $fileOne
+     * @param $fileTwo
      *
      * @return bool
      */
-    public function isNewerThan($file1, $file2)
+    public function isNewerThan($fileOne, $fileTwo)
     {
-        $fileOneModificationTime = $this->getModificationTime($file1);
-        $fileTwoModificationTime = $this->getModificationTime($file2);
+        $fileOneModificationTime = $this->getModificationTime($fileOne);
+        $fileTwoModificationTime = $this->getModificationTime($fileTwo);
         return $fileOneModificationTime > $fileTwoModificationTime === true;
     }
 
@@ -95,9 +95,11 @@ class Ffuenf_Common_Helper_File extends Mage_Core_Helper_Abstract
      */
     public function isBiggerThan($file, $maxFilesize)
     {
-        $testMaxFilesize = new Zend_Validate_File_Size(array(
-            'min' => $maxFilesize
-        ));
+        $testMaxFilesize = new Zend_Validate_File_Size(
+            array(
+                'min' => $maxFilesize
+            )
+        );
         return $testMaxFilesize->isValid($file) === true;
     }
 }

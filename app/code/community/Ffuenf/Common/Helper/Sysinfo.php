@@ -162,7 +162,7 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
     /**
      * Returns general sysinfo information
      *
-     * @return array<string,boolean>
+     * @return array<string,string|boolean>
      */
     protected function _getGeneralSysinfoData()
     {
