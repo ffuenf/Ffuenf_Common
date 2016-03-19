@@ -162,7 +162,7 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
     /**
      * Returns general sysinfo information
      *
-     * @return array<string,string,boolean,string>
+     * @return array<string,boolean>
      */
     protected function _getGeneralSysinfoData()
     {
@@ -240,7 +240,7 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
     /**
      * Returns Magento patches settings
      *
-     * @return null|array
+     * @return null|array<string,array<string,string>>
      */
     protected function _getMagentoPatchesData()
     {
@@ -279,7 +279,7 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
     /**
      * Returns cronjobs status array
      *
-     * @return array
+     * @return array<string,array<string,string>>
      */
     protected function _getCronjobsData()
     {
