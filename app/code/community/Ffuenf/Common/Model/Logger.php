@@ -43,8 +43,10 @@ final class Ffuenf_Common_Model_Logger
     {
         try {
             $io = new Varien_Io_File();
+            $io->setAllowCreateFolders(true);
             $logDir = Mage::getBaseDir('log') . DS . self::FFUENF_LOG_DIR;
             $io->checkAndCreateFolder($logDir, 0755);
+            $io->close();
             return $logDir;
         } catch (Exception $e) {
             Mage::logException($e);
@@ -205,14 +207,15 @@ final class Ffuenf_Common_Model_Logger
      */
     protected static function _writeCsv($filePath, $fileName, $logData)
     {
-        $io = new Varien_Io_File();
-        if ($io->fileExists($filePath, true)) {
+        try {
+            $io = new Varien_Io_File();
             $io->open(array('path' => self::getAbsoluteLogDirPath()));
             $io->streamOpen($fileName, 'r');
             $data = array();
             while ($existingData = $io->streamReadCsv(self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure())){
                 $data[] = $existingData;
             }
+            $io->streamClose();
             $data[] = $logData;
             $io->streamOpen($fileName, 'w+');
             $io->streamLock(true);
@@ -221,8 +224,9 @@ final class Ffuenf_Common_Model_Logger
             }
             $io->close();
             $io->streamUnlock();
-        } else {
-            Mage::log('FFUENF: unable to open ' . $filePath . ' for writing.');
+        } catch (Exception $e) {
+            Mage::logException($e);
+            return;
         }
     }
 
