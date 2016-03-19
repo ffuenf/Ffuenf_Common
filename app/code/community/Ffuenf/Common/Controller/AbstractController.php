@@ -74,7 +74,7 @@ abstract class Ffuenf_Common_Controller_AbstractController extends Mage_Adminhtm
      */
     public function exportCsvEnhancedAction()
     {
-        $fileName   = self::LOG_TYPE . '-' . gmdate('YmdHis') . '.csv';
+        $fileName = self::LOG_TYPE . '-' . gmdate('YmdHis') . '.csv';
         $grid = $this->getLayout()->createBlock('ffuenf_common/adminhtml_log_' . self::LOG_TYPE . '_grid');
         $this->_prepareDownloadResponse($fileName, $grid->getCsvFileEnhanced());
     }

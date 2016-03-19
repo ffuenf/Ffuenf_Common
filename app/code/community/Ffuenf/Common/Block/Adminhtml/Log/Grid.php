@@ -101,6 +101,10 @@ class Ffuenf_Common_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_Widget
         );
     }
 
+    /**
+     * @param string $callback
+     * @param array $args
+     */
     public function _exportIterateCollectionEnhanced($callback, array $args)
     {
         $originalCollection = $this->getCollection();
@@ -121,7 +125,7 @@ class Ffuenf_Common_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_Widget
             if ($lPage == $page || $ourLastPage == $page) {
                 $break = true;
             }
-            $page ++;
+            $page++;
             foreach ($collection as $item) {
                 call_user_func_array(array($this, $callback), array_merge(array($item), $args));
             }

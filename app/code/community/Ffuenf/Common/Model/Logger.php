@@ -125,7 +125,7 @@ final class Ffuenf_Common_Model_Logger
         array_unshift($logData, Mage::getModel('core/date')->gmtTimestamp());
         $logData['class'] = isset($logData['class']) ? $logData['class'] : $extensionName;
         $logData['origin'] = $origin;
-        self::_writeCsv(self::getAbsoluteLogFilePath('system'), self::getLogFileName('system'), $logData);
+        self::_writeCsv(self::getLogFileName('system'), $logData);
     }
 
     /**
@@ -163,7 +163,7 @@ final class Ffuenf_Common_Model_Logger
             'memory' => Mage::helper('ffuenf_common')->convert($logData['stop']['memory'] - $logData['start']['memory']),
             'message' => $message
         );
-        self::_writeCsv(self::getAbsoluteLogFilePath('profile'), self::getLogFileName('profile'), $profileData);
+        self::_writeCsv(self::getLogFileName('profile'), $profileData);
     }
 
     /**
@@ -195,7 +195,7 @@ final class Ffuenf_Common_Model_Logger
             'exception_message' => $e->getMessage(),
             'exception_trace' => $e->getTraceAsString()
         );
-        self::_writeCsv(self::getAbsoluteLogFilePath('exception'), self::getLogFileName('exception'), $exceptionData);
+        self::_writeCsv(self::getLogFileName('exception'), $exceptionData);
     }
 
     /**
@@ -205,14 +205,14 @@ final class Ffuenf_Common_Model_Logger
      * @param string $fileName
      * @param array $logData
      */
-    protected static function _writeCsv($filePath, $fileName, $logData)
+    protected static function _writeCsv($fileName, $logData)
     {
         try {
             $io = new Varien_Io_File();
             $io->open(array('path' => self::getAbsoluteLogDirPath()));
             $io->streamOpen($fileName, 'r');
             $data = array();
-            while ($existingData = $io->streamReadCsv(self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure())){
+            while ($existingData = $io->streamReadCsv(self::_getConfig()->getLogDelimiter(), self::_getConfig()->getLogEnclosure())) {
                 $data[] = $existingData;
             }
             $io->streamClose();
