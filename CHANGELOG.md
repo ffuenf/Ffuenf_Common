@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of Ffuenf_Common.
 
+## 1.2.1 (April 1, 2016)
+
+* fix static checkExtensionHelperMethod
+
 ## 1.2.0 (March 19, 2016)
 
 * add details to system logging (full content)

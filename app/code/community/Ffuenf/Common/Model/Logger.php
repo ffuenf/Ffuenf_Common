@@ -31,7 +31,7 @@ final class Ffuenf_Common_Model_Logger
      * @param string $method
      * @return boolean|null
      */
-    public function checkExtensionHelperMethod($extensionNameLower, $method)
+    public static function checkExtensionHelperMethod($extensionNameLower, $method)
     {
         try {
             $helper = Mage::helper($extensionNameLower);
