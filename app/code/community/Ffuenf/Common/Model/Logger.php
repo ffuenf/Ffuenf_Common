@@ -154,13 +154,13 @@ final class Ffuenf_Common_Model_Logger
             return;
         }
         $profileData = array(
-            'timestamp' => Mage::getModel('core/date')->gmtTimestamp(),
+            'timestamp' => Mage::app()->getLocale()->date(),
             'class' => $logData['class'],
             'type' => $logData['type'],
             'items' => $logData['items'],
-            'page' => $logData['page'],
-            'start' => date('H:i:s', $logData['start']['time']),
-            'stop' => date('H:i:s', $logData['stop']['time']),
+            'page' => empty($logData['page']) ? 0 : $logData['page'],
+            'start' => $logData['start']['time'],
+            'stop' => $logData['stop']['time'],
             'duration' => date('H:i:s', ($logData['stop']['time'] - $logData['start']['time'])),
             'memory' => Mage::helper('ffuenf_common')->convert($logData['stop']['memory'] - $logData['start']['memory']),
             'message' => $message

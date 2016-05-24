@@ -32,8 +32,6 @@ class Ffuenf_Common_Block_Adminhtml_Log_Profile_Grid extends Ffuenf_Common_Block
             array(
                 'header' => Mage::helper('ffuenf_common')->__('Date'),
                 'index'  => 'timestamp',
-                'type'   => 'datetime',
-                'format' => Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM, true),
                 'width'  => '150px'
             )
         );
@@ -48,8 +46,8 @@ class Ffuenf_Common_Block_Adminhtml_Log_Profile_Grid extends Ffuenf_Common_Block
         $this->addColumn(
             'level',
             array(
-                'header'   => Mage::helper('ffuenf_common')->__('Level'),
-                'index'    => 'level'
+                'header'   => Mage::helper('ffuenf_common')->__('Type'),
+                'index'    => 'type'
             )
         );
         $this->addColumn(
@@ -67,29 +65,10 @@ class Ffuenf_Common_Block_Adminhtml_Log_Profile_Grid extends Ffuenf_Common_Block
             )
         );
         $this->addColumn(
-            'start',
-            array(
-                'header' => Mage::helper('ffuenf_common')->__('Start Time'),
-                'index'  => 'start',
-                'type'   => 'date',
-                'format' => Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM)
-            )
-        );
-        $this->addColumn(
-            'stop',
-            array(
-                'header' => Mage::helper('ffuenf_common')->__('Stop Time'),
-                'index'  => 'stop',
-                'type'   => 'date',
-                'format' => Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM)
-            )
-        );
-        $this->addColumn(
             'duration',
             array(
                 'header' => Mage::helper('ffuenf_common')->__('Duration'),
-                'index'  => 'duration',
-                'type'   => 'number'
+                'index'  => 'duration'
             )
         );
         $this->addColumn(
@@ -98,26 +77,6 @@ class Ffuenf_Common_Block_Adminhtml_Log_Profile_Grid extends Ffuenf_Common_Block
                 'header' => Mage::helper('ffuenf_common')->__('Memory Consumption'),
                 'index'  => 'memory',
                 'type'   => 'number'
-            )
-        );
-        $this->addColumn(
-            'preview_action',
-            array(
-                'header'  => Mage::helper('ffuenf_common')->__('Details'),
-                'type'    => 'action',
-                'align'   => 'center',
-                'width'   => '50px',
-                'getter'  => 'getId',
-                'actions' => array(
-                    array(
-                        'caption' => Mage::helper('ffuenf_common')->__('Details'),
-                        'url'     => array('base' => '*/*/view'),
-                        'field'   => 'id'
-                    )
-                ),
-                'filter'    => false,
-                'sortable'  => false,
-                'is_system' => true
             )
         );
         return parent::_prepareColumns();

@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of Ffuenf_Common.
 
+## 1.2.2 (May 24, 2016)
+
+* fix proper handling of dates/times in profile logging
+
 ## 1.2.1 (April 1, 2016)
 
 * fix static checkExtensionHelperMethod
