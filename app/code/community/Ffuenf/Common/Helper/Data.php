@@ -37,7 +37,7 @@ class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
     protected function _getNewOverlayFileLocation()
     {
         return BP.DS.'skin'.DS.'adminhtml'.DS.'default'.DS.'default'
-       .DS.'lib'.DS.'prototype'.DS.'windows'.DS.'themes'.DS.'magento.css';
+        .DS.'lib'.DS.'prototype'.DS.'windows'.DS.'themes'.DS.'magento.css';
     }
 
     /**

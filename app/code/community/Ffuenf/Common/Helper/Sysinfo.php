@@ -89,9 +89,9 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
         $hours   = (int)(($diff - $days * 86400) / 3600);
         $minutes = (int)(($diff - $days * 86400 - $hours * 3600) / 60);
         $seconds = (int)($diff - $days * 86400 - $hours * 3600 - $minutes * 60);
-        $result  = ($days ? $days.' d ' : '') .
-            ($hours ? $hours.' h ' : '') .
-            ($minutes ? $minutes.' min. ' : '') .
+        $result  = ($days ? $days.' d ' : '').
+            ($hours ? $hours.' h ' : '').
+            ($minutes ? $minutes.' min. ' : '').
             ($seconds ? $seconds.' s ' : '');
         return trim($result);
     }
