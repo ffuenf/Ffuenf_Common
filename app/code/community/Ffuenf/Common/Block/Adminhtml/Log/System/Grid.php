@@ -32,9 +32,8 @@ class Ffuenf_Common_Block_Adminhtml_Log_System_Grid extends Ffuenf_Common_Block_
             array(
                 'header' => Mage::helper('ffuenf_common')->__('Date'),
                 'index'  => 'timestamp',
-                'type'   => 'datetime',
-                'format' => Mage::app()->getLocale()->getDateTimeFormat(Mage_Core_Model_Locale::FORMAT_TYPE_MEDIUM, true),
-                'width'  => '150px'
+                'width'  => '150px',
+                'renderer' => 'Ffuenf_Common_Block_Adminhtml_Renderer_Timestamp'
             )
         );
         $this->addColumn(

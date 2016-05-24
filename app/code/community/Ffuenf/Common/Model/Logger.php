@@ -131,7 +131,7 @@ final class Ffuenf_Common_Model_Logger
         if (self::checkExtensionHelperMethod($extensionNameLower, 'isLogActive') && !Mage::helper($extensionNameLower)->isLogActive()) {
             return;
         }
-        array_unshift($logData, Mage::getModel('core/date')->gmtTimestamp());
+        array_unshift($logData, Mage::app()->getLocale()->date());
         $logData['class'] = isset($logData['class']) ? $logData['class'] : $logData['class'];
         $logData['origin'] = $origin;
         self::_writeCsv(self::getLogFileName('system'), $logData);

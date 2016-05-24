@@ -32,7 +32,8 @@ class Ffuenf_Common_Block_Adminhtml_Log_Profile_Grid extends Ffuenf_Common_Block
             array(
                 'header' => Mage::helper('ffuenf_common')->__('Date'),
                 'index'  => 'timestamp',
-                'width'  => '150px'
+                'width'  => '150px',
+                'renderer' => 'Ffuenf_Common_Block_Adminhtml_Renderer_Timestamp'
             )
         );
         $this->addColumn(

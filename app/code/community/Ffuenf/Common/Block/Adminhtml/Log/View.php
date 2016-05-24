@@ -79,7 +79,7 @@ class Ffuenf_Common_Block_Adminhtml_Log_View extends Mage_Adminhtml_Block_Widget
     public function getTimestamp()
     {
         if (null !== $this->_getLog()) {
-            return Mage::app()->getLocale()->date($this->_getLog()->getTimestamp());
+            return Mage::getSingleton('core/date')->date($this->_getLog()->getTimestamp());
         }
         return null;
     }
