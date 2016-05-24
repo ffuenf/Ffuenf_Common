@@ -61,10 +61,10 @@ class Ffuenf_Common_Block_Adminhtml_System_Config_Fieldset_Teaser extends Mage_A
     public function getExtensionRepositoryUrl($repoType = 'github')
     {
         if ($repoType == 'github') {
-            return 'https://github.com/' . $this->_repoUser . '/' . $this->_moduleName;
+            return 'https://github.com/'.$this->_repoUser.'/'.$this->_moduleName;
         }
         if ($repoType == 'bitbucket') {
-            return 'https://bitbucket.org/' . $this->_repoUser . '/' . $this->_moduleName;
+            return 'https://bitbucket.org/'.$this->_repoUser.'/'.$this->_moduleName;
         }
         return '';
     }

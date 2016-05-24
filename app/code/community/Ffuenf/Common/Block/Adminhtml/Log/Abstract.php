@@ -24,12 +24,12 @@ abstract class Ffuenf_Common_Block_Adminhtml_Log_Abstract extends Mage_Adminhtml
     {
         parent::__construct();
         $this->_blockGroup = 'ffuenf_common';
-        $this->_controller = 'adminhtml_log_' . $this->_logType;
+        $this->_controller = 'adminhtml_log_'.$this->_logType;
         $this->_removeButton('add');
     }
 
     public function getHeaderCssClass()
     {
-        return 'head-ffuenf-log ' . parent::getHeaderCssClass();
+        return 'head-ffuenf-log '.parent::getHeaderCssClass();
     }
 }

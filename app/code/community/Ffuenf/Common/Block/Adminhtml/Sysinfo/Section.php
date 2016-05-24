@@ -36,7 +36,7 @@ class Ffuenf_Common_Block_Adminhtml_Sysinfo_Section extends Mage_Adminhtml_Block
     public function getSectionId()
     {
         if (null === $this->_id) {
-            $this->_id = 'ffuenf-common-sysinfo-section-' . uniqid();
+            $this->_id = 'ffuenf-common-sysinfo-section-'.uniqid();
         }
         return $this->_id;
     }

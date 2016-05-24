@@ -33,7 +33,7 @@ class Ffuenf_Common_Block_Adminhtml_Log_View extends Mage_Adminhtml_Block_Widget
             'back',
             array(
                 'label'   => Mage::helper('adminhtml')->__('Back'),
-                'onclick' => 'window.location.href=\'' . $this->getUrl('*/*/') . '\'',
+                'onclick' => 'window.location.href=\''.$this->getUrl('*/*/').'\'',
                 'class'   => 'back',
             )
         );
@@ -98,6 +98,6 @@ class Ffuenf_Common_Block_Adminhtml_Log_View extends Mage_Adminhtml_Block_Widget
      */
     public function getHeaderCssClass()
     {
-        return 'icon-head head-ffuenf-log ' . parent::getHeaderCssClass();
+        return 'icon-head head-ffuenf-log '.parent::getHeaderCssClass();
     }
 }
