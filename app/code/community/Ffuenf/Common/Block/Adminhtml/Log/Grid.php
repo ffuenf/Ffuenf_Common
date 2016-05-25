@@ -35,7 +35,7 @@ class Ffuenf_Common_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_Widget
     public function __construct()
     {
         parent::__construct();
-        $this->setId('ffuenf_common_log_' . $this->_logType . '_grid');
+        $this->setId('ffuenf_common_log_'.$this->_logType.'_grid');
         $this->setDefaultSort('timestamp');
         $this->setDefaultDir('desc');
         $this->setFilterVisibility(true);
@@ -95,13 +95,13 @@ class Ffuenf_Common_Block_Adminhtml_Log_Grid extends Mage_Adminhtml_Block_Widget
         $this->_isExport = true;
         $this->_prepareGrid();
         $io   = new Varien_Io_File();
-        $path = Mage::getBaseDir('var') . DS . 'export' . DS;
+        $path = Mage::getBaseDir('var').DS.'export'.DS;
         $name = md5(microtime());
-        $file = $path . DS . $name . '.csv';
+        $file = $path.DS.$name.'.csv';
         while (file_exists($file)) {
             sleep(1);
             $name = md5(microtime());
-            $file = $path . DS . $name . '.csv';
+            $file = $path.DS.$name.'.csv';
         }
         $io->setAllowCreateFolders(true);
         $io->open(array('path' => $path));

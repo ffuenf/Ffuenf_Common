@@ -40,7 +40,7 @@ abstract class Ffuenf_Common_Controller_AbstractController extends Mage_Adminhtm
     protected function _initAction()
     {
         $this->loadLayout()
-            ->_setActiveMenu('system/ffuenf/log/' . self::LOG_TYPE)
+            ->_setActiveMenu('system/ffuenf/log/'.self::LOG_TYPE)
             ->_addBreadcrumb($this->__('Ffuenf'), $this->__('Ffuenf'))
             ->_addBreadcrumb($this->__('Logs'), $this->__('Logs'))
             ->_addBreadcrumb($this->__(self::TITLE_PATH), $this->__(self::TITLE_PATH));
@@ -61,7 +61,7 @@ abstract class Ffuenf_Common_Controller_AbstractController extends Mage_Adminhtm
         if (is_object($log) && $log->getId()) {
             $this->_title($this->__('Ffuenf'))->_title($this->__('Logs'))->_title($this->__(self::TITLE_PATH))->_title($this->__('Details'));
             $this->_initAction();
-            $this->_addContent($this->getLayout()->createBlock('ffuenf_common/adminhtml_log_' . self::LOG_TYPE . '_view')->setLog($log));
+            $this->_addContent($this->getLayout()->createBlock('ffuenf_common/adminhtml_log_'.self::LOG_TYPE.'_view')->setLog($log));
             $this->renderLayout();
         } else {
             Mage::getSingleton('adminhtml/session')->addError(Mage::helper('ffuenf_common')->__('Log does not exist'));
@@ -74,8 +74,8 @@ abstract class Ffuenf_Common_Controller_AbstractController extends Mage_Adminhtm
      */
     public function exportCsvEnhancedAction()
     {
-        $fileName = self::LOG_TYPE . '-' . gmdate('YmdHis') . '.csv';
-        $grid = $this->getLayout()->createBlock('ffuenf_common/adminhtml_log_' . self::LOG_TYPE . '_grid');
+        $fileName = self::LOG_TYPE.'-'.gmdate('YmdHis').'.csv';
+        $grid = $this->getLayout()->createBlock('ffuenf_common/adminhtml_log_'.self::LOG_TYPE.'_grid');
         $this->_prepareDownloadResponse($fileName, $grid->getCsvFileEnhanced());
     }
 
@@ -90,7 +90,7 @@ abstract class Ffuenf_Common_Controller_AbstractController extends Mage_Adminhtm
         $logEnclosure  = $this->_getConfig()->getLogEnclosure();
         if ($io->fileExists($logFilePath, true)) {
             $io->open(array('path' => $logDirPath));
-            $output = implode($logDelimiter, $columnMapping) . "\n";
+            $output = implode($logDelimiter, $columnMapping)."\n";
             $io->streamOpen($logFileName, 'r');
             $fileOutput = array();
             $id = 0;
@@ -102,9 +102,9 @@ abstract class Ffuenf_Common_Controller_AbstractController extends Mage_Adminhtm
             }
             $filesize = $io->streamStat('size');
             $io->close();
-            $output .= implode($this->_getConfig()->getLogDelimiter(), $fileOutput) . "\n";
+            $output .= implode($this->_getConfig()->getLogDelimiter(), $fileOutput)."\n";
             Mage::app()->getResponse()->setHeader('Content-type', 'text/csv');
-            Mage::app()->getResponse()->setHeader('Content-disposition', 'attachment;filename=' . $logFileName);
+            Mage::app()->getResponse()->setHeader('Content-disposition', 'attachment;filename='.$logFileName);
             Mage::app()->getResponse()->setHeader('Content-Length', $filesize);
             Mage::app()->getResponse()->setBody($output);
         } else {

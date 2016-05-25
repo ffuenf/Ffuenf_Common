@@ -69,8 +69,8 @@ class Ffuenf_Common_Block_Adminhtml_System_Extensioninfo extends Mage_Adminhtml_
         $moduleKey = substr($moduleName, strpos($moduleName, '_') + 1);
         $ver = (Mage::getConfig()->getModuleConfig($moduleName)->version);
         $id = $moduleName;
-        $extStatus = '<img class="ext-status" src="' . $this->getSkinUrl('images/fam_bullet_success.gif') . '" title="' . $this->__("Installed") . '"/>';
-        $moduleName = $extStatus . '<a target="_blank" href="' . $this->_repoUrl . '/' . $this->_repoUser . '/' . $moduleName . '" title="' . $moduleName . '">' . $moduleName . '</a>';
+        $extStatus = '<img class="ext-status" src="'.$this->getSkinUrl('images/fam_bullet_success.gif').'" title="'.$this->__("Installed").'"/>';
+        $moduleName = $extStatus.'<a target="_blank" href="'.$this->_repoUrl.'/'.$this->_repoUser.'/'.$moduleName.'" title="'.$moduleName.'">'.$moduleName.'</a>';
         if ($ver) {
             $field = $fieldset->addField(
                 $id,

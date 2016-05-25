@@ -61,7 +61,7 @@ final class Ffuenf_Common_Model_Logger
         try {
             $io = new Varien_Io_File();
             $io->setAllowCreateFolders(true);
-            $logDir = Mage::getBaseDir('log') . DS . self::FFUENF_LOG_DIR;
+            $logDir = Mage::getBaseDir('log').DS.self::FFUENF_LOG_DIR;
             $io->checkAndCreateFolder($logDir, 0755);
             $io->close();
             return $logDir;
@@ -102,13 +102,13 @@ final class Ffuenf_Common_Model_Logger
             $logDir = self::getAbsoluteLogDirPath();
             switch ($logType) {
                 case 'exception':
-                    return $logDir . DS . self::getLogFileName('exception');
+                    return $logDir.DS.self::getLogFileName('exception');
                 case 'system':
-                    return $logDir . DS . self::getLogFileName('system');
+                    return $logDir.DS.self::getLogFileName('system');
                 case 'profile':
-                    return $logDir . DS . self::getLogFileName('profile');
+                    return $logDir.DS.self::getLogFileName('profile');
                 default:
-                    return $logDir . DS . self::getLogFileName();
+                    return $logDir.DS.self::getLogFileName();
             }
         } catch (Exception $e) {
             Mage::logException($e);
@@ -131,7 +131,7 @@ final class Ffuenf_Common_Model_Logger
         if (self::checkExtensionHelperMethod($extensionNameLower, 'isLogActive') && !Mage::helper($extensionNameLower)->isLogActive()) {
             return;
         }
-        array_unshift($logData, Mage::getModel('core/date')->gmtTimestamp());
+        array_unshift($logData, Mage::app()->getLocale()->date());
         $logData['class'] = isset($logData['class']) ? $logData['class'] : $logData['class'];
         $logData['origin'] = $origin;
         self::_writeCsv(self::getLogFileName('system'), $logData);
@@ -154,16 +154,16 @@ final class Ffuenf_Common_Model_Logger
             return;
         }
         $profileData = array(
-            'timestamp' => Mage::getModel('core/date')->gmtTimestamp(),
-            'class' => $logData['class'],
-            'type' => $logData['type'],
-            'items' => $logData['items'],
-            'page' => $logData['page'],
-            'start' => date('H:i:s', $logData['start']['time']),
-            'stop' => date('H:i:s', $logData['stop']['time']),
-            'duration' => date('H:i:s', ($logData['stop']['time'] - $logData['start']['time'])),
-            'memory' => Mage::helper('ffuenf_common')->convert($logData['stop']['memory'] - $logData['start']['memory']),
-            'message' => $message
+            'timestamp' => Mage::app()->getLocale()->date(),
+            'class'     => $logData['class'],
+            'type'      => $logData['type'],
+            'items'     => $logData['items'],
+            'page'      => empty($logData['page']) ? 0 : $logData['page'],
+            'start'     => $logData['start']['time'],
+            'stop'      => $logData['stop']['time'],
+            'duration'  => date('H:i:s', ($logData['stop']['time'] - $logData['start']['time'])),
+            'memory'    => Mage::helper('ffuenf_common')->convert($logData['stop']['memory'] - $logData['start']['memory']),
+            'message'   => $message
         );
         self::_writeCsv(self::getLogFileName('profile'), $profileData);
     }
@@ -184,11 +184,11 @@ final class Ffuenf_Common_Model_Logger
             return;
         }
         $exceptionData = array(
-            'timestamp' => Mage::getModel('core/date')->gmtTimestamp(),
-            'class' => $extension,
-            'exception_code' => $e->getCode(),
+            'timestamp'         => Mage::getModel('core/date')->gmtTimestamp(),
+            'class'             => $extension,
+            'exception_code'    => $e->getCode(),
             'exception_message' => $e->getMessage(),
-            'exception_trace' => $e->getTraceAsString()
+            'exception_trace'   => $e->getTraceAsString()
         );
         self::_writeCsv(self::getLogFileName('exception'), $exceptionData);
     }
@@ -301,7 +301,7 @@ final class Ffuenf_Common_Model_Logger
                 $cssClass = 'grid-severity-notice';
                 break;
         }
-        $html = '<span class="' . $cssClass . '" title="' . $description . '"><span>' . $title . '</span></span>';
+        $html = '<span class="'.$cssClass.'" title="'.$description.'"><span>'.$title.'</span></span>';
         return $html;
     }
 
@@ -316,7 +316,7 @@ final class Ffuenf_Common_Model_Logger
             try {
                 if (Mage::helper('ffuenf_common/file')->isBiggerThan($filepath, $maxFilesize)) {
                     $io->open(array('path' => $filepathdir));
-                    $io->mv($filepath, $filepath . '.' . Mage::getModel('core/date')->date("Ymdhis"));
+                    $io->mv($filepath, $filepath.'.'.Mage::getModel('core/date')->date("Ymdhis"));
                     $io->close();
                 }
             } catch (Exception $e) {

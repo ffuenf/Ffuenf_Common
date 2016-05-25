@@ -36,8 +36,8 @@ class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
      */
     protected function _getNewOverlayFileLocation()
     {
-        return BP . DS . 'skin' . DS . 'adminhtml' . DS . 'default' . DS . 'default'
-        . DS . 'lib' . DS . 'prototype' . DS . 'windows' . DS . 'themes' . DS . 'magento.css';
+        return BP.DS.'skin'.DS.'adminhtml'.DS.'default'.DS.'default'
+        .DS.'lib'.DS.'prototype'.DS.'windows'.DS.'themes'.DS.'magento.css';
     }
 
     /**
@@ -86,6 +86,6 @@ class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
     public function convert($size)
     {
         $unit = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');
-        return @round($size / pow(1024, ($i = floor(log($size, 1024)))), 2) . $unit[$i];
+        return @round($size / pow(1024, ($i = floor(log($size, 1024)))), 2).$unit[$i];
     }
 }

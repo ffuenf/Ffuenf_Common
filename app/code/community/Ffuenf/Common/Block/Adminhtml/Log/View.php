@@ -33,7 +33,7 @@ class Ffuenf_Common_Block_Adminhtml_Log_View extends Mage_Adminhtml_Block_Widget
             'back',
             array(
                 'label'   => Mage::helper('adminhtml')->__('Back'),
-                'onclick' => 'window.location.href=\'' . $this->getUrl('*/*/') . '\'',
+                'onclick' => 'window.location.href=\''.$this->getUrl('*/*/').'\'',
                 'class'   => 'back',
             )
         );
@@ -79,7 +79,7 @@ class Ffuenf_Common_Block_Adminhtml_Log_View extends Mage_Adminhtml_Block_Widget
     public function getTimestamp()
     {
         if (null !== $this->_getLog()) {
-            return Mage::app()->getLocale()->date($this->_getLog()->getTimestamp());
+            return Mage::getSingleton('core/date')->date($this->_getLog()->getTimestamp());
         }
         return null;
     }
@@ -98,6 +98,6 @@ class Ffuenf_Common_Block_Adminhtml_Log_View extends Mage_Adminhtml_Block_Widget
      */
     public function getHeaderCssClass()
     {
-        return 'icon-head head-ffuenf-log ' . parent::getHeaderCssClass();
+        return 'icon-head head-ffuenf-log '.parent::getHeaderCssClass();
     }
 }

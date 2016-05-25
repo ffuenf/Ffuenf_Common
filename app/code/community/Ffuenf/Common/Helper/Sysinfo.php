@@ -67,7 +67,7 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
     protected function _getMagentoEdition()
     {
         if (method_exists('Mage', 'getEdition')) {
-            return Mage::getEdition() . ' Edition';
+            return Mage::getEdition().' Edition';
         }
         return '';
     }
@@ -89,10 +89,10 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
         $hours   = (int)(($diff - $days * 86400) / 3600);
         $minutes = (int)(($diff - $days * 86400 - $hours * 3600) / 60);
         $seconds = (int)($diff - $days * 86400 - $hours * 3600 - $minutes * 60);
-        $result  = ($days ? $days . ' d ' : '') .
-            ($hours ? $hours . ' h ' : '') .
-            ($minutes ? $minutes . ' min. ' : '') .
-            ($seconds ? $seconds . ' s ' : '');
+        $result  = ($days ? $days.' d ' : '').
+            ($hours ? $hours.' h ' : '').
+            ($minutes ? $minutes.' min. ' : '').
+            ($seconds ? $seconds.' s ' : '');
         return trim($result);
     }
 
@@ -167,10 +167,10 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
     protected function _getGeneralSysinfoData()
     {
         return array(
-            'Magento version'          => trim(Mage::getVersion() . ' ' . $this->_getMagentoEdition()),
+            'Magento version'          => trim(Mage::getVersion().' '.$this->_getMagentoEdition()),
             'PHP version'              => PHP_VERSION,
             'Magento Compiler enabled' => defined('COMPILER_INCLUDE_PATH'),
-            'Current timestamp'        => $this->_getCurrentTimestamp() . ' <em>&lt;' . Mage::getSingleton('core/date')->date("Y-m-d H:i:s", $this->_getCurrentTimestamp()) . '&gt;</em>'
+            'Current timestamp'        => $this->_getCurrentTimestamp().' <em>&lt;'.Mage::getSingleton('core/date')->date("Y-m-d H:i:s", $this->_getCurrentTimestamp()).'&gt;</em>'
         );
     }
 
@@ -189,12 +189,12 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
             $settings['__titles__'][0] = '<em>__default__</em>';
             foreach ($defaultScopeSettings as $key => $value) {
                 $keys[] = $key;
-                $settings[$key][0] = $this->_formatConfigValueOutput($configPath . '/' . $key, $value);
+                $settings[$key][0] = $this->_formatConfigValueOutput($configPath.'/'.$key, $value);
             }
             foreach ($this->_getStoreCollection() as $store) {
                 $settings['__titles__'][$store->getCode()] = $store->getName();
                 foreach ($keys as $key) {
-                    $settings[$key][$store->getCode()] = $this->_formatConfigValueOutput($configPath . '/' . $key, Mage::getStoreConfig($configPath . '/' . $key, $store->getId()));
+                    $settings[$key][$store->getCode()] = $this->_formatConfigValueOutput($configPath.'/'.$key, Mage::getStoreConfig($configPath.'/'.$key, $store->getId()));
                 }
             }
         }
@@ -252,7 +252,7 @@ class Ffuenf_Common_Helper_Sysinfo extends Ffuenf_Common_Helper_Core
             'revision'    => 'Revision',
             'checksum'    => 'Checksum'
         ));
-        $patchFile = Mage::getBaseDir('etc') . DS . 'applied.patches.list';
+        $patchFile = Mage::getBaseDir('etc').DS.'applied.patches.list';
         $ioAdapter = new Varien_Io_File();
         if (!$ioAdapter->fileExists($patchFile)) {
             return;
