@@ -88,4 +88,23 @@ class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
         $unit = array('B', 'KB', 'MB', 'GB', 'TB', 'PB');
         return @round($size / pow(1024, ($i = floor(log($size, 1024)))), 2).$unit[$i];
     }
+
+    /**
+     * return feed-friendly text
+     *
+     * @return string
+     */
+    public function html2plain($value)
+    {
+        // 194 -> 32
+        $value = str_replace(' ', ' ', $value);
+        $value = str_replace('&nbsp;', ' ', $value);
+        $value = str_replace('"', '', $value);
+        $value = strip_tags($value);
+        $value = str_replace('\\\'', '\'', $value);
+        $value = preg_replace('/\s+/', ' ', $value);
+        $value = trim($value);
+
+        return $value;
+    }
 }
