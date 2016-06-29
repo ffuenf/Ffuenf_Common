@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of Ffuenf_Common.
 
+## 1.2.3 (June 28, 2016)
+
+* add html2plain helper
+* add VersionEye dependency info
+
 ## 1.2.2 (May 24, 2016)
 
 * fix proper handling of dates/times in profile logging
