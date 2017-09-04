@@ -104,7 +104,22 @@ class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
         $value = str_replace('\\\'', '\'', $value);
         $value = preg_replace('/\s+/', ' ', $value);
         $value = trim($value);
-
         return $value;
+    }
+
+    public function hexToRgb($hex, $alpha = false, $css = false) {
+       $hex      = str_replace('#', '', $hex);
+       $length   = strlen($hex);
+       $rgb['r'] = hexdec($length == 6 ? substr($hex, 0, 2) : ($length == 3 ? str_repeat(substr($hex, 0, 1), 2) : 0));
+       $rgb['g'] = hexdec($length == 6 ? substr($hex, 2, 2) : ($length == 3 ? str_repeat(substr($hex, 1, 1), 2) : 0));
+       $rgb['b'] = hexdec($length == 6 ? substr($hex, 4, 2) : ($length == 3 ? str_repeat(substr($hex, 2, 1), 2) : 0));
+       if ($alpha) {
+          $rgb['a'] = $alpha;
+       }
+       if (!$css) {
+          return $rgb;
+       } else {
+           return implode(array_keys($rgb)) . '(' . implode(', ', $rgb) . ')';
+       }
     }
 }
