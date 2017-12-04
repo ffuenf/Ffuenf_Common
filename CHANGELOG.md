@@ -2,6 +2,12 @@
 
 This file is used to list changes made in each version of Ffuenf_Common.
 
+## 1.2.4 (September 4, 2017)
+
+* add add hexToRgb helper
+* add jscolor in adminhtml
+* update prism.js
+
 ## 1.2.3 (June 28, 2016)
 
 * add html2plain helper

@@ -1,19 +1,12 @@
 <a href="http://www.ffuenf.de" title="ffuenf - code • design • e-commerce"><img src="https://github.com/ffuenf/Ffuenf_Common/blob/master/skin/adminhtml/default/default/ffuenf/ffuenf.png" alt="ffuenf - code • design • e-commerce" /></a>
 
 Ffuenf_Common
-=============
-[![GitHub tag](https://img.shields.io/github/tag/ffuenf/Ffuenf_Common.svg)][tag]
-[![Build Status](https://img.shields.io/travis/ffuenf/Ffuenf_Common.svg)][travis]
-[![VersionEye](https://www.versioneye.com/user/projects/5772a7b9752cd100519a4720/badge.svg)][versioneye]
-[![Code Quality](https://scrutinizer-ci.com/g/ffuenf/Ffuenf_Common/badges/quality-score.png)][code_quality]
-[![Code Coverage](https://scrutinizer-ci.com/g/ffuenf/Ffuenf_Common/badges/coverage.png)][code_coverage]
-[![PayPal Donate](https://img.shields.io/badge/paypal-donate-blue.svg)][paypal_donate]
-[tag]: https://github.com/ffuenf/Ffuenf_Common
-[travis]: https://travis-ci.org/ffuenf/Ffuenf_Common
-[versioneye]: https://www.versioneye.com/user/projects/5772a7b9752cd100519a4720
-[code_quality]: https://scrutinizer-ci.com/g/ffuenf/Ffuenf_Common
-[code_coverage]: https://scrutinizer-ci.com/g/ffuenf/Ffuenf_Common
-[paypal_donate]: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=J2PQS2WLT2Y8W&item_name=Magento%20Extension%3a%20Ffuenf_Common&item_number=Ffuenf_Common&currency_code=EUR
+===============
+[![GitHub tag](https://img.shields.io/github/tag/ffuenf/Ffuenf_Common.svg)](https://github.com/ffuenf/Ffuenf_Common)
+[![Build Status](https://img.shields.io/travis/ffuenf/Ffuenf_Common.svg)](https://travis-ci.org/ffuenf/Ffuenf_Common)
+[![Code Quality](https://scrutinizer-ci.com/g/ffuenf/Ffuenf_Common/badges/quality-score.png)](https://scrutinizer-ci.com/g/ffuenf/Ffuenf_Common)
+[![Code Coverage](https://scrutinizer-ci.com/g/ffuenf/Ffuenf_Common/badges/coverage.png)](https://scrutinizer-ci.com/g/ffuenf/Ffuenf_Common)
+[![PayPal Donate](https://img.shields.io/badge/paypal-donate-blue.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=J2PQS2WLT2Y8W&item_name=Magento%20Extension%3a%20Ffuenf_Common&item_number=Ffuenf_Common&currency_code=EUR)
 
 This is a extension for Magento Community Edition that adds common code for extension from ffuenf.
 
@@ -172,7 +165,7 @@ License and Author
 ------------------
 
 - Author:: Achim Rosenhagen (<a.rosenhagen@ffuenf.de>)
-- Copyright:: 2016, ffuenf
+- Copyright:: 2017, ffuenf
 
 The MIT License (MIT)
 
