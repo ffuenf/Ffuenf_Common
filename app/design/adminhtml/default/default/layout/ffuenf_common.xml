@@ -29,6 +29,13 @@
             </action>
         </reference>
     </default>
+    <adminhtml_system_config_edit>
+        <reference name="head">
+            <action method="addJs">
+                <file>jscolor/jscolor.js</file>
+            </action>
+        </reference>
+    </adminhtml_system_config_edit>
     <adminhtml_sysinfo_index>
         <reference name="content">
             <block type="ffuenf_common/adminhtml_sysinfo" name="ffuenf_common_sysinfo_data" />

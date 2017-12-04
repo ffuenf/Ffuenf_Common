@@ -4,7 +4,6 @@ app/design/adminhtml/default/default/template/ffuenf/common    app/design/adminh
 app/locale/de_DE/Ffuenf_Common.csv                             app/locale/de_DE/Ffuenf_Common.csv
 app/locale/en_US/Ffuenf_Common.csv                             app/locale/en_US/Ffuenf_Common.csv
 app/etc/modules/Ffuenf_Common.xml                              app/etc/modules/Ffuenf_Common.xml
-skin/adminhtml/default/default/ffuenf/common.js                skin/adminhtml/default/default/ffuenf/common.js
-skin/adminhtml/default/default/ffuenf/icon.png                 skin/adminhtml/default/default/ffuenf/icon.png
-skin/adminhtml/default/default/ffuenf/common.css               skin/adminhtml/default/default/ffuenf/common.css
-js/ffuenf/vendors/prism.js                                     js/ffuenf/vendors/prism.js
+skin/adminhtml/default/default/ffuenf/*                        skin/adminhtml/default/default/ffuenf/
+js/ffuenf                                                      js/ffuenf
+js/jscolor                                                     js/jscolor
