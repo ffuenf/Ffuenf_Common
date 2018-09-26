@@ -33,6 +33,11 @@
             <ffuenf_common>
                 <class>Ffuenf_Common_Model</class>
             </ffuenf_common>
+            <install>
+                <rewrite>
+                    <installer_db_mysql4>Ffuenf_Common_Model_Installer_Db_Mysql4</installer_db_mysql4>
+                </rewrite>
+            </install>
         </models>
         <helpers>
             <ffuenf_common>
