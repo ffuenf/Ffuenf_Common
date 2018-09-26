@@ -1,5 +1,5 @@
 config:
   default/ffuenf_common/general/enable: 1
   default/ffuenf_common/log/enable: 1
-  default/ffuenf_common/log/profile: 1
-  default/ffuenf_common/log/exception: 1
+  default/ffuenf_common/log/profile_enable: 1
+  default/ffuenf_common/log/exception_enable: 1

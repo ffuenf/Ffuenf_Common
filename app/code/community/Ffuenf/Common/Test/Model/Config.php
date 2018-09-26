@@ -19,25 +19,10 @@
 /**
  * @see Ffuenf_Common_Model_Config
  *
- * @loadSharedFixture config
  */
 
 class Ffuenf_Common_Test_Model_Config extends EcomDev_PHPUnit_Test_Case_Config
 {
-    /**
-     * @var Ffuenf_Common_Model_Config
-     */
-    protected $_model;
-
-    public function setUp()
-    {
-        $this->_model = new Ffuenf_Common_Model_Config();
-    }
-
-    public function tearDown()
-    {
-        $this->_model = null;
-    }
 
     /**
      * Tests whether extension model aliases are returning the correct class names
@@ -49,48 +34,6 @@ class Ffuenf_Common_Test_Model_Config extends EcomDev_PHPUnit_Test_Case_Config
         $this->assertModelAlias(
             'ffuenf_common/config',
             'Ffuenf_Common_Model_Config'
-        );
-    }
-
-    /**
-     * Tests whether extension logging is active.
-     *
-     * @test
-     * @covers Ffuenf_Common_Model_Config::isLogActive
-     */
-    public function testIsLogActive()
-    {
-        $this->assertTrue(
-            $this->_model->isLogActive(),
-            'System logging is not active please check config'
-        );
-    }
-
-    /**
-     * Tests whether extension profile logging is active.
-     *
-     * @test
-     * @covers Ffuenf_Common_Model_Config::isLogProfileActive
-     */
-    public function testIsLogProfileActive()
-    {
-        $this->assertTrue(
-            $this->_model->isLogProfileActive(),
-            'Profile logging is not active please check config'
-        );
-    }
-
-    /**
-     * Tests whether extension exception logging is active.
-     *
-     * @test
-     * @covers Ffuenf_Common_Model_Config::isLogExceptionActive
-     */
-    public function testIsLogExceptionActive()
-    {
-        $this->assertTrue(
-            $this->_model->isLogExceptionActive(),
-            'Exception logging is not active please check config'
         );
     }
 }
