@@ -24,20 +24,6 @@
 
 class Ffuenf_Common_Test_Model_Config extends EcomDev_PHPUnit_Test_Case_Config
 {
-    /**
-     * @var Ffuenf_Common_Model_Config
-     */
-    protected $_model;
-
-    public function setUp()
-    {
-        $this->_model = new Ffuenf_Common_Model_Config();
-    }
-
-    public function tearDown()
-    {
-        $this->_model = null;
-    }
 
     /**
      * Tests whether extension model aliases are returning the correct class names
@@ -51,6 +37,4 @@ class Ffuenf_Common_Test_Model_Config extends EcomDev_PHPUnit_Test_Case_Config
             'Ffuenf_Common_Model_Config'
         );
     }
-
-
 }
