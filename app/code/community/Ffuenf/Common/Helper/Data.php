@@ -19,6 +19,9 @@
 class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
 {
     const XML_PATH_EXTENSION_ACTIVE = 'ffuenf_common/general/enable';
+    const XML_PATH_LOG_SYSTEM_ACTIVE    = 'ffuenf_common/log/enable';
+    const XML_PATH_LOG_PROFILE_ACTIVE   = 'ffuenf_common/log/profile_enable';
+    const XML_PATH_LOG_EXCEPTION_ACTIVE = 'ffuenf_common/log/exception_enable';
     const NEW_MAGENTO_CSS_LOCATION  = 'lib/prototype/windows/themes/magento.css';
     const OLD_MAGENTO_CSS_LOCATION  = 'prototype/windows/themes/magento.css';
 
@@ -28,6 +31,13 @@ class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
      * @var bool
      */
     protected $_bExtensionActive;
+
+    /**
+     * Variable for if the extension logging is active.
+     *
+     * @var bool
+     */
+    protected $_bLogActive;
 
     /**
      * path of new magento.css file
@@ -48,6 +58,36 @@ class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
     public function isExtensionActive()
     {
         return $this->getStoreFlag(self::XML_PATH_EXTENSION_ACTIVE, '_bExtensionActive');
+    }
+
+    /**
+     * Check to see if logging is active.
+     *
+     * @return bool
+     */
+    public function isLogActive()
+    {
+        return Mage::getStoreConfigFlag(self::XML_PATH_LOG_SYSTEM_ACTIVE);
+    }
+
+    /**
+     * Check to see if profile logging is active.
+     *
+     * @return bool
+     */
+    public function isLogProfileActive()
+    {
+        return Mage::getStoreConfigFlag(self::XML_PATH_LOG_PROFILE_ACTIVE);
+    }
+
+    /**
+     * Check to see if exception logging is active.
+     *
+     * @return bool
+     */
+    public function isLogExceptionActive()
+    {
+        return Mage::getStoreConfigFlag(self::XML_PATH_LOG_EXCEPTION_ACTIVE);
     }
 
     /**
