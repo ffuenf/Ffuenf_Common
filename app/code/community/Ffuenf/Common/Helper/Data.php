@@ -18,12 +18,12 @@
 
 class Ffuenf_Common_Helper_Data extends Ffuenf_Common_Helper_Core
 {
-    const XML_PATH_EXTENSION_ACTIVE = 'ffuenf_common/general/enable';
+    const XML_PATH_EXTENSION_ACTIVE     = 'ffuenf_common/general/enable';
     const XML_PATH_LOG_SYSTEM_ACTIVE    = 'ffuenf_common/log/enable';
     const XML_PATH_LOG_PROFILE_ACTIVE   = 'ffuenf_common/log/profile_enable';
     const XML_PATH_LOG_EXCEPTION_ACTIVE = 'ffuenf_common/log/exception_enable';
-    const NEW_MAGENTO_CSS_LOCATION  = 'lib/prototype/windows/themes/magento.css';
-    const OLD_MAGENTO_CSS_LOCATION  = 'prototype/windows/themes/magento.css';
+    const NEW_MAGENTO_CSS_LOCATION      = 'lib/prototype/windows/themes/magento.css';
+    const OLD_MAGENTO_CSS_LOCATION      = 'prototype/windows/themes/magento.css';
 
     /**
      * Variable for if the extension is active.
