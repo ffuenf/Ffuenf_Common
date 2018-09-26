@@ -19,7 +19,6 @@
 /**
  * @see Ffuenf_Common_Model_Config
  *
- * @loadSharedFixture config
  */
 
 class Ffuenf_Common_Test_Model_Config extends EcomDev_PHPUnit_Test_Case_Config
