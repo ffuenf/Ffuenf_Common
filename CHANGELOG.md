@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of Ffuenf_Common.
 
+## 1.3.0 (March 1, 2019)
+
+* fix composer
+* minor updates
+
 ## 1.2.4 (September 4, 2017)
 
 * add add hexToRgb helper
