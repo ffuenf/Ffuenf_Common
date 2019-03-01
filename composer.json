@@ -1,21 +1,21 @@
 {
-  "name": "Ffuenf/Ffuenf_Common",
-  "license": "MIT",
-  "description": "This is a extension for Magento Community Edition that adds common code for extension from ffuenf.",
-  "authors": [
-    {
-      "name": "Achim Rosenhagen",
-      "email": "a.rosenhagen@ffuenf.de"
-    }
-  ],
-  "type": "magento-module",
-  "require-dev": {
-    "aoepeople/composer-installers": "*"
-  },
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://packages.firegento.com"
-    }
-  ]
+    "name": "ffuenf/ffuenf_common",
+    "license": "MIT",
+    "description": "This is a extension for Magento Community Edition that adds common code for extension from ffuenf.",
+    "authors": [
+        {
+            "name": "Achim Rosenhagen",
+            "email": "a.rosenhagen@ffuenf.de"
+        }
+    ],
+    "type": "magento-module",
+    "require-dev": {
+        "aoepeople/composer-installers": "*"
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.firegento.com"
+        }
+    ]
 }

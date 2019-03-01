@@ -158,7 +158,7 @@ License and Author
 ------------------
 
 - Author:: Achim Rosenhagen (<a.rosenhagen@ffuenf.de>)
-- Copyright:: 2018, ffuenf
+- Copyright:: 2019, ffuenf
 
 The MIT License (MIT)
 
